@@ -19,6 +19,8 @@
 - Lägga till månadssparande
 - Graf för månadssparande
 - Verktyg för att räkna ut sin månadsutgifter
+- lägg till kommentarer vid händelser
+- animation vid laddning eller hink
 
 <br>
 
