@@ -8,6 +8,7 @@ With a bucket strategy, you just make sure that the first of 4 buckets are fille
 ## Installed npm packages
 
 - react-router-dom
+- firebase
 
 <br>
 <br>
