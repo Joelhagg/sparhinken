@@ -4,19 +4,27 @@ import { auth } from "../../firebase";
 
 export const StateContext = createContext({
   isLoggedin: false,
-  currentUser: null,
+  currentUser: {
+    email: "",
+    displayName: "",
+  },
+  currentUserEmail: "",
 });
 
 const StateProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<any>();
+  const [currentUserEmail, setCurrentUserEmail] = useState<any>();
 
   const contextValue = {
     isLoggedin: false,
     currentUser,
+    currentUserEmail: currentUserEmail,
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUserEmail(user?.email);
+
       setCurrentUser(user);
     });
 

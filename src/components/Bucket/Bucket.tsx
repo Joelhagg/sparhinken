@@ -1,6 +1,18 @@
+import { FormEvent } from "react";
+import { Link } from "react-router-dom";
 import "./Bucket.css";
 
 const Bucket = () => {
+  const saveBucket = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("bucket saved");
+  };
+
+  const deleteBucket = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("delete bucket");
+  };
+
   return (
     <>
       <form>
@@ -33,13 +45,17 @@ const Bucket = () => {
         </label>
         <br />
         <br />
-        <button>Spara</button>
+        <button onClick={saveBucket} type="submit">
+          Spara
+        </button>
         <br />
         <br />
-        <button>Avbryt</button>
+        <Link to="/dashboard">
+          <button>Avbryt</button>
+        </Link>
         <br />
         <br />
-        <button>Radera</button>
+        <button onClick={deleteBucket}>Radera</button>
       </form>
     </>
   );

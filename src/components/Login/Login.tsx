@@ -37,6 +37,7 @@ function Login() {
     <>
       <h1>Login Works!</h1>
       <br />
+      <h2>{error}</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Mejl:
