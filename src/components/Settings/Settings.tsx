@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Settings() {
+const Settings = () => {
   return (
     <>
       <h1>Settings works!!!</h1>
@@ -25,6 +25,6 @@ function Settings() {
       </Link>
     </>
   );
-}
+};
 
 export default Settings;
