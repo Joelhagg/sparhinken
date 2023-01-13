@@ -3,6 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { auth } from "../../firebase";
+import "./PasswordReset.css";
 
 const PasswordReset = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -17,12 +18,12 @@ const PasswordReset = () => {
     try {
       setError("");
       setLoading(true);
-      console.log(userEmail);
-
       await sendPasswordResetEmail(auth, userEmail);
       setResetSuccess(true);
     } catch {
-      setError("Failed to sens reset password email");
+      setError(
+        "Kunde inte återställa lösen, kolla att du angivit rätt mejladress"
+      );
       setResetSuccess(false);
     }
     setLoading(false);
@@ -33,7 +34,7 @@ const PasswordReset = () => {
       <h1>Password reset works!</h1>
 
       <h2>Återställ lösenord</h2>
-      <h2>{error}</h2>
+      <h4>{error}</h4>
       <form onSubmit={handleSubmit}>
         <label>
           Ange mejl

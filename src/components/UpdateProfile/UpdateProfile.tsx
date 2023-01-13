@@ -3,6 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import "./UpdateProfile.css";
 
 const UpdateProfile = () => {
   const contextState = useContext(StateContext);
@@ -34,7 +35,6 @@ const UpdateProfile = () => {
         setUpdateSuccess(true);
         setUpdateDone(true);
       }
-      // navigate("/settings");
     } catch {
       setError("Failed to update password, try again");
       setUpdateSuccess(false);
@@ -59,6 +59,8 @@ const UpdateProfile = () => {
           Nytt lösenord
           <br />
           <input
+            required
+            minLength={6}
             type="password"
             id="password"
             onChange={(e) => setUserPassword(e.target.value)}
@@ -70,6 +72,8 @@ const UpdateProfile = () => {
           Nytt lösenord igen
           <br />
           <input
+            required
+            minLength={6}
             type="password"
             id="passwordConfirm"
             onChange={(e) => setUserPasswordConfirmation(e.target.value)}
@@ -91,7 +95,7 @@ const UpdateProfile = () => {
           <p></p>
         )}
         <br />
-        <button>Radera användare</button>
+        {/* <button>Radera användare</button> */}
       </form>
     </>
   );

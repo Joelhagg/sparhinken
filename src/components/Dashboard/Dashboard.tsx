@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import "./Dashboard.css";
 
-function Dashboard() {
+const Dashboard = () => {
   const contextState = useContext(StateContext);
 
   return (
@@ -21,5 +22,5 @@ function Dashboard() {
       </Link>
     </>
   );
-}
+};
 export default Dashboard;

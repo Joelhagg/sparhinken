@@ -14,24 +14,11 @@ import { Cookies } from "./Cookies/Cookies";
 import "./App.css";
 import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../PrivateRoute";
-import NotFound from "./NotFound/notFound";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
-import { AuthContext } from "../contexts/AuthContext";
-import { StateContext } from "../contexts/StateProvider/StateProvider";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
+import NotFound from "./NotFound/NotFound";
 
 function App() {
-  // const context = useContext(AuthContext);
-  // console.log(context);
-
-  // const contextState = useContext(StateContext);
-  // console.log(contextState);
-
-  // if (contextState.isLoggedin) {
-  //   <Routes>
-  //     <Route path="/" element={<About />} />
-  //   </Routes>;
-  // }
   return (
     <>
       <Nav />
@@ -63,7 +50,7 @@ function App() {
               <Route path="/update-profile" element={<UpdateProfile />} />
             </Route>
 
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </main>
       </AuthProvider>

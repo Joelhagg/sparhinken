@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import "./Settings.css";
 
 const Settings = () => {
   return (
     <>
-      <h1>Settings works!!!</h1>
       <br />
+      <h1>Ekonomiska inställningar</h1>
       <br />
       <label>
         Ange ditt totala sparade kapital
