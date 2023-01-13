@@ -1,29 +1,52 @@
+import { updatePassword } from "firebase/auth";
 import { FormEvent, useContext, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 const UpdateProfile = () => {
   const contextState = useContext(StateContext);
+  const [currentUser, setCurrentUser] = useState(contextState);
+
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordConfirmation, setUserPasswordConfirmation] = useState("");
-  const [currentUser, setCurrentUser] = useState(contextState);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [updateDone, setUpdateDone] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (userPassword !== userPasswordConfirmation) {
       return setError("Passwords do not match");
     }
+
+    try {
+      setError("");
+      if (user) {
+        setLoading(true);
+        await updatePassword(user, userPassword);
+        setUpdateSuccess(true);
+        setUpdateDone(true);
+      }
+      // navigate("/settings");
+    } catch {
+      setError("Failed to update password, try again");
+      setUpdateSuccess(false);
+    }
+    setLoading(false);
   };
-  console.log("email: ", currentUser.currentUser.email);
-  console.log(contextState);
 
   return (
     <>
       <h1>Update profile works</h1>
       <br />
-      <h3>Du är inloggad som: {currentUser.currentUserEmail}</h3>
+      <h3>Du är inloggad som: {currentUser.currentUser.email}</h3>
       <form onSubmit={handleSubmit}>
         {/* <label>
           Ange mejl
@@ -55,10 +78,18 @@ const UpdateProfile = () => {
           <br />
         </label>
         <h3>{error}</h3>
-        <button disabled={loading} type="submit">
+        <button disabled={loading || updateDone} type="submit">
           Uppdatera
         </button>
         <br />
+        {updateSuccess ? <h4>Uppdateringen lyckades!</h4> : <p></p>}
+        {updateDone ? (
+          <Link to={"/dashboard"}>
+            <button>Tillbaka till hinkarna</button>
+          </Link>
+        ) : (
+          <p></p>
+        )}
         <br />
         <button>Radera användare</button>
       </form>
