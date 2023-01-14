@@ -7,6 +7,7 @@ export const StateContext = createContext({
   currentUser: {
     email: "",
     displayName: "",
+    uid: "",
   },
 });
 
