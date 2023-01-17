@@ -7,13 +7,14 @@ import "./Register.css";
 import { auth } from "../../firebase";
 
 const Register = () => {
+  const contextState = useContext(StateContext);
+  const [currentUser, setCurrentUser] = useState(contextState);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordConfirmation, setUserPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const contextState = useContext(StateContext);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,7 +28,8 @@ const Register = () => {
       setLoading(true);
       await createUserWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/settings");
-    } catch {
+    } catch (e) {
+      console.error(e);
       setError(
         "Det gick inte att skapa ett konto, adressen kanske är registrerad?"
       );

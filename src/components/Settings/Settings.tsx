@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./Settings.css";
 import { FormEvent, useContext, useEffect, useState } from "react";
@@ -17,7 +17,7 @@ const Settings = () => {
     e.preventDefault();
     setSavedStatus("");
     try {
-      await setDoc(doc(db, "users", currentUser.currentUser.uid), {
+      await updateDoc(doc(db, "users", currentUser.currentUser.uid), {
         userName: userName,
         totalSavedAmount: totalSavedAmount,
         monthlyExspenses: monthlyExspenses,
@@ -39,6 +39,24 @@ const Settings = () => {
         setTotalSavedAmount(data.data().totalSavedAmount);
         setMonthlyExspenses(data.data().monthlyExspenses);
       } else {
+        await setDoc(doc(db, "users", currentUser.currentUser.uid), {
+          bucket1: {
+            bucketNumber: 1,
+            inUse: false,
+          },
+          bucket2: {
+            bucketNumber: 2,
+            inUse: false,
+          },
+          bucket3: {
+            bucketNumber: 3,
+            inUse: false,
+          },
+          bucket4: {
+            bucketNumber: 4,
+            inUse: false,
+          },
+        });
         console.log("no document");
       }
     };
@@ -70,8 +88,8 @@ const Settings = () => {
           Ange ditt totala sparade kapital
           <br />
           <input
+            required
             type="number"
-            min={1}
             value={totalSavedAmount}
             onChange={(e) => setTotalSavedAmount(parseInt(e.target.value))}
           />
@@ -93,6 +111,10 @@ const Settings = () => {
         <br />
         <button type="submit">Spara</button>
       </form>
+      <br />
+      <Link to="/dashboard">
+        <button>Tillbaka</button>
+      </Link>
     </>
   );
 };

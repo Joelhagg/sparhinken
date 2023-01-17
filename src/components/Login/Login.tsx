@@ -22,7 +22,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/dashboard");
     } catch {
-      setError("Det gick inte att logga in, testa igen!");
+      setError("Mejl eller lösenord stämmer inte!");
       setLoading(false);
     }
   };

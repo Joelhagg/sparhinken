@@ -40,7 +40,7 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
 
             <Route path="/bucket" element={<PrivateRoute />}>
-              <Route path="/bucket" element={<Bucket />} />
+              <Route path="/bucket/:bucketId" element={<Bucket />} />
             </Route>
 
             <Route path="/register" element={<Register />} />
