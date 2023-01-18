@@ -10,17 +10,19 @@ function Nav() {
   const contextState = useContext(StateContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [currentUser, setCurrentUser] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
     setError("");
 
     try {
+      setLoading(true);
       await signOut(auth);
       navigate("/login");
     } catch {
-      setError("Failed to log out");
+      setError("Failed to log out...");
     }
+    setLoading(false);
   };
 
   return (
@@ -55,7 +57,10 @@ function Nav() {
           <br />
           <br />
           <form>
-            <button onClick={handleLogout}>Logga ut</button>
+            {error}
+            <button disabled={loading} onClick={handleLogout}>
+              Logga ut
+            </button>
           </form>
         </div>
       )}

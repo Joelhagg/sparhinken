@@ -1,25 +1,26 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import "./Register.css";
 
 import { auth } from "../../firebase";
 
 const Register = () => {
+  const contextState = useContext(StateContext);
+  const [currentUser, setCurrentUser] = useState(contextState);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordConfirmation, setUserPasswordConfirmation] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const contextState = useContext(StateContext);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (userPassword !== userPasswordConfirmation) {
-      return setError("Passwords do not match");
+      return setError("Lösenorden stämmer inte");
     }
 
     try {
@@ -27,8 +28,11 @@ const Register = () => {
       setLoading(true);
       await createUserWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/settings");
-    } catch {
-      setError("Failed to create an account");
+    } catch (e) {
+      console.error(e);
+      setError(
+        "Det gick inte att skapa ett konto, adressen kanske är registrerad?"
+      );
     }
     setLoading(false);
   };
@@ -48,6 +52,7 @@ const Register = () => {
           Mejl
           <br />
           <input
+            required
             type="email"
             id="email"
             onChange={(e) => setUserEmail(e.target.value)}
@@ -59,6 +64,8 @@ const Register = () => {
           Lösenord
           <br />
           <input
+            required
+            minLength={6}
             type="password"
             id="password"
             onChange={(e) => setUserPassword(e.target.value)}
@@ -70,6 +77,8 @@ const Register = () => {
           Ange lösenord igen
           <br />
           <input
+            required
+            minLength={6}
             type="password"
             id="passwordAgain"
             onChange={(e) => setUserPasswordConfirmation(e.target.value)}
@@ -79,7 +88,7 @@ const Register = () => {
         <br />
         <label>
           Godkänner du kraven?
-          <input type="checkbox" />
+          <input required type="checkbox" />
         </label>
         <br />
         <br />

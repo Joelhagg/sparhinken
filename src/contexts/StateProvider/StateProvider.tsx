@@ -1,10 +1,14 @@
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, UserInfo } from "firebase/auth";
 import React, { useState, createContext, useEffect } from "react";
 import { auth } from "../../firebase";
 
 export const StateContext = createContext({
   isLoggedin: false,
-  currentUser: null,
+  currentUser: {
+    email: "",
+    displayName: "",
+    uid: "",
+  },
 });
 
 const StateProvider = ({ children }: any) => {

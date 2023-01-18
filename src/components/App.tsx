@@ -14,24 +14,11 @@ import { Cookies } from "./Cookies/Cookies";
 import "./App.css";
 import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../PrivateRoute";
-import NotFound from "./NotFound/notFound";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
-import { AuthContext } from "../contexts/AuthContext";
-import { StateContext } from "../contexts/StateProvider/StateProvider";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
+import NotFound from "./NotFound/NotFound";
 
 function App() {
-  // const context = useContext(AuthContext);
-  // console.log(context);
-
-  // const contextState = useContext(StateContext);
-  // console.log(contextState);
-
-  // if (contextState.isLoggedin) {
-  //   <Routes>
-  //     <Route path="/" element={<About />} />
-  //   </Routes>;
-  // }
   return (
     <>
       <Nav />
@@ -39,24 +26,31 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/settings" element={<PrivateRoute />}>
               <Route path="/settings" element={<Settings />} />
             </Route>
+
             <Route path="/dashboard" element={<PrivateRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route>
+
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+
             <Route path="/bucket" element={<PrivateRoute />}>
-              <Route path="/bucket" element={<Bucket />} />
+              <Route path="/bucket/:bucketId" element={<Bucket />} />
             </Route>
+
             <Route path="/register" element={<Register />} />
             <Route path="/passwordReset" element={<PasswordReset />} />
+
             <Route path="/update-profile" element={<PrivateRoute />}>
               <Route path="/update-profile" element={<UpdateProfile />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </main>
       </AuthProvider>

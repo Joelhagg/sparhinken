@@ -6,7 +6,7 @@ import { auth } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import "./Login.css";
 
-function Login() {
+const Login = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,14 +16,14 @@ function Login() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
     try {
       setError("");
       setLoading(true);
       await signInWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/dashboard");
     } catch {
-      setError("Failed to login");
+      setError("Mejl eller lösenord stämmer inte!");
+      setLoading(false);
     }
   };
 
@@ -37,10 +37,12 @@ function Login() {
     <>
       <h1>Login Works!</h1>
       <br />
+      <h3>{error}</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Mejl:
           <input
+            required
             type="email"
             id="emailInput"
             onChange={(e) => setUserEmail(e.target.value)}
@@ -51,21 +53,26 @@ function Login() {
         <label>
           Lösenord:
           <input
+            required
+            minLength={6}
             type="password"
             id="passwordInput"
             onChange={(e) => setUserPassword(e.target.value)}
           />
         </label>
         <br />
+        <br />
         <Link to="/passwordReset">Glömt lösenordet?</Link>
         <br />
         <br />
-        <button type="submit">Logga in</button>
+        <button disabled={loading} type="submit">
+          Logga in
+        </button>
         <br />
         <br />
         <Link to="/register">Ny användare?</Link>
       </form>
     </>
   );
-}
+};
 export default Login;
