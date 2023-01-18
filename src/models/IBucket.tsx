@@ -1,4 +1,12 @@
 export interface IBucket {
-  bucketNumber: number;
-  inUse: boolean;
+  bucketName?: string;
+  suggestedBucketName?: string;
+  bucketNumber?: number;
+  inUse?: boolean;
+  filled?: boolean;
+  recommendedBucketSize?: number;
+  targeBucketSize?: number;
+  actualBucketSize?: number;
+  selectedRiskLevel?: number;
+  recommendedRiskLevel?: number;
 }

@@ -52,7 +52,9 @@ const Dashboard = () => {
       <div>
         {bucket1?.inUse ? (
           <Link to={`/bucket/${bucket1.bucketNumber}`}>
-            <button>{bucket1.bucketNumber}</button>
+            <button>
+              Hink {bucket1.bucketNumber} <br /> {bucket1.bucketName}
+            </button>
           </Link>
         ) : (
           <Link to={`/bucket/${bucket1?.bucketNumber}`}>
@@ -67,7 +69,9 @@ const Dashboard = () => {
         <div>
           {bucket2?.inUse ? (
             <Link to={`/bucket/${bucket2.bucketNumber}`}>
-              <button>{bucket2.bucketNumber}</button>
+              <button>
+                Hink {bucket2.bucketNumber} <br /> {bucket2.bucketName}
+              </button>
             </Link>
           ) : (
             <Link to={`/bucket/${bucket2?.bucketNumber}`}>
@@ -85,7 +89,9 @@ const Dashboard = () => {
         <div>
           {bucket3?.inUse ? (
             <Link to={`/bucket/${bucket3.bucketNumber}`}>
-              <button>{bucket3.bucketNumber}</button>
+              <button>
+                Hink {bucket3.bucketNumber} <br /> {bucket3.bucketName}
+              </button>
             </Link>
           ) : (
             <Link to={`/bucket/${bucket3?.bucketNumber}`}>
@@ -103,7 +109,9 @@ const Dashboard = () => {
         <div>
           {bucket4?.inUse ? (
             <Link to={`/bucket/${bucket4.bucketNumber}`}>
-              <button>{bucket4.bucketNumber}</button>
+              <button>
+                Hink {bucket4.bucketNumber} <br /> {bucket4.bucketName}
+              </button>
             </Link>
           ) : (
             <Link to={`/bucket/${bucket4?.bucketNumber}`}>
