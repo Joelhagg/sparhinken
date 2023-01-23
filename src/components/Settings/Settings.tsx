@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import "./Settings.css";
@@ -6,6 +6,8 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 
 const Settings = () => {
+  const navigate = useNavigate();
+
   const contextState = useContext(StateContext);
   const [currentUser, setCurrentUser] = useState(contextState);
   const [userName, setUserName] = useState<string>("");
@@ -24,6 +26,7 @@ const Settings = () => {
       });
       console.log("saved");
       setSavedStatus("Sparat!");
+      navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
       console.error(e);
@@ -46,11 +49,15 @@ const Settings = () => {
             bucketNumber: 1,
             inUse: false,
             filled: false,
+            softDeleted: false,
             recommendedBucketSize: 0,
             targeBucketSize: 0,
             actualBucketSize: 0,
-            selectedRiskLevel: 0,
+            savedBucketAmount: 0,
+            selectedRiskLevel: 1,
             recommendedRiskLevel: 3,
+            percentageFilled: 0,
+            useRecomendedSettings: false,
           },
           bucket2: {
             bucketName: "",
@@ -58,33 +65,45 @@ const Settings = () => {
             bucketNumber: 2,
             inUse: false,
             filled: false,
+            softDeleted: false,
             recommendedBucketSize: 0,
             targeBucketSize: 0,
             actualBucketSize: 0,
-            selectedRiskLevel: 0,
+            savedBucketAmount: 0,
+            selectedRiskLevel: 1,
             recommendedRiskLevel: 5,
+            percentageFilled: 0,
+            useRecomendedSettings: false,
           },
           bucket3: {
             bucketName: "",
             suggestedBucketName: "ex. Högriskhinken",
             bucketNumber: 3,
             inUse: false,
+            softDeleted: false,
             recommendedBucketSize: 0,
             targeBucketSize: 0,
             actualBucketSize: 0,
+            savedBucketAmount: 0,
             selectedRiskLevel: 0,
             recommendedRiskLevel: 0,
+            percentageFilled: 0,
+            useRecomendedSettings: false,
           },
           bucket4: {
             bucketName: "",
             suggestedBucketName: "ex. Lekhinken",
             bucketNumber: 4,
             inUse: false,
+            softDeleted: false,
             recommendedBucketSize: 0,
             targeBucketSize: 0,
             actualBucketSize: 0,
+            savedBucketAmount: 0,
             selectedRiskLevel: 0,
             recommendedRiskLevel: 0,
+            percentageFilled: 0,
+            useRecomendedSettings: false,
           },
         });
         console.log("no document");
@@ -100,7 +119,6 @@ const Settings = () => {
       <h1>Ekonomiska inställningar</h1>
       {savedStatus}
       <br />
-      <br />
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -114,7 +132,7 @@ const Settings = () => {
         </label>
         <br />
         <br />
-        <label>
+        {/* <label>
           Ange ditt totala sparade kapital
           <br />
           <input
@@ -125,7 +143,7 @@ const Settings = () => {
           />
         </label>
         <br />
-        <br />
+        <br /> */}
         <label>
           Ange dina totala utgifter per månad
           <br />
