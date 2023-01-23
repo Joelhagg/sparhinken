@@ -54,8 +54,8 @@ function App() {
           </Routes>
         </main>
       </AuthProvider>
-      <Footer />
-      <Cookies />
+      {/* <Footer />
+      <Cookies /> */}
     </>
   );
 }

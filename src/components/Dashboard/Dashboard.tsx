@@ -16,6 +16,7 @@ const Dashboard = () => {
   const [bucket2, setBucket2] = useState<IBucket>();
   const [bucket3, setBucket3] = useState<IBucket>();
   const [bucket4, setBucket4] = useState<IBucket>();
+  const [totalSavedInBuckets, setTotalSavedInBuckets] = useState<number>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +38,23 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    let sum = (arr: any) => {
+      return arr.reduce((total: number, current: number) => {
+        return total + current;
+      }, 0);
+    };
+
+    setTotalSavedInBuckets(
+      sum([
+        bucket1?.actualBucketSize,
+        bucket2?.actualBucketSize,
+        bucket3?.actualBucketSize,
+        bucket4?.actualBucketSize,
+      ])
+    );
+  }, [userName]);
+
   return (
     <>
       <h1>Dashboard works!</h1>
@@ -45,15 +63,17 @@ const Dashboard = () => {
         <button>Ändra inställningarna</button>
       </Link>
       <br />
-      <h4>Totalt sparande: {totalSavedAmount}kr.</h4>
-      <h4>Månadsutgift: {monthlyExspenses}kr.</h4>
+      {/* <h4>Totalt sparande: {totalSavedAmount}kr.</h4>
+      <h4>Månadsutgift: {monthlyExspenses}kr.</h4> */}
       <br />
 
       <div>
         {bucket1?.inUse ? (
           <Link to={`/bucket/${bucket1.bucketNumber}`}>
             <button>
-              Hink {bucket1.bucketNumber} <br /> {bucket1.bucketName}
+              Hink {bucket1.bucketNumber} <br /> {bucket1.bucketName} <br />
+              {bucket1.actualBucketSize} kr <br /> {bucket1.percentageFilled}%
+              fylld
             </button>
           </Link>
         ) : (
@@ -71,6 +91,8 @@ const Dashboard = () => {
             <Link to={`/bucket/${bucket2.bucketNumber}`}>
               <button>
                 Hink {bucket2.bucketNumber} <br /> {bucket2.bucketName}
+                <br />
+                {bucket2.actualBucketSize} kr <br /> {bucket2.percentageFilled}%
               </button>
             </Link>
           ) : (
@@ -90,7 +112,11 @@ const Dashboard = () => {
           {bucket3?.inUse ? (
             <Link to={`/bucket/${bucket3.bucketNumber}`}>
               <button>
-                Hink {bucket3.bucketNumber} <br /> {bucket3.bucketName}
+                Hink
+                {bucket3.bucketNumber} <br />
+                {bucket3.bucketName} <br />
+                {bucket3.actualBucketSize} kr <br />
+                {bucket3.percentageFilled}%
               </button>
             </Link>
           ) : (
@@ -110,7 +136,8 @@ const Dashboard = () => {
           {bucket4?.inUse ? (
             <Link to={`/bucket/${bucket4.bucketNumber}`}>
               <button>
-                Hink {bucket4.bucketNumber} <br /> {bucket4.bucketName}
+                Hink {bucket4.bucketNumber} <br /> {bucket4.bucketName} <br />
+                {bucket4.actualBucketSize} kr <br /> {bucket4.percentageFilled}%
               </button>
             </Link>
           ) : (
@@ -124,6 +151,8 @@ const Dashboard = () => {
       )}
 
       <br />
+
+      <h3>Totalt i hinkarna: {totalSavedInBuckets} kr</h3>
     </>
   );
 };

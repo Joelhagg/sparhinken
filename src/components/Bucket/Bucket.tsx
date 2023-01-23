@@ -30,12 +30,17 @@ const Bucket = () => {
   const [recommendedRiskLevel, setRecommendedRiskLevel] = useState<number>(0);
   const [selectedRiskLevel, setSelectedRiskLevel] = useState<number>(0);
   const [firstBucketAmount, setFirstBucketAmount] = useState<number>();
+  const [percentageFilled, setPercentageFilled] = useState<number>();
+  const [useRecomendedSettings, setUseRecomendedSettings] = useState(false);
+  const [useCustomBucketSize, setUseCustomBucketSize] = useState(false);
+  const [inUse, setInUse] = useState();
+  const [softDeleted, setSoftDeleted] = useState<boolean>();
 
   let custom: string = "";
   let calc = monthlyExspenses * recommendedRiskLevel;
 
   const saveBucket = async (e: FormEvent) => {
-    // setRecommendedBucketSize(calc);
+    console.log(percentageFilled);
 
     e.preventDefault();
     setSavedStatus("");
@@ -45,17 +50,21 @@ const Bucket = () => {
           bucketName: bucketName,
           bucketNumber: bucketNumber,
           inUse: true,
+          softDeleted: false,
           recommendedBucketSize: recommendedBucketSize,
           targeBucketSize: targeBucketSize,
           actualBucketSize: actualBucketSize,
+          savedBucketAmount: actualBucketSize,
           suggestedBucketName: suggestedBucketName,
           recommendedRiskLevel: recommendedRiskLevel,
           selectedRiskLevel: selectedRiskLevel,
+          percentageFilled: percentageFilled,
+          useRecomendedSettings: useRecomendedSettings,
         },
       });
       console.log("saved");
       setSavedStatus("Sparat!");
-      // navigate("/dashboard");
+      navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
       console.error(e);
@@ -70,12 +79,16 @@ const Bucket = () => {
           bucketName: bucketName,
           bucketNumber: bucketNumber,
           inUse: false,
+          softDeleted: true,
           recommendedBucketSize: recommendedBucketSize,
           targeBucketSize: targeBucketSize,
-          actualBucketSize: actualBucketSize,
+          actualBucketSize: 0,
+          savedBucketAmount: actualBucketSize,
           suggestedBucketName: suggestedBucketName,
           recommendedRiskLevel: recommendedRiskLevel,
           selectedRiskLevel: selectedRiskLevel,
+          percentageFilled: percentageFilled,
+          useRecomendedSettings: useRecomendedSettings,
         },
       });
       console.log("saved");
@@ -107,9 +120,14 @@ const Bucket = () => {
       setTotalSavedAmount(data.data()?.totalSavedAmount);
       setMonthlyExspenses(data.data()?.monthlyExspenses);
       setTargeBucketSize(data.data()?.[chosenBucket].targeBucketSize);
-      setActualBucketSize(data.data()?.[chosenBucket].actualBucketSize);
+      setActualBucketSize(data.data()?.[chosenBucket].savedBucketAmount);
       setRecommendedRiskLevel(data.data()?.[chosenBucket].recommendedRiskLevel);
       setSelectedRiskLevel(data.data()?.[chosenBucket].selectedRiskLevel);
+      setInUse(data.data()?.[chosenBucket].inUse);
+      setSoftDeleted(data.data()?.[chosenBucket].softDeleted);
+      setUseRecomendedSettings(
+        data.data()?.[chosenBucket].useRecomendedSettings
+      );
 
       setBucketName(data.data()?.[chosenBucket].bucketName);
       setSuggestedBucketName(data.data()?.[chosenBucket].suggestedBucketName);
@@ -134,8 +152,7 @@ const Bucket = () => {
   }, [monthlyExspenses]);
 
   useEffect(() => {
-    if (bucketId == "1") {
-      console.log("ändring: ", selectedRiskLevel);
+    if (bucketId === "1") {
       setRecommendedBucketSizeBasedOnRiskLevel(
         monthlyExspenses * selectedRiskLevel
       );
@@ -148,10 +165,101 @@ const Bucket = () => {
     }
   }, [selectedRiskLevel]);
 
+  useEffect(() => {
+    if (targeBucketSize == 0 || actualBucketSize == 0) {
+      setPercentageFilled(0);
+    } else {
+      setPercentageFilled(
+        Math.round((100 * actualBucketSize) / targeBucketSize)
+      );
+    }
+  }, [actualBucketSize, targeBucketSize]);
+
+  const handleCheckboxChange = () => {
+    setUseRecomendedSettings(!useRecomendedSettings);
+  };
+
+  const handleCustomBucketSizeCheckbox = (e: FormEvent) => {
+    e.preventDefault();
+    if (recommendedBucketSizeBasedOnRiskLevel)
+      setTargeBucketSize(recommendedBucketSizeBasedOnRiskLevel);
+  };
+
+  const renderResetButton = (e: FormEvent) => {
+    e.preventDefault();
+    if (
+      !softDeleted ||
+      bucketName != "" ||
+      useRecomendedSettings != false ||
+      selectedRiskLevel! > 1 ||
+      targeBucketSize > 0 ||
+      actualBucketSize > 0
+    ) {
+      setBucketName("");
+      setUseRecomendedSettings(false);
+      setSelectedRiskLevel(1);
+      setTargeBucketSize(0);
+      setActualBucketSize(0);
+      setSoftDeleted(false);
+      console.log("reset");
+    }
+  };
+
+  const renderContent = () => {
+    if (useRecomendedSettings) {
+      return (
+        <div>
+          {" "}
+          {bucketNumber === 1 || bucketNumber === 2 ? (
+            <div>
+              <p>
+                Här kan du öka eller sänka säkerhetsnivån och baserat på den
+                rekommenderar vi att hink{bucketNumber} bör minst innehålla:
+                {recommendedBucketSizeBasedOnRiskLevel}kr
+              </p>
+            </div>
+          ) : (
+            <p>Resten</p>
+          )}
+          {bucketNumber === 1 || bucketNumber === 2 ? (
+            <label>
+              Säkerhetsnivå {selectedRiskLevel}
+              <br />
+              <input
+                type="range"
+                min="1"
+                max={recommendedRiskLevel}
+                value={selectedRiskLevel}
+                onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
+              />
+              <br />
+              <br />
+              <button onClick={handleCustomBucketSizeCheckbox}>
+                Använda valda summan
+              </button>
+            </label>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      );
+    }
+  };
+
   return (
     <>
       <div>
-        <form>
+        <br />
+        {softDeleted ? (
+          <label>
+            Detta är sedan tidigare använd hink, vill du återställa värdena?
+            <button onClick={renderResetButton}>Återställ</button>
+          </label>
+        ) : (
+          <p></p>
+        )}
+
+        <form onSubmit={saveBucket}>
           <h1>Hink {bucketNumber}</h1>
           <label>
             Namnge din hink
@@ -163,24 +271,36 @@ const Bucket = () => {
               onChange={(e) => setBucketName(e.target.value)}
             />
           </label>
-          <br />
-          <br />
-          {bucketNumber == 1 || bucketNumber == 2 ? (
+
+          {bucketNumber === 1 || bucketNumber === 2 ? (
             <div>
-              <p>Rekomenderad hinkstorlek: {recommendedBucketSize}kr</p>
-              <p>
-                Baserat på risknivå: {recommendedBucketSizeBasedOnRiskLevel}kr
-              </p>
+              <br />
+              <label>
+                Ändra från rekommenderade inställningar?
+                <input
+                  type="checkbox"
+                  checked={useRecomendedSettings}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
             </div>
           ) : (
-            <p>Resten</p>
+            <p></p>
           )}
 
+          {renderContent()}
+
+          <br />
+          <p>
+            Baserat på din angivna månadsutgift rekommenderar vi att Hink
+            {bucketNumber} minst innehåller: {recommendedBucketSize}kr
+          </p>
           <label>
             Vald storlek
             <br />
             <input
               type="number"
+              required
               value={targeBucketSize}
               placeholder={recommendedBucketSize.toString()}
               onChange={(e) => setTargeBucketSize(parseInt(e.target.value))}
@@ -193,42 +313,25 @@ const Bucket = () => {
             <br />
             <input
               type="number"
+              required
+              min={0}
               value={actualBucketSize}
               onChange={(e) => setActualBucketSize(parseInt(e.target.value))}
             />
           </label>
           <br />
           <br />
-          {bucketNumber == 1 || bucketNumber == 2 ? (
-            <label>
-              Risknivå {selectedRiskLevel}
-              <br />
-              <input
-                type="range"
-                min="1"
-                max={recommendedRiskLevel}
-                value={selectedRiskLevel}
-                onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
-              />
-              <br />
-              <br />
-            </label>
-          ) : (
-            <div></div>
-          )}
-          <button onClick={saveBucket} type="submit">
-            Spara
-          </button>
-          <br />
-          <br />
+          <button type="submit">Spara</button>
           <Link to="/dashboard">
             <button>Avbryt</button>
           </Link>
-          <br />
-          <br />
-          <button disabled={disableButton} onClick={deleteBucket}>
-            Radera
-          </button>
+          {inUse ? (
+            <button disabled={disableButton} onClick={deleteBucket}>
+              Radera
+            </button>
+          ) : (
+            <p></p>
+          )}
         </form>
       </div>
     </>

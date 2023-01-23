@@ -9,4 +9,5 @@ export interface IBucket {
   actualBucketSize?: number;
   selectedRiskLevel?: number;
   recommendedRiskLevel?: number;
+  percentageFilled?: number;
 }
