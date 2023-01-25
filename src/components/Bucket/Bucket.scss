@@ -1,5 +1,5 @@
-$primaryFont: 'Ubuntu', sans-serif;
-$secondaryFont: 'Manrope', sans-serif;
+@import "../App.scss";
+
 
 .bucketWraper {
     // outline: solid red 2px;
@@ -30,6 +30,8 @@ $secondaryFont: 'Manrope', sans-serif;
     width: 220px;
     height: 100px;
     display: flex;
+    font-size: 30px;
+    margin-top: 20px;
     justify-content: center;
     align-items: center;
 }

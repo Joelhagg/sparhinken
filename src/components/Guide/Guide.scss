@@ -1,21 +1,23 @@
 @import "../App.scss";
 
 
-.aboutWraper {
+.guideWrapper {
+    outline: solid red 2px;
+    width: 100vw;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.aboutConatiner {
-    height: 100%;
-    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: $secondaryFont;
-    color: black;
+
+}
+
+.guideContainer {
+    // outline: solid green 2px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

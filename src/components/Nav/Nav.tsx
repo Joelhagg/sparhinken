@@ -42,6 +42,10 @@ function Nav() {
           Om oss
         </Link>
 
+        <Link className="navLink" to="/guide">
+          Guide
+        </Link>
+
         {!contextState.currentUser ? (
           <div className="linkButtonConatiner">
             <Link to="/register">

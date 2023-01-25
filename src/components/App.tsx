@@ -17,6 +17,7 @@ import PrivateRoute from "../PrivateRoute";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import NotFound from "./NotFound/NotFound";
+import Guide from "./Guide/Guide";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             </Route>
 
             <Route path="/about" element={<About />} />
+            <Route path="/guide" element={<Guide />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
 
