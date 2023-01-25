@@ -3,7 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import "./UpdateProfile.css";
+import "./UpdateProfile.scss";
 
 const UpdateProfile = () => {
   const contextState = useContext(StateContext);
@@ -44,59 +44,55 @@ const UpdateProfile = () => {
 
   return (
     <>
-      <h1>Update profile works</h1>
-      <br />
-      <h3>Du är inloggad som: {currentUser.currentUser.email}</h3>
-      <form onSubmit={handleSubmit}>
-        {/* <label>
-          Ange mejl
-          <br />
-          <input type="email" id="email" />
-          <br />
-          <br />
-        </label> */}
-        <label>
-          Nytt lösenord
-          <br />
-          <input
-            required
-            minLength={6}
-            type="password"
-            id="password"
-            onChange={(e) => setUserPassword(e.target.value)}
-          />
-          <br />
-          <br />
-        </label>
-        <label>
-          Nytt lösenord igen
-          <br />
-          <input
-            required
-            minLength={6}
-            type="password"
-            id="passwordConfirm"
-            onChange={(e) => setUserPasswordConfirmation(e.target.value)}
-          />
-          <br />
-          <br />
-        </label>
-        <h3>{error}</h3>
-        <button disabled={loading || updateDone} type="submit">
-          Uppdatera
-        </button>
-        <br />
-        {updateSuccess ? <h4>Uppdateringen lyckades!</h4> : <p></p>}
-        {updateDone ? (
-          <Link to={"/dashboard"}>
-            <button>Tillbaka till hinkarna</button>
-          </Link>
-        ) : (
-          <p></p>
-        )}
-        <br />
-        {/* <button>Radera användare</button> */}
-      </form>
+      <div className="updateProfileWraper">
+        <div className="updateProfileConatiner">
+          <h1>Uppdatera Profil</h1>
+          <h2>Du är inloggad som: {currentUser.currentUser.email}</h2>
+          <form className="updateProfileForm" onSubmit={handleSubmit}>
+            <p>Nytt lösenord</p>
+
+            <input
+              className="updateProfileInput"
+              required
+              minLength={6}
+              type="password"
+              id="password"
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+
+            <p>Nytt lösenord igen</p>
+
+            <input
+              className="updateProfileInput"
+              required
+              minLength={6}
+              type="password"
+              id="passwordConfirm"
+              onChange={(e) => setUserPasswordConfirmation(e.target.value)}
+            />
+
+            <h3>{error}</h3>
+            <button
+              className="updateProfileButton"
+              disabled={loading || updateDone}
+              type="submit"
+            >
+              Uppdatera
+            </button>
+            <br />
+            {updateSuccess ? <h2>Uppdateringen lyckades!</h2> : <p></p>}
+            {updateDone ? (
+              <Link to={"/dashboard"}>
+                <button className="updateProfileButton">
+                  Tillbaka till hinkarna
+                </button>
+              </Link>
+            ) : (
+              <p></p>
+            )}
+          </form>
+        </div>
+      </div>
     </>
   );
 };

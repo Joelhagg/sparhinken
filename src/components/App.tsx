@@ -11,7 +11,7 @@ import PasswordReset from "./PasswordReset/PasswordReset";
 import Register from "./Register/Register";
 import Settings from "./Settings/Settings";
 import { Cookies } from "./Cookies/Cookies";
-import "./App.css";
+import "./App.scss";
 import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../PrivateRoute";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
@@ -54,8 +54,8 @@ function App() {
           </Routes>
         </main>
       </AuthProvider>
-      {/* <Footer />
-      <Cookies /> */}
+      <Footer />
+      {/* <Cookies /> */}
     </>
   );
 }

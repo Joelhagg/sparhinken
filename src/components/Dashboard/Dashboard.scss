@@ -1,0 +1,124 @@
+$primaryFont: 'Ubuntu', sans-serif;
+$secondaryFont: 'Manrope', sans-serif;
+
+.dashboardPositionWraper {
+    // outline: solid 4px orange;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+}
+
+.dashboardWraper {
+    // outline: solid 2px red;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bigTextConatiner {
+    // outline: solid 2px blue;
+    display: flex;
+    justify-content: space-between;
+}
+
+.emptybox {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardConatiner {
+    // outline: solid 2px green;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.amountConatiner {
+    // outline: solid 2px pink;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.changeSettingsButton {
+    font-family: $primaryFont;
+    border: none;
+    width: 160px;
+    height: 44px;
+    margin: 10px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    border-radius: 4px;
+    background: #0F5699;
+    // filter: drop-shadow(0px 2px 4px #000000);
+    cursor: pointer;
+    border: 2px solid #0F5699;
+    transition: 0.15s;
+}
+
+.changeSettingsButton:hover {
+    color: #0F5699;
+    letter-spacing: 2px;
+    background-color: #fff;
+    border: 2px solid #0F5699;
+}
+
+.usedBucketLink {
+    text-decoration: none;
+}
+
+.usedBucket {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    font-family: $secondaryFont;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0071D9;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.usedBucket:hover {
+    background: #0083FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.addNewBucketBox {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    background: #0071D980;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    transition: 0.15s;
+}
+
+.addNewBucketBox:hover {
+    background: #0083FF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.whitePlusSVG {
+    fill: white;
+    width: 75px;
+}

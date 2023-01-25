@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Nav.css";
+import "./Nav.scss";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { useContext, useState } from "react";
 import { auth } from "../../firebase";
@@ -26,47 +26,50 @@ function Nav() {
   };
 
   return (
-    <nav>
-      <Link to="/">
-        <h1>Sparhinken</h1>
-      </Link>
-      <br />
-      <Link to="/dashboard">Dashboard</Link>
-      <br />
-      <Link to="/about">Om oss</Link>
+    <nav className="nav">
+      <div className="logoContainer">
+        <Link className="logoLink" to="/">
+          <h1 className="logo">Sparhinken</h1>
+        </Link>
+      </div>
 
-      <br />
-      <br />
+      <div className="linksWraper">
+        <Link className="navLink" to="/dashboard">
+          Dashboard
+        </Link>
 
-      {!contextState.currentUser ? (
-        <div>
-          <Link to="/login">
-            <button>Logga in</button>
-          </Link>
-          <br />
-          <Link to="/register">
-            <button>Registrera dig</button>
-          </Link>
-          <br />
-        </div>
-      ) : (
-        <div>
-          <Link to="/update-profile">
-            <button>Uppdatera profil</button>
-          </Link>
-          <br />
-          <br />
-          <form>
-            {error}
-            <button disabled={loading} onClick={handleLogout}>
-              Logga ut
-            </button>
-          </form>
-        </div>
-      )}
+        <Link className="navLink" to="/about">
+          Om oss
+        </Link>
 
-      <br />
-      <br />
+        {!contextState.currentUser ? (
+          <div className="linkButtonConatiner">
+            <Link to="/register">
+              <button className="navButton">Ny kund?</button>
+            </Link>
+            <Link to="/login">
+              <button className="navButton">Logga in</button>
+            </Link>
+          </div>
+        ) : (
+          <div className="linkButtonConatiner">
+            <Link to="/update-profile">
+              <button className="navButton">Uppdatera profil</button>
+            </Link>
+
+            <form>
+              {error}
+              <button
+                className="navButton"
+                disabled={loading}
+                onClick={handleLogout}
+              >
+                Logga ut
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
     </nav>
   );
 }

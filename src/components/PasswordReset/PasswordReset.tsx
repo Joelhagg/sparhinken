@@ -3,7 +3,7 @@ import { FormEvent, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { auth } from "../../firebase";
-import "./PasswordReset.css";
+import "./PasswordReset.scss";
 
 const PasswordReset = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -31,36 +31,48 @@ const PasswordReset = () => {
 
   return (
     <>
-      <h1>Password reset works!</h1>
+      <div className="passwordResetWraper">
+        <div className="passwordResetContainer">
+          <h1>Återställ lösenord</h1>
+          <p className="passwordResetText">
+            Ange mejladressen som du har registrerat ett konto med
+          </p>
+          {error}
+          <form className="passwordResetForm" onSubmit={handleSubmit}>
+            <input
+              placeholder="Ange din mejl"
+              className="passwordResetInput"
+              type="email"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
 
-      <h2>Återställ lösenord</h2>
-      <h4>{error}</h4>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Ange mejl
-          <br />
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-          <br />
-          <br />
-        </label>
-        <button disabled={loading} type="submit">
-          Ändra lösenord
-        </button>
-        <div>{resetSucces ? <p>Kolla din mail</p> : <p></p>}</div>
-        <div>
-          {resetSucces ? (
-            <Link to="/login">
-              <button>Logga in</button>
-            </Link>
-          ) : (
-            <p></p>
-          )}{" "}
+            <button
+              className="passwordResetButton"
+              disabled={loading}
+              type="submit"
+            >
+              Ändra lösenord
+            </button>
+
+            <div>
+              {resetSucces ? (
+                <p className="passwordResetText">Kolla din mail</p>
+              ) : (
+                <p></p>
+              )}
+            </div>
+            <div>
+              {resetSucces ? (
+                <Link to="/login">
+                  <button className="passwordResetButton">Logga in</button>
+                </Link>
+              ) : (
+                <p></p>
+              )}
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   );
 };
