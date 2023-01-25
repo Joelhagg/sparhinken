@@ -1,0 +1,27 @@
+@import "../App.scss";
+
+
+.footerConatiner {
+    background: #0058AB;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkConatiner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.link {
+    color: #fff;
+    font-family: $secondaryFont;
+    padding: 10px;
+}
+
+.socialMediaContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: #fff;
+}

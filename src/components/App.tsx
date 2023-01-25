@@ -11,12 +11,13 @@ import PasswordReset from "./PasswordReset/PasswordReset";
 import Register from "./Register/Register";
 import Settings from "./Settings/Settings";
 import { Cookies } from "./Cookies/Cookies";
-import "./App.css";
+import "./App.scss";
 import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../PrivateRoute";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import NotFound from "./NotFound/NotFound";
+import Guide from "./Guide/Guide";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             </Route>
 
             <Route path="/about" element={<About />} />
+            <Route path="/guide" element={<Guide />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
 
@@ -54,8 +56,8 @@ function App() {
           </Routes>
         </main>
       </AuthProvider>
-      {/* <Footer />
-      <Cookies /> */}
+      <Footer />
+      {/* <Cookies /> */}
     </>
   );
 }

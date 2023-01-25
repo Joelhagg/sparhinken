@@ -1,0 +1,251 @@
+@import "../App.scss";
+
+
+.bucketWraper {
+    // outline: solid red 2px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bucketContainer {
+    width: 500px;
+    // outline: solid green 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around
+}
+
+.topConainer {
+    width: 100vw;
+    // outline: solid black 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.emptyBox {
+    // outline: solid yellow 2px;
+    width: 220px;
+    height: 100px;
+    display: flex;
+    font-size: 30px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.resetBucketconatiner {
+    // outline: solid orange 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $secondaryFont;
+    text-decoration: none;
+    color: black;
+    background-color: rgba(255, 187, 0, 0.20);
+    border-radius: 10px;
+}
+
+.resetValuesButton {
+    font-family: $primaryFont;
+    border: none;
+    width: 140px;
+    height: 40px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    border-radius: 4px;
+    background: #0F5699;
+    // filter: drop-shadow(0px 2px 4px #000000);
+    cursor: pointer;
+    border: 2px solid #0F5699;
+    transition: 0.15s;
+}
+
+.resetValuesButton:hover {
+    color: #0F5699;
+    letter-spacing: 2px;
+    background-color: #fff;
+    border: 2px solid #0F5699;
+}
+
+.customBucketName {
+    // // outline: solid brown 2px;
+    font-family: $secondaryFont;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}
+
+.customBucketNameInput {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 28px;
+    width: 220px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    border: none;
+    border: 2px solid #0F5699;
+    text-align: center;
+}
+
+.customBucketNameInput:focus {
+    border: 3px solid #002C55;
+    box-shadow: 0px 8px 10px rgba(0, 88, 171, 0.6);
+}
+
+.bucketRecommendedSettings {
+    // outline: solid pink 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: $secondaryFont;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+.recommendedSettingsConatiner {
+    // outline: solid black 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $secondaryFont;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+
+
+.recommendedSettingsRangeContainer {
+    // // outline: solid blue 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    input {
+        margin: 20px;
+    }
+
+    button {
+        font-family: $primaryFont;
+        border: none;
+        width: 130px;
+        height: 34px;
+        margin-bottom: 10px;
+        color: #fff;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-align: center;
+        border-radius: 4px;
+        background: #0F5699;
+        // filter: drop-shadow(0px 2px 4px #000000);
+        cursor: pointer;
+        border: 2px solid #0F5699;
+        transition: 0.15s;
+    }
+
+    button:hover {
+        color: #0F5699;
+        letter-spacing: 2px;
+        background-color: #fff;
+        border: 2px solid #0F5699;
+    }
+}
+
+.bucketForm {
+    // outline: solid blue 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bucketAmountConatiner {
+    // outline: solid red 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    p {
+        font-family: $secondaryFont;
+        margin: 5px;
+        text-decoration: none;
+        color: black;
+    }
+
+    input {
+        box-sizing: border-box;
+        font-size: 16px;
+        height: 28px;
+        width: 220px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        border: none;
+        border: 2px solid #0F5699;
+        text-align: center;
+    }
+
+    .bucketSubmitButtons {
+        display: flex;
+        flex-direction: row;
+    }
+
+    button {
+        font-family: $primaryFont;
+        border: none;
+        width: 100px;
+        height: 34px;
+        margin: 20px;
+        color: #fff;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-align: center;
+        border-radius: 4px;
+        background: #0F5699;
+        // filter: drop-shadow(0px 2px 4px #000000);
+        cursor: pointer;
+        border: 2px solid #0F5699;
+        transition: 0.15s;
+    }
+
+    button:hover {
+        color: #0F5699;
+        letter-spacing: 2px;
+        background-color: #fff;
+        border: 2px solid #0F5699;
+    }
+
+    button:disabled {
+        color: #0F5699;
+        letter-spacing: 2px;
+        background: #0f569940;
+        border: 2px solid #0F569940;
+    }
+}
+
+.bucketButtomContainer {
+    // outline: solid teal 2px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}

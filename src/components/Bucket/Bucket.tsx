@@ -1,11 +1,10 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "./Bucket.css";
+import "./Bucket.scss";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { IBucket } from "../../models/IBucket";
-import { stringify } from "querystring";
 
 const Bucket = () => {
   let { bucketId } = useParams();
@@ -208,23 +207,21 @@ const Bucket = () => {
   const renderContent = () => {
     if (useRecomendedSettings) {
       return (
-        <div>
-          {" "}
+        <div className="recommendedSettingsConatiner">
           {bucketNumber === 1 || bucketNumber === 2 ? (
             <div>
               <p>
                 Här kan du öka eller sänka säkerhetsnivån och baserat på den
-                rekommenderar vi att hink{bucketNumber} bör minst innehålla:
+                rekommenderar vi att Hink{bucketNumber} bör minst innehålla:
                 {recommendedBucketSizeBasedOnRiskLevel}kr
               </p>
             </div>
           ) : (
-            <p>Resten</p>
+            <p></p>
           )}
           {bucketNumber === 1 || bucketNumber === 2 ? (
-            <label>
-              Säkerhetsnivå {selectedRiskLevel}
-              <br />
+            <div className="recommendedSettingsRangeContainer">
+              <p>Säkerhetsnivå {selectedRiskLevel}</p>
               <input
                 type="range"
                 min="1"
@@ -232,12 +229,10 @@ const Bucket = () => {
                 value={selectedRiskLevel}
                 onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
               />
-              <br />
-              <br />
               <button onClick={handleCustomBucketSizeCheckbox}>
                 Använda valda summan
               </button>
-            </label>
+            </div>
           ) : (
             <div></div>
           )}
@@ -248,91 +243,102 @@ const Bucket = () => {
 
   return (
     <>
-      <div>
-        <br />
-        {softDeleted ? (
-          <label>
-            Detta är sedan tidigare använd hink, vill du återställa värdena?
-            <button onClick={renderResetButton}>Återställ</button>
-          </label>
-        ) : (
-          <p></p>
-        )}
-
-        <form onSubmit={saveBucket}>
-          <h1>Hink {bucketNumber}</h1>
-          <label>
-            Namnge din hink
-            <br />
-            <input
-              type="text"
-              placeholder={suggestedBucketName}
-              value={bucketName}
-              onChange={(e) => setBucketName(e.target.value)}
-            />
-          </label>
-
-          {bucketNumber === 1 || bucketNumber === 2 ? (
-            <div>
-              <br />
-              <label>
-                Ändra från rekommenderade inställningar?
-                <input
-                  type="checkbox"
-                  checked={useRecomendedSettings}
-                  onChange={handleCheckboxChange}
-                />
-              </label>
+      <div className="bucketWraper">
+        <div className="topConainer">
+          <div className="emptyBox">
+            <h1></h1>
+          </div>
+          <div className="emptyBox">
+            <h1>Hink {bucketNumber}</h1>
+          </div>
+          <div className="emptyBox">
+            <h1></h1>
+          </div>
+        </div>
+        <div className="bucketContainer">
+          {softDeleted ? (
+            <div className="resetBucketconatiner">
+              <p>
+                Detta är sedan tidigare en använd hink, vill du nollställa den?
+              </p>
+              <button className="resetValuesButton" onClick={renderResetButton}>
+                Nollställ
+              </button>
             </div>
           ) : (
             <p></p>
           )}
 
-          {renderContent()}
+          <form className="bucketForm" onSubmit={saveBucket}>
+            <div className="customBucketName">
+              <p>Namnge din hink</p>
+              <input
+                className="customBucketNameInput"
+                type="text"
+                placeholder={suggestedBucketName}
+                value={bucketName}
+                onChange={(e) => setBucketName(e.target.value)}
+              />
+            </div>
 
-          <br />
-          <p>
-            Baserat på din angivna månadsutgift rekommenderar vi att Hink
-            {bucketNumber} minst innehåller: {recommendedBucketSize}kr
-          </p>
-          <label>
-            Vald storlek
-            <br />
-            <input
-              type="number"
-              required
-              value={targeBucketSize}
-              placeholder={recommendedBucketSize.toString()}
-              onChange={(e) => setTargeBucketSize(parseInt(e.target.value))}
-            />
-          </label>
-          <br />
-          <br />
-          <label>
-            Nuvarande innehåll
-            <br />
-            <input
-              type="number"
-              required
-              min={0}
-              value={actualBucketSize}
-              onChange={(e) => setActualBucketSize(parseInt(e.target.value))}
-            />
-          </label>
-          <br />
-          <br />
-          <button type="submit">Spara</button>
-          <Link to="/dashboard">
-            <button>Avbryt</button>
-          </Link>
-          {inUse ? (
-            <button disabled={disableButton} onClick={deleteBucket}>
-              Radera
-            </button>
-          ) : (
-            <p></p>
-          )}
-        </form>
+            {bucketNumber === 1 || bucketNumber === 2 ? (
+              <div className="bucketRecommendedSettings">
+                <p>Ändra från rekommenderade inställningar?</p>
+                <input
+                  type="checkbox"
+                  checked={useRecomendedSettings}
+                  onChange={handleCheckboxChange}
+                />
+              </div>
+            ) : (
+              <p></p>
+            )}
+
+            {renderContent()}
+
+            <div className="bucketAmountConatiner">
+              <p>
+                Baserat på din angivna månadsutgift rekommenderar vi att Hink
+                {bucketNumber} minst innehåller: {recommendedBucketSize}kr
+              </p>
+
+              <p>Vald storlek</p>
+              <input
+                type="number"
+                required
+                value={targeBucketSize}
+                placeholder={recommendedBucketSize.toString()}
+                onChange={(e) => setTargeBucketSize(parseInt(e.target.value))}
+              />
+
+              <p>Nuvarande innehåll</p>
+              <input
+                type="number"
+                required
+                min={0}
+                value={actualBucketSize}
+                onChange={(e) => setActualBucketSize(parseInt(e.target.value))}
+              />
+
+              <div className="bucketSubmitButtons">
+                <button type="submit">Spara</button>
+                <Link to="/dashboard">
+                  <button>Avbryt</button>
+                </Link>
+                {inUse ? (
+                  <button disabled={disableButton} onClick={deleteBucket}>
+                    Radera
+                  </button>
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="bucketButtomContainer">
+          <h1></h1>
+        </div>
       </div>
     </>
   );
