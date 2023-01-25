@@ -1,10 +1,13 @@
+import "./Dashboard.scss";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import "./Dashboard.css";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { IBucket } from "../../models/IBucket";
+// import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
   const contextState = useContext(StateContext);
@@ -57,102 +60,167 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard works!</h1>
-      <h2>Hej {userName}!</h2>
-      <Link to="/settings">
-        <button>Ändra inställningarna</button>
-      </Link>
-      <br />
-      {/* <h4>Totalt sparande: {totalSavedAmount}kr.</h4>
-      <h4>Månadsutgift: {monthlyExspenses}kr.</h4> */}
-      <br />
+      <div className="dashboardPositionWraper">
+        <div className="dashboardWraper">
+          <div className="bigTextConatiner">
+            <div className="emptybox">
+              <h1>Hej {userName}!</h1>
+            </div>
+            <div className="emptybox">
+              <h1>Dashboard</h1>
+            </div>
+            <div className="emptybox">
+              {" "}
+              <Link to="/settings">
+                <button className="changeSettingsButton">
+                  Ändra inställningarna
+                </button>
+              </Link>
+            </div>
+          </div>
 
-      <div>
-        {bucket1?.inUse ? (
-          <Link to={`/bucket/${bucket1.bucketNumber}`}>
-            <button>
-              Hink {bucket1.bucketNumber} <br /> {bucket1.bucketName} <br />
-              {bucket1.actualBucketSize} kr <br /> {bucket1.percentageFilled}%
-              fylld
-            </button>
-          </Link>
-        ) : (
-          <Link to={`/bucket/${bucket1?.bucketNumber}`}>
-            <button>Skapa en ny hink +</button>
-          </Link>
-        )}
+          <div className="dashboardConatiner">
+            {/* <h4>Totalt sparande: {totalSavedAmount}kr.</h4>
+          <h4>Månadsutgift: {monthlyExspenses}kr.</h4> */}
+
+            <div>
+              {bucket1?.inUse ? (
+                <Link
+                  className="usedBucketLink"
+                  to={`/bucket/${bucket1.bucketNumber}`}
+                >
+                  <button className="usedBucket">
+                    <div>
+                      <h3>Hink {bucket1.bucketNumber}</h3>
+                      <p>{bucket1.bucketName}</p>
+                      <p>{bucket1.actualBucketSize} kr</p>
+                      {/* <p>{bucket1.percentageFilled}% fylld</p> */}
+                    </div>
+                  </button>
+                </Link>
+              ) : (
+                <Link to={`/bucket/${bucket1?.bucketNumber}`}>
+                  <div className="addNewBucketBox">
+                    <svg
+                      className="whitePlusSVG"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                    </svg>
+                  </div>
+                </Link>
+              )}
+            </div>
+
+            {bucket1?.inUse ? (
+              <div>
+                {bucket2?.inUse ? (
+                  <Link
+                    className="usedBucketLink"
+                    to={`/bucket/${bucket2.bucketNumber}`}
+                  >
+                    <button className="usedBucket">
+                      <div>
+                        <h3>Hink {bucket2.bucketNumber}</h3>
+                        <p>{bucket2.bucketName}</p>
+                        <p>{bucket2.actualBucketSize} kr</p>
+                        {/* <p>{bucket2.percentageFilled}% </p> */}
+                      </div>
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to={`/bucket/${bucket2?.bucketNumber}`}>
+                    <div className="addNewBucketBox">
+                      <svg
+                        className="whitePlusSVG"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                      </svg>
+                    </div>
+                  </Link>
+                )}
+              </div>
+            ) : (
+              <p></p>
+            )}
+
+            {bucket2?.inUse ? (
+              <div>
+                {bucket3?.inUse ? (
+                  <Link
+                    className="usedBucketLink"
+                    to={`/bucket/${bucket3.bucketNumber}`}
+                  >
+                    <button className="usedBucket">
+                      <div>
+                        <h3>Hink {bucket3.bucketNumber}</h3>
+                        <p>{bucket3.bucketName}</p>
+                        <p>{bucket3.actualBucketSize} kr</p>
+                        {/* <p>{bucket2.percentageFilled}% </p> */}
+                      </div>
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to={`/bucket/${bucket3?.bucketNumber}`}>
+                    <div className="addNewBucketBox">
+                      <svg
+                        className="whitePlusSVG"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                      </svg>
+                    </div>
+                  </Link>
+                )}
+              </div>
+            ) : (
+              <p></p>
+            )}
+
+            {bucket3?.inUse ? (
+              <div>
+                {bucket4?.inUse ? (
+                  <Link
+                    className="usedBucketLink"
+                    to={`/bucket/${bucket4.bucketNumber}`}
+                  >
+                    <button className="usedBucket">
+                      <div>
+                        <h3>Hink {bucket4.bucketNumber}</h3>
+                        <p>{bucket4.bucketName}</p>
+                        <p>{bucket4.actualBucketSize} kr</p>
+                        {/* <p>{bucket2.percentageFilled}% </p> */}
+                      </div>
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to={`/bucket/${bucket4?.bucketNumber}`}>
+                    <div className="addNewBucketBox">
+                      <svg
+                        className="whitePlusSVG"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                      </svg>
+                    </div>
+                  </Link>
+                )}
+              </div>
+            ) : (
+              <p></p>
+            )}
+          </div>
+
+          <div className="amountConatiner">
+            <h1>Totalt i hinkarna: {totalSavedInBuckets} kr</h1>
+          </div>
+        </div>
       </div>
-
-      <br />
-
-      {bucket1?.inUse ? (
-        <div>
-          {bucket2?.inUse ? (
-            <Link to={`/bucket/${bucket2.bucketNumber}`}>
-              <button>
-                Hink {bucket2.bucketNumber} <br /> {bucket2.bucketName}
-                <br />
-                {bucket2.actualBucketSize} kr <br /> {bucket2.percentageFilled}%
-              </button>
-            </Link>
-          ) : (
-            <Link to={`/bucket/${bucket2?.bucketNumber}`}>
-              <button>Skapa en ny hink +</button>
-            </Link>
-          )}
-        </div>
-      ) : (
-        <p></p>
-      )}
-
-      <br />
-
-      {bucket2?.inUse ? (
-        <div>
-          {bucket3?.inUse ? (
-            <Link to={`/bucket/${bucket3.bucketNumber}`}>
-              <button>
-                Hink
-                {bucket3.bucketNumber} <br />
-                {bucket3.bucketName} <br />
-                {bucket3.actualBucketSize} kr <br />
-                {bucket3.percentageFilled}%
-              </button>
-            </Link>
-          ) : (
-            <Link to={`/bucket/${bucket3?.bucketNumber}`}>
-              <button>Skapa en ny hink +</button>
-            </Link>
-          )}
-        </div>
-      ) : (
-        <p></p>
-      )}
-
-      <br />
-
-      {bucket3?.inUse ? (
-        <div>
-          {bucket4?.inUse ? (
-            <Link to={`/bucket/${bucket4.bucketNumber}`}>
-              <button>
-                Hink {bucket4.bucketNumber} <br /> {bucket4.bucketName} <br />
-                {bucket4.actualBucketSize} kr <br /> {bucket4.percentageFilled}%
-              </button>
-            </Link>
-          ) : (
-            <Link to={`/bucket/${bucket4?.bucketNumber}`}>
-              <button>Skapa en ny hink +</button>
-            </Link>
-          )}
-        </div>
-      ) : (
-        <p></p>
-      )}
-
-      <br />
-
-      <h3>Totalt i hinkarna: {totalSavedInBuckets} kr</h3>
     </>
   );
 };

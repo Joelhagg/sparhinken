@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import "./Settings.css";
+import "./Settings.scss";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 
@@ -115,24 +115,36 @@ const Settings = () => {
 
   return (
     <>
-      <br />
-      <h1>Ekonomiska inställningar</h1>
-      {savedStatus}
-      <br />
+      <div className="settingsContainer">
+        <h1>Inställningar</h1>
+        {savedStatus}
+        <p className="settingsText">
+          Hej! Vi behöver lite information om dig för att ge dig den bästa
+          rekommendationen.
+          <br /> Du anger ditt namn och dina totala månadsutgifter nedan,
+          behöver du hjälp med att räkna ut det?
+          <br /> Använd då&nbsp;
+          <a
+            className="settingsLink"
+            target="_blank"
+            href="https://www.konsumentverket.se/om-konsumentverket/var-verksamhet/privatekonomi/budgetkalkylen/"
+          >
+            HallåKonsumnet.se
+          </a>
+          &nbsp;för att ta reda på vad
+        </p>
 
-      <form onSubmit={handleSubmit}>
-        <label>
-          Ditt namn tack!
-          <br />
+        <form className="settingsForm" onSubmit={handleSubmit}>
           <input
+            className="settingsInputs"
+            required
+            placeholder="Ange namn"
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
-        </label>
-        <br />
-        <br />
-        {/* <label>
+
+          {/* <label>
           Ange ditt totala sparade kapital
           <br />
           <input
@@ -144,25 +156,26 @@ const Settings = () => {
         </label>
         <br />
         <br /> */}
-        <label>
-          Ange dina totala utgifter per månad
-          <br />
+
           <input
+            className="settingsInputs"
             required
+            placeholder="Ange din totala månadskostnad"
             type="number"
             min="1"
             value={monthlyExspenses}
             onChange={(e) => setMonthlyExspenses(parseInt(e.target.value))}
           />
-        </label>
-        <br />
-        <br />
-        <button type="submit">Spara</button>
-      </form>
-      <br />
-      <Link to="/dashboard">
-        <button>Tillbaka</button>
-      </Link>
+
+          <button className="settingsButtons" type="submit">
+            Spara
+          </button>
+        </form>
+
+        <Link to="/dashboard">
+          <button className="settingsButtons">Tillbaka</button>
+        </Link>
+      </div>
     </>
   );
 };

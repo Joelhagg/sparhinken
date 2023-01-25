@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import "./Login.css";
+import "./Login.scss";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -35,43 +35,48 @@ const Login = () => {
 
   return (
     <>
-      <h1>Login Works!</h1>
-      <br />
-      <h3>{error}</h3>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Mejl:
-          <input
-            required
-            type="email"
-            id="emailInput"
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Lösenord:
-          <input
-            required
-            minLength={6}
-            type="password"
-            id="passwordInput"
-            onChange={(e) => setUserPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <br />
-        <Link to="/passwordReset">Glömt lösenordet?</Link>
-        <br />
-        <br />
-        <button disabled={loading} type="submit">
-          Logga in
-        </button>
-        <br />
-        <br />
-        <Link to="/register">Ny användare?</Link>
-      </form>
+      <div className="loginWrapet">
+        <div className="loginConatiner">
+          <h1>Hej på dig hinksparare!</h1>
+          {error}
+          <form className="loginForm" onSubmit={handleSubmit}>
+            <input
+              className="loginInputs"
+              required
+              type="email"
+              id="emailInput"
+              placeholder="Mejl"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+
+            <input
+              className="loginInputs"
+              required
+              minLength={6}
+              placeholder="lösenord"
+              type="password"
+              id="passwordInput"
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+
+            <Link className="loginLinks" to="/register">
+              Ny användare?
+            </Link>
+
+            <button
+              className="loginSubmitButton"
+              disabled={loading}
+              type="submit"
+            >
+              Logga in
+            </button>
+
+            <Link className="loginLinks" to="/passwordReset">
+              Glömt lösenordet?
+            </Link>
+          </form>
+        </div>
+      </div>
     </>
   );
 };

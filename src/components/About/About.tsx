@@ -1,14 +1,18 @@
-import "./About.css";
+import "./About.scss";
 
 const About = () => {
   return (
     <>
-      <h1>About Works!</h1>
-      <br />
-      <p>
-        Här kan du läsa allt om sparstrategin som vi väljer att kalla
-        "Hink-strategin"
-      </p>
+      <div className="aboutWraper">
+        <div className="aboutConatiner">
+          <h1>Om oss på Sparhinken</h1>
+          <br />
+          <p>
+            Här kan du läsa allt om sparstrategin som vi väljer att kalla
+            "Hink-strategin"
+          </p>
+        </div>
+      </div>
     </>
   );
 };

@@ -2,7 +2,7 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import "./Register.css";
+import "./Register.scss";
 
 import { auth } from "../../firebase";
 
@@ -45,66 +45,57 @@ const Register = () => {
 
   return (
     <>
-      <h1>Register works!</h1>
-      <h2>{error}</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Mejl
-          <br />
-          <input
-            required
-            type="email"
-            id="email"
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Lösenord
-          <br />
-          <input
-            required
-            minLength={6}
-            type="password"
-            id="password"
-            onChange={(e) => setUserPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Ange lösenord igen
-          <br />
-          <input
-            required
-            minLength={6}
-            type="password"
-            id="passwordAgain"
-            onChange={(e) => setUserPasswordConfirmation(e.target.value)}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Godkänner du kraven?
-          <input required type="checkbox" />
-        </label>
-        <br />
-        <br />
-        <button disabled={loading} type="submit">
-          Skapa ny användare
-        </button>
-        <br />
-        <br />
-        <label>
-          Är du redan en användare?
-          <br />
-          <Link to="/login">
-            <button>Logga in</button>
-          </Link>
-        </label>
-      </form>
+      <div className="registerWrapet">
+        <div className="registerConatiner">
+          <h1>Bli hinksparare!</h1>
+          {error}
+          <form className="registerForm" onSubmit={handleSubmit}>
+            <input
+              className="registerInputs"
+              required
+              placeholder="Mejl"
+              type="email"
+              id="email"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+
+            <input
+              className="registerInputs"
+              required
+              minLength={6}
+              placeholder="Lösenord"
+              type="password"
+              id="password"
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+
+            <input
+              className="registerInputs"
+              required
+              minLength={6}
+              type="password"
+              placeholder="Ange lösenord igen"
+              id="passwordAgain"
+              onChange={(e) => setUserPasswordConfirmation(e.target.value)}
+            />
+
+            <p className="checkboxText">Godkänner du våra villkor? 🏆</p>
+            <input className="registerCheckbox" required type="checkbox" />
+
+            <button
+              className="registerSubmitButton"
+              disabled={loading}
+              type="submit"
+            >
+              Skapa ny användare
+            </button>
+
+            <Link className="loginLinks" to="/login">
+              Redan registrerad?
+            </Link>
+          </form>
+        </div>
+      </div>
     </>
   );
 };

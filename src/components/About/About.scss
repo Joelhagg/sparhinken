@@ -1,0 +1,21 @@
+$primaryFont: 'Ubuntu', sans-serif;
+$secondaryFont: 'Manrope', sans-serif;
+
+.aboutWraper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutConatiner {
+    height: 100%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: $secondaryFont;
+    color: black;
+}
