@@ -258,7 +258,7 @@ const Bucket = () => {
         <div className="bucketContainer">
           {softDeleted ? (
             <div className="resetBucketconatiner">
-              <p>
+              <p className="resetBucketconatinerText">
                 Detta är sedan tidigare en använd hink, vill du nollställa den?
               </p>
               <button className="resetValuesButton" onClick={renderResetButton}>
