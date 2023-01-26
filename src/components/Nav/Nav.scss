@@ -1,6 +1,5 @@
 @import "../App.scss";
 
-
 .nav {
     background-color: #002C55;
     font-family: $primaryFont;
@@ -12,12 +11,14 @@
 
 .logoContainer {
     padding-left: 40px;
+    width: 50vw;
 }
 
 .linksWraper {
-    padding-right: 20px; 
+    padding-right: 30px; 
+    width: 50vw;
     display: flex;
-    justify-content: center;
+    justify-content:flex-end;
     flex-wrap: wrap;
 }
 
@@ -27,22 +28,19 @@
     flex-wrap: wrap;
 }
 
-.logo {
+.logoLink {
+    text-decoration: none;
     color: #fff;
     font-size: 50px;
     font-weight: 400;
     letter-spacing: 3px;
     text-decoration: none; 
-} 
-
-.logoLink {
-    text-decoration: none;
-    
 }
 
 .navLink {
     margin: 14px;
     color: #fff;
+    font-size: 16px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -70,4 +68,87 @@
     color: #fff;
     letter-spacing: 2px;
     background: #0F5699;
+}
+
+// Media query breakpoint at 1200px - for big computer screens and TV:s 
+@media screen and (max-width: $breakPointLargeScreen) {
+    .logoLink {
+        font-size: 40px;
+    }
+
+    .navButton {
+        width: 100px;
+        height: 40px;
+        margin: 10px;
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+}
+
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+    .logoContainer {
+        padding-left: 16px;
+        width: 0;
+    }
+
+    .linksWraper {
+        padding-right: 10px; 
+        width: 60vw;
+
+    }
+
+    .navButton {
+        width: 90px;
+        height: 36px;
+        margin: 10px;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+    }
+}
+
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) {
+
+    .logoLink {
+        font-size: 30px;
+    }
+
+    .linksWraper {
+        padding-right: 0; 
+        margin-right: 4px;
+        // align-items: center;
+        // justify-content: center;
+    }
+
+    .navLink {
+        margin: 8px;
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .navButton {
+        width: 80px;
+        height: 30px;
+        margin: 6px;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+}
+
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
+    .logoContainer {
+        padding-left: 10px;
+        width: 0;
+    }
+
+    .logoLink {
+        font-size: 26px;
+    }
 }

@@ -28,19 +28,21 @@ function Nav() {
   return (
     <nav className="nav">
       <div className="logoContainer">
-        <Link className="logoLink" to="/">
-          <h1 className="logo">Sparhinken</h1>
-        </Link>
+        <h1>
+          <Link className="logoLink" to="/">
+            Sparhinken
+          </Link>
+        </h1>
       </div>
 
       <div className="linksWraper">
         <Link className="navLink" to="/dashboard">
           Dashboard
         </Link>
-
+        {/* 
         <Link className="navLink" to="/about">
           Om oss
-        </Link>
+        </Link> */}
 
         <Link className="navLink" to="/guide">
           Guide
