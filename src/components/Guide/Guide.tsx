@@ -11,7 +11,7 @@ const Guide = () => {
 
           <p>
             Det hela går ut på att tänka i hinkperspektivet när du tänker
-            sparande, du kommer att kunna skapa upp till 4 hinkar
+            sparande, du kommer att kunna skapa upp till 4 hinkar, den första
           </p>
         </div>
       </div>

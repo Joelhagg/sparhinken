@@ -8,10 +8,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
 }
 
 .bucketContainer {
-    width: 500px;
+    width: 700px;
     // outline: solid green 2px;
     display: flex;
     flex-direction: column;
@@ -47,6 +48,10 @@
     color: black;
     background-color: rgba(255, 187, 0, 0.20);
     border-radius: 10px;
+}
+
+.resetBucketconatinerText {
+    width: 400px;
 }
 
 .resetValuesButton {
@@ -240,12 +245,82 @@
         letter-spacing: 2px;
         background: #0f569940;
         border: 2px solid #0F569940;
+        cursor:auto;
     }
 }
 
 .bucketButtomContainer {
     // outline: solid teal 2px;
     width: 100vw;
+    height: 100px;
     display: flex;
     justify-content: center;
+}
+
+
+
+// Media query breakpoint at 1200px - for big computer screens and TV:s 
+@media screen and (max-width: $breakPointLargeScreen) {
+    .emptyBox {
+        width: 220px;
+        height:80px;
+        font-size: 20px;
+        margin-top: 0;
+    }
+}
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+}
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) {
+    .bucketContainer {
+        width: 400px;
+    }
+
+    .resetBucketconatinerText {
+        width: 300px;
+    }
+
+}
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
+    .emptyBox {
+        width: 220px;
+        height:50px;
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    .bucketContainer {
+        width: 300px;
+    }
+
+    .recommendedSettingsConatiner {
+       width: 300px;
+    }
+
+    .bucketRecommendedSettings {
+        p {
+            margin: 0;
+        }
+    }
+
+    .recommendedSettingsRangeContainer {
+        flex-direction: column;
+
+        p {
+            margin: 0;
+        }
+    
+        input {
+            margin: 0px;
+        }
+    
+        button {
+            margin: 20px;
+        }
+    }
+
 }
