@@ -5,12 +5,15 @@ import { useContext, useState } from "react";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { MdClose } from "react-icons/md";
+import { FiMenu } from "react-icons/fi";
 
 function Nav() {
   const contextState = useContext(StateContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   const handleLogout = async () => {
     setError("");
@@ -18,11 +21,23 @@ function Nav() {
     try {
       setLoading(true);
       await signOut(auth);
+      setNavbarOpen(false);
       navigate("/login");
     } catch {
       setError("Failed to log out...");
     }
     setLoading(false);
+  };
+
+  // Yes, stolen...
+  // https://ibaslogic.com/how-to-add-hamburger-menu-in-react/
+
+  const handleToggle = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
+  const closeMenu = () => {
+    setNavbarOpen(false);
   };
 
   return (
@@ -75,6 +90,94 @@ function Nav() {
             </form>
           </div>
         )}
+
+        <div className="hamburgerMenuContainer">
+          <button className="hamburgerMenuButton" onClick={handleToggle}>
+            {navbarOpen ? (
+              <MdClose
+                style={{ color: "#fff", width: "40px", height: "40px" }}
+              />
+            ) : (
+              <FiMenu
+                style={{ color: "#fff", width: "40px", height: "40px" }}
+              />
+            )}
+          </button>
+          <div className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+            <div className="topHamburgerMenuContainer">
+              {!contextState.currentUser ? (
+                <div>
+                  <Link to="/register">
+                    <button onClick={() => closeMenu()} className="navButton">
+                      Ny kund?
+                    </button>
+                  </Link>
+                  <Link to="/login">
+                    <button onClick={() => closeMenu()} className="navButton">
+                      Logga in
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <div>
+                  <Link to="/update-profile">
+                    <button onClick={() => closeMenu()} className="navButton">
+                      Uppdatera profil
+                    </button>
+                  </Link>
+
+                  <form>
+                    {error}
+                    <button
+                      className="navButton"
+                      disabled={loading}
+                      onClick={handleLogout}
+                    >
+                      Logga ut
+                    </button>
+                  </form>
+                </div>
+              )}
+
+              <Link
+                onClick={() => closeMenu()}
+                className="topHamburgerMenuLinks"
+                to="/dashboard"
+              >
+                <p>Dashboard</p>
+              </Link>
+              <Link
+                onClick={() => closeMenu()}
+                className="topHamburgerMenuLinks"
+                to="/guide"
+              >
+                <p>Guide</p>
+              </Link>
+            </div>
+
+            <div className="bottomHamburgerMenuContainer">
+              <Link onClick={() => closeMenu()} to="/about">
+                <p className="hamburgerMenuLinks">Om oss</p>
+              </Link>
+
+              <Link onClick={() => closeMenu()} to="/contact">
+                <p className="hamburgerMenuLinks">Kontakt</p>
+              </Link>
+
+              <Link onClick={() => closeMenu()} to="/">
+                <p className="hamburgerMenuLinks">Vad står vi för?</p>
+              </Link>
+
+              <Link onClick={() => closeMenu()} to="/terms">
+                <p className="hamburgerMenuLinks">Vilkor</p>
+              </Link>
+
+              <Link onClick={() => closeMenu()} to="/jobs">
+                <p className="hamburgerMenuLinks">lediga jobb</p>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
   );

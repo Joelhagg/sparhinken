@@ -20,12 +20,18 @@
     display: flex;
     justify-content:flex-end;
     flex-wrap: wrap;
+
+    a {
+        padding: 10px;
+    }
 }
 
 .linkButtonConatiner {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+
 }
 
 .logoLink {
@@ -38,7 +44,7 @@
 }
 
 .navLink {
-    margin: 14px;
+    margin: 0;
     color: #fff;
     font-size: 16px;
     text-decoration: none;
@@ -51,7 +57,7 @@
     border: none;
     width: 160px;
     height: 40px;
-    margin: 10px;
+    // margin: 10px;
     color: #0F5699;
     font-style: normal;
     font-weight: 600;
@@ -69,6 +75,76 @@
     letter-spacing: 2px;
     background: #0F5699;
 }
+
+.hamburgerMenuContainer {
+    display: none;
+}
+
+
+
+
+// Hamburger menu  ///////////////////////////////////////
+
+.hamburgerMenuButton {
+    margin-right: 10px;
+    background-color: #002C55;
+    border: none;
+    cursor: pointer;
+  }
+  
+.menuNav {
+    display: none;
+    overflow-y: scroll;
+    list-style: none;
+    position: fixed;
+    background: #002C55;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menuNav.showMenu {
+      
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 95vh;
+}
+
+.topHamburgerMenuContainer {
+    // border: solid green 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.topHamburgerMenuLinks {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+
+.hamburgerMenuLinks {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px; 
+}
+
+
+.bottomHamburgerMenuContainer {
+    // border: solid red 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+
+
+// Media queries //////////////////////////////////////////////////////////////////////////////////
 
 // Media query breakpoint at 1200px - for big computer screens and TV:s 
 @media screen and (max-width: $breakPointLargeScreen) {
@@ -116,10 +192,15 @@
     }
 
     .linksWraper {
-        padding-right: 0; 
-        margin-right: 4px;
+        // padding-right: 0; 
+        // margin-right: 4px;
         // align-items: center;
         // justify-content: center;
+
+        a {
+            margin: 0;
+            padding: 0;
+        }
     }
 
     .navLink {
@@ -143,6 +224,18 @@
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
 
+    .linkButtonConatiner {
+        display: none;
+    }
+
+    .navLink {
+        display: none;
+    }
+
+    .hamburgerMenuContainer {
+        display: block;
+    }
+
     .logoContainer {
         padding-left: 10px;
         width: 0;
@@ -151,4 +244,13 @@
     .logoLink {
         font-size: 26px;
     }
+
+    .navButton {
+        width: 160px;
+        height: 55px;
+        margin: 20px;
+        font-size: 20px;
+        letter-spacing: 1.5px;
+    }
+
 }

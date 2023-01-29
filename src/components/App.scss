@@ -13,6 +13,7 @@ $breakePointMobile: 480px;
 nav {
     width: 100vw;
     height: 100px;
+    z-index: 1;
 }
 
 main {
@@ -28,7 +29,7 @@ footer {
   }
 
 
-// Media query breakpoint at 1200px - for big computer screens and TV:s 
+// Media query breakpoint at 1200px - for big computer screens and TV:s  
 @media screen and (max-width: $breakPointLargeScreen) {
     
 }
