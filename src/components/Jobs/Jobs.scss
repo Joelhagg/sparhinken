@@ -1,0 +1,16 @@
+@import "../App.scss";
+
+
+.jobsConatiner {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.jobText {
+    font-family: $secondaryFont;
+    font-size: 18px;    
+}

@@ -8,6 +8,7 @@ import { IBucket } from "../../models/IBucket";
 // import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { BsQuestionCircleFill } from "react-icons/bs";
 
 const Dashboard = () => {
   const contextState = useContext(StateContext);
@@ -25,7 +26,6 @@ const Dashboard = () => {
     const fetchData = async () => {
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
       if (data.exists()) {
-        console.log("Document data: ", data.data());
         setUserName(data.data().userName);
         setTotalSavedAmount(data.data().totalSavedAmount);
         setMonthlyExspenses(data.data().monthlyExspenses);
@@ -33,8 +33,6 @@ const Dashboard = () => {
         setBucket2(data.data().bucket2);
         setBucket3(data.data().bucket3);
         setBucket4(data.data().bucket4);
-      } else {
-        console.log("no document");
       }
     };
 
@@ -80,9 +78,6 @@ const Dashboard = () => {
           </div>
 
           <div className="dashboardConatiner">
-            {/* <h4>Totalt sparande: {totalSavedAmount}kr.</h4>
-          <h4>Månadsutgift: {monthlyExspenses}kr.</h4> */}
-
             <div>
               {bucket1?.inUse ? (
                 <Link
@@ -217,7 +212,14 @@ const Dashboard = () => {
           </div>
 
           <div className="amountConatiner">
-            <h1>Totalt i hinkarna: {totalSavedInBuckets} kr</h1>
+            <div>
+              <Link to="/guide">
+                <BsQuestionCircleFill className="questionMark" />
+              </Link>
+            </div>
+            <div>
+              <h1>Totalt i hinkarna: {totalSavedInBuckets} kr</h1>
+            </div>
           </div>
         </div>
       </div>

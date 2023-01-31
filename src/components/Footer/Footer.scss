@@ -20,7 +20,7 @@
     font-family: $secondaryFont;
     padding: 10px;
     text-decoration: none;
-}
+} 
 
 .socialMediaContainer {
     display: flex;
@@ -43,23 +43,10 @@
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) { 
-    
+
     .footerConatiner {
-        font-size: 11px;
+        display: none;
     }
-
-    .linkConatiner {
-        padding-left: 8px;
-    }
-
-    .link {
-        padding: 6px;
-    }
-    
-    .socialMediaContainer {
-        padding-right: 8px;
-    }
-
 }
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
@@ -67,5 +54,4 @@
     .footerConatiner {
         display: none;
     }
-
 }

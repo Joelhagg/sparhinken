@@ -14,7 +14,7 @@ const Footer = () => {
             <p>Kontakt</p>
           </Link>
 
-          <Link className="link" to="/">
+          <Link className="link" to="/what-do-we-stand-for">
             <p>Vad står vi för?</p>
           </Link>
 

@@ -1,10 +1,9 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Bucket.scss";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import { IBucket } from "../../models/IBucket";
 
 const Bucket = () => {
   let { bucketId } = useParams();
@@ -39,8 +38,6 @@ const Bucket = () => {
   let calc = monthlyExspenses * recommendedRiskLevel;
 
   const saveBucket = async (e: FormEvent) => {
-    console.log(percentageFilled);
-
     e.preventDefault();
     setSavedStatus("");
     try {
@@ -61,12 +58,10 @@ const Bucket = () => {
           useRecomendedSettings: useRecomendedSettings,
         },
       });
-      console.log("saved");
       setSavedStatus("Sparat!");
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
-      console.error(e);
     }
   };
 
@@ -90,12 +85,10 @@ const Bucket = () => {
           useRecomendedSettings: useRecomendedSettings,
         },
       });
-      console.log("saved");
       setSavedStatus("Sparat!");
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
-      console.error(e);
     }
   };
 
@@ -144,8 +137,6 @@ const Bucket = () => {
       }
     };
     setRecommendedBucketSize(calc);
-    console.log("calc: ", calc);
-    console.log("selectedRiskLevel: ", selectedRiskLevel);
 
     fetchData();
   }, [monthlyExspenses]);
@@ -156,7 +147,6 @@ const Bucket = () => {
         monthlyExspenses * selectedRiskLevel
       );
     } else if (firstBucketAmount) {
-      console.log(firstBucketAmount);
       setRecommendedBucketSizeBasedOnRiskLevel(
         firstBucketAmount * selectedRiskLevel
       );
@@ -200,7 +190,6 @@ const Bucket = () => {
       setTargeBucketSize(0);
       setActualBucketSize(0);
       setSoftDeleted(false);
-      console.log("reset");
     }
   };
 

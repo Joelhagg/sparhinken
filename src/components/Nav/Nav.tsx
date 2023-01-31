@@ -44,7 +44,7 @@ function Nav() {
     <nav className="nav">
       <div className="logoContainer">
         <h1>
-          <Link className="logoLink" to="/">
+          <Link onClick={() => closeMenu()} className="logoLink" to="/">
             Sparhinken
           </Link>
         </h1>
@@ -92,7 +92,7 @@ function Nav() {
         )}
 
         <div className="hamburgerMenuContainer">
-          <button className="hamburgerMenuButton" onClick={handleToggle}>
+          <button className="hamburgerMenuButtonOpen" onClick={handleToggle}>
             {navbarOpen ? (
               <MdClose
                 style={{ color: "#fff", width: "40px", height: "40px" }}
@@ -104,9 +104,21 @@ function Nav() {
             )}
           </button>
           <div className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+            <button className="hamburgerMenuButton" onClick={handleToggle}>
+              {navbarOpen ? (
+                <MdClose
+                  style={{ color: "#fff", width: "40px", height: "40px" }}
+                />
+              ) : (
+                <FiMenu
+                  style={{ color: "#fff", width: "40px", height: "40px" }}
+                />
+              )}
+            </button>
+
             <div className="topHamburgerMenuContainer">
               {!contextState.currentUser ? (
-                <div>
+                <div className="hamburgerButtonLinks">
                   <Link to="/register">
                     <button onClick={() => closeMenu()} className="navButton">
                       Ny kund?
@@ -119,7 +131,7 @@ function Nav() {
                   </Link>
                 </div>
               ) : (
-                <div>
+                <div className="hamburgerButtonLinks">
                   <Link to="/update-profile">
                     <button onClick={() => closeMenu()} className="navButton">
                       Uppdatera profil
@@ -164,7 +176,7 @@ function Nav() {
                 <p className="hamburgerMenuLinks">Kontakt</p>
               </Link>
 
-              <Link onClick={() => closeMenu()} to="/">
+              <Link onClick={() => closeMenu()} to="/what-do-we-stand-for">
                 <p className="hamburgerMenuLinks">Vad står vi för?</p>
               </Link>
 

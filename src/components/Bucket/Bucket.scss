@@ -2,7 +2,6 @@
 
 
 .bucketWraper {
-    // outline: solid red 2px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,7 +12,6 @@
 
 .bucketContainer {
     width: 700px;
-    // outline: solid green 2px;
     display: flex;
     flex-direction: column;
     justify-content:space-around
@@ -21,13 +19,11 @@
 
 .topConainer {
     width: 100vw;
-    // outline: solid black 2px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
 .emptyBox {
-    // outline: solid yellow 2px;
     width: 220px;
     height: 100px;
     display: flex;
@@ -38,7 +34,6 @@
 }
 
 .resetBucketconatiner {
-    // outline: solid orange 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,7 +63,6 @@
     text-align: center;
     border-radius: 4px;
     background: #0F5699;
-    // filter: drop-shadow(0px 2px 4px #000000);
     cursor: pointer;
     border: 2px solid #0F5699;
     transition: 0.15s;
@@ -82,7 +76,6 @@
 }
 
 .customBucketName {
-    // // outline: solid brown 2px;
     font-family: $secondaryFont;
     font-size: 18px;
     color: black;
@@ -108,7 +101,6 @@
 }
 
 .bucketRecommendedSettings {
-    // outline: solid pink 2px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -120,7 +112,6 @@
 }
 
 .recommendedSettingsConatiner {
-    // outline: solid black 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,7 +125,6 @@
 
 
 .recommendedSettingsRangeContainer {
-    // // outline: solid blue 2px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -158,7 +148,6 @@
         text-align: center;
         border-radius: 4px;
         background: #0F5699;
-        // filter: drop-shadow(0px 2px 4px #000000);
         cursor: pointer;
         border: 2px solid #0F5699;
         transition: 0.15s;
@@ -173,7 +162,6 @@
 }
 
 .bucketForm {
-    // outline: solid blue 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,7 +169,6 @@
 }
 
 .bucketAmountConatiner {
-    // outline: solid red 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -227,7 +214,6 @@
         text-align: center;
         border-radius: 4px;
         background: #0F5699;
-        // filter: drop-shadow(0px 2px 4px #000000);
         cursor: pointer;
         border: 2px solid #0F5699;
         transition: 0.15s;
@@ -250,7 +236,6 @@
 }
 
 .bucketButtomContainer {
-    // outline: solid teal 2px;
     width: 100vw;
     height: 100px;
     display: flex;
@@ -261,6 +246,7 @@
 
 // Media query breakpoint at 1200px - for big computer screens and TV:s 
 @media screen and (max-width: $breakPointLargeScreen) {
+
     .emptyBox {
         width: 220px;
         height:80px;
@@ -274,6 +260,7 @@
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {
+
     .bucketContainer {
         width: 400px;
     }
@@ -281,8 +268,8 @@
     .resetBucketconatinerText {
         width: 300px;
     }
-
 }
+
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
 
@@ -322,5 +309,4 @@
             margin: 20px;
         }
     }
-
 }
