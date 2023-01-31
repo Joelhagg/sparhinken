@@ -5,23 +5,53 @@
     background: #0058AB;
     display: flex;
     justify-content: space-between;
+    font-size: 16px;
 }
 
 .linkConatiner {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-left: 10px;
 }
 
 .link {
     color: #fff;
     font-family: $secondaryFont;
     padding: 10px;
-}
+    text-decoration: none;
+} 
 
 .socialMediaContainer {
     display: flex;
     flex-direction: row;
+    padding-right: 10px;
     flex-wrap: wrap;
     color: #fff;
+}
+
+
+
+// Media query breakpoint at 1200px - for big computer screens and TV:s 
+@media screen and (max-width: $breakPointLargeScreen) {
+    
+}
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+
+}
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) { 
+
+    .footerConatiner {
+        display: none;
+    }
+}
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
+    .footerConatiner {
+        display: none;
+    }
 }

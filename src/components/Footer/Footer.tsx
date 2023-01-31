@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.scss";
 
 const Footer = () => {
@@ -5,17 +6,39 @@ const Footer = () => {
     <footer>
       <div className="footerConatiner">
         <div className="linkConatiner">
-          <p className="link">Om oss</p>
-          <p className="link">Kontakt</p>
-          <p className="link">Vad står vi för?</p>
-          <p className="link">Vilkor</p>
-          <p className="link">lediga jobb</p>
+          <Link className="link" to="/about">
+            <p>Om oss</p>
+          </Link>
+
+          <Link className="link" to="/contact">
+            <p>Kontakt</p>
+          </Link>
+
+          <Link className="link" to="/what-do-we-stand-for">
+            <p>Vad står vi för?</p>
+          </Link>
+
+          <Link className="link" to="/terms">
+            <p>Vilkor</p>
+          </Link>
+
+          <Link className="link" to="/jobs">
+            <p>lediga jobb</p>
+          </Link>
         </div>
 
         <div className="socialMediaContainer">
-          <p className="link">Facebook</p>
-          <p className="link">Instagram</p>
-          <p className="link">Linkedin</p>
+          <Link className="link" to="/facebook">
+            <p>Facebook</p>
+          </Link>
+
+          <Link className="link" to="/instagram">
+            <p>Instagram</p>
+          </Link>
+
+          <Link className="link" to="linkedin">
+            <p>Linkedin</p>
+          </Link>
         </div>
       </div>
     </footer>

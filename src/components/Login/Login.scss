@@ -11,6 +11,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
 }
 
 .loginConatiner {
@@ -23,13 +25,13 @@ h1 {
     margin-top: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
 }
 
 .loginInputs {
     box-sizing: border-box;
     font-size: 16px;
-    height: 28px;
+    height: 28px; 
     width: 220px;
     margin: 10px;
     border-radius: 4px;
@@ -62,7 +64,6 @@ h1 {
     font-weight: 500;
     font-size: 16px;
     letter-spacing: 2px;
-    text-align: center;
     border-radius: 4px;
     background: #0F5699;
     cursor: pointer;
@@ -75,4 +76,23 @@ h1 {
     letter-spacing: 2px;
     background-color: #fff;
     border: 2px solid #0F5699;
+}
+
+
+
+// Media query breakpoint at 1200px - for big computer screens and TV:s 
+@media screen and (max-width: $breakPointLargeScreen) {
+    
+}
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+}
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) {
+
+}
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
 }

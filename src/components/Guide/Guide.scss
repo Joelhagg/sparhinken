@@ -2,12 +2,10 @@
 
 
 .guideWrapper {
-    outline: solid red 2px;
     width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     font-family: $secondaryFont;
 
@@ -15,9 +13,53 @@
 
 .guideContainer {
     // outline: solid green 2px;
-    width: 500px;
+    width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+    font-size: 18px;
+}
+
+.guideRegisterButton {
+    font-family: $primaryFont;
+    border: none;
+    width: 160px;
+    height: 40px;
+    margin: 10px 0 100px 0;
+    color: #fff;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    background-color: #0F5699;
+    cursor: pointer;
+    transition: 0.1s; 
+}
+
+
+
+
+// Media query breakpoint at 1200px - for big computer screens and TV:s 
+@media screen and (max-width: $breakPointLargeScreen) {
+    
+}
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+}
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) {
+
+    .guideContainer {
+        width: 400px;
+    }
+}
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
+    .guideContainer {
+        width: 300px;
+    }
 }
