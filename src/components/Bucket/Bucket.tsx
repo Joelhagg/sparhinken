@@ -4,6 +4,8 @@ import "./Bucket.scss";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import { BsQuestionCircleFill } from "react-icons/bs";
+import { MdClose } from "react-icons/md";
 
 const Bucket = () => {
   let { bucketId } = useParams();
@@ -16,8 +18,8 @@ const Bucket = () => {
   const [suggestedBucketName, setSuggestedBucketName] = useState<string>("");
   const [bucketNumber, setBucketNumber] = useState<number>();
   const [savedStatus, setSavedStatus] = useState<string>("");
-  const [chosenBucket, setchosenBucket] = useState(`bucket${bucketId}`);
-  const [disableButton, setDisableButton] = useState(false);
+  const [chosenBucket, setchosenBucket] = useState<string>(`bucket${bucketId}`);
+  const [disableButton, setDisableButton] = useState<boolean>(false);
   const [recommendedBucketSize, setRecommendedBucketSize] = useState<number>(0);
   const [
     recommendedBucketSizeBasedOnRiskLevel,
@@ -26,18 +28,26 @@ const Bucket = () => {
   const [targeBucketSize, setTargeBucketSize] = useState<number>(0);
   const [actualBucketSize, setActualBucketSize] = useState<number>(0);
   const [recommendedRiskLevel, setRecommendedRiskLevel] = useState<number>(0);
+  const [maxRiskLevel, setMaxRiskLevel] = useState<number>(0);
   const [selectedRiskLevel, setSelectedRiskLevel] = useState<number>(0);
   const [firstBucketAmount, setFirstBucketAmount] = useState<number>();
   const [percentageFilled, setPercentageFilled] = useState<number>();
-  const [useRecomendedSettings, setUseRecomendedSettings] = useState(false);
-  const [useCustomBucketSize, setUseCustomBucketSize] = useState(false);
-  const [inUse, setInUse] = useState();
+  const [useRecomendedSettings, setUseRecomendedSettings] =
+    useState<boolean>(false);
+  const [inUse, setInUse] = useState<boolean>();
+  const [resetBucket, setResetBucket] = useState<boolean>(true);
   const [softDeleted, setSoftDeleted] = useState<boolean>();
+  const [helpTooltip, setHelpTooltip] = useState<boolean>(false);
 
-  let custom: string = "";
-  let calc = monthlyExspenses * recommendedRiskLevel;
+  // bucket number + 1, to disable create new bucket button when more then 4 buckets.
+  let bucketCheck: string = "";
+
+  // Calculation for recommended bucket size
+  let recommendedBucketSizeCalculation =
+    monthlyExspenses * recommendedRiskLevel;
 
   const saveBucket = async (e: FormEvent) => {
+    console.log(maxRiskLevel);
     e.preventDefault();
     setSavedStatus("");
     try {
@@ -53,6 +63,7 @@ const Bucket = () => {
           savedBucketAmount: actualBucketSize,
           suggestedBucketName: suggestedBucketName,
           recommendedRiskLevel: recommendedRiskLevel,
+          maxRiskLevel: maxRiskLevel,
           selectedRiskLevel: selectedRiskLevel,
           percentageFilled: percentageFilled,
           useRecomendedSettings: useRecomendedSettings,
@@ -80,6 +91,7 @@ const Bucket = () => {
           savedBucketAmount: actualBucketSize,
           suggestedBucketName: suggestedBucketName,
           recommendedRiskLevel: recommendedRiskLevel,
+          maxRiskLevel: maxRiskLevel,
           selectedRiskLevel: selectedRiskLevel,
           percentageFilled: percentageFilled,
           useRecomendedSettings: useRecomendedSettings,
@@ -89,6 +101,7 @@ const Bucket = () => {
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
+      console.log(e);
     }
   };
 
@@ -102,7 +115,7 @@ const Bucket = () => {
     }
 
     if (bucketId) {
-      custom = `bucket${parseInt(bucketId) + 1}`;
+      bucketCheck = `bucket${parseInt(bucketId) + 1}`;
     }
 
     const fetchData = async () => {
@@ -114,6 +127,7 @@ const Bucket = () => {
       setTargeBucketSize(data.data()?.[chosenBucket].targeBucketSize);
       setActualBucketSize(data.data()?.[chosenBucket].savedBucketAmount);
       setRecommendedRiskLevel(data.data()?.[chosenBucket].recommendedRiskLevel);
+      setMaxRiskLevel(data.data()?.[chosenBucket].maxRiskLevel);
       setSelectedRiskLevel(data.data()?.[chosenBucket].selectedRiskLevel);
       setInUse(data.data()?.[chosenBucket].inUse);
       setSoftDeleted(data.data()?.[chosenBucket].softDeleted);
@@ -124,9 +138,9 @@ const Bucket = () => {
       setBucketName(data.data()?.[chosenBucket].bucketName);
       setSuggestedBucketName(data.data()?.[chosenBucket].suggestedBucketName);
 
-      if (custom == "bucket5") {
+      if (bucketCheck == "bucket5") {
         setDisableButton(false);
-      } else if (data.data()?.[custom].inUse) {
+      } else if (data.data()?.[bucketCheck].inUse) {
         setDisableButton(true);
       }
 
@@ -136,7 +150,7 @@ const Bucket = () => {
         setBucketNumber(parseInt(bucketId));
       }
     };
-    setRecommendedBucketSize(calc);
+    setRecommendedBucketSize(recommendedBucketSizeCalculation);
 
     fetchData();
   }, [monthlyExspenses]);
@@ -176,32 +190,108 @@ const Bucket = () => {
 
   const renderResetButton = (e: FormEvent) => {
     e.preventDefault();
-    if (
-      !softDeleted ||
-      bucketName != "" ||
-      useRecomendedSettings != false ||
-      selectedRiskLevel! > 1 ||
-      targeBucketSize > 0 ||
-      actualBucketSize > 0
-    ) {
-      setBucketName("");
-      setUseRecomendedSettings(false);
-      setSelectedRiskLevel(1);
-      setTargeBucketSize(0);
-      setActualBucketSize(0);
-      setSoftDeleted(false);
+
+    setBucketName("");
+    setUseRecomendedSettings(false);
+    setSelectedRiskLevel(1);
+    setTargeBucketSize(0);
+    setActualBucketSize(0);
+    setSoftDeleted(false);
+  };
+
+  const resetBucketRender = () => {
+    if (softDeleted == true) {
+      if (
+        bucketName == "" &&
+        useRecomendedSettings == false &&
+        selectedRiskLevel <= 1 &&
+        targeBucketSize == 0 &&
+        actualBucketSize == 0
+      ) {
+        return;
+      }
+      if (
+        bucketName != "" ||
+        useRecomendedSettings == true ||
+        selectedRiskLevel > 1 ||
+        targeBucketSize != 0 ||
+        actualBucketSize != 0
+      ) {
+        return (
+          <div className="resetBucketconatiner">
+            <button onClick={disableResetBucketRender}>
+              <MdClose
+                style={{ color: "#000000", width: "20px", height: "20px" }}
+              />
+            </button>
+            <p className="resetBucketconatinerText">
+              Detta är sedan tidigare en använd hink, vill du nollställa den?{" "}
+              <BsQuestionCircleFill className="toolTipQuestionmark" />
+            </p>
+            <button className="resetValuesButton" onClick={renderResetButton}>
+              Nollställ
+            </button>
+          </div>
+        );
+      }
+    }
+    return;
+  };
+
+  const disableResetBucketRender = () => {
+    setResetBucket(false);
+  };
+
+  const helpToogle = () => {
+    setHelpTooltip(!helpTooltip);
+  };
+
+  const tooltipBucket = () => {
+    if (bucketNumber == 1 && helpTooltip == true) {
+      return (
+        <p className="helptextarea">
+          Bufferthinken <br /> Pengarna bör sättas på ett sparkonto med ränta,
+          lätta att kunna ta ut vid behov.
+        </p>
+      );
+    }
+    if (bucketNumber == 2 && helpTooltip == true) {
+      return (
+        <p className="helptextarea">
+          Mellanriskhinken <br />
+          Dessa pengar bör få chansen att växa lite, förslagsvis med
+          fördelningen 60% Aktier och 40% Räntepapper.
+        </p>
+      );
+    }
+    if (bucketNumber == 3 && helpTooltip == true) {
+      return (
+        <p className="helptextarea">
+          Högriskhinken <br />
+          Här ska pengarna växa! Förslagsvis 100% Aktier
+        </p>
+      );
+    }
+    if (bucketNumber == 4 && helpTooltip == true) {
+      return (
+        <p className="helptextarea">
+          Lekhinken! <br />
+          Här kan du placera alternativa tillgångar, hinken rekommenderas inte
+          överstiga 10% av Hink 3
+        </p>
+      );
     }
   };
 
-  const renderContent = () => {
+  const renderBucketSettings = () => {
     if (useRecomendedSettings) {
       return (
         <div className="recommendedSettingsConatiner">
           {bucketNumber === 1 || bucketNumber === 2 ? (
             <div>
               <p>
-                Här kan du öka eller sänka säkerhetsnivån och baserat på den
-                rekommenderar vi att Hink{bucketNumber} bör minst innehålla:
+                Här kan du öka eller sänka hinkens storlektsnivå, vi
+                rekommenderar att Hink{bucketNumber} bör minst innehålla:
                 {recommendedBucketSizeBasedOnRiskLevel}kr
               </p>
             </div>
@@ -210,11 +300,12 @@ const Bucket = () => {
           )}
           {bucketNumber === 1 || bucketNumber === 2 ? (
             <div className="recommendedSettingsRangeContainer">
-              <p>Säkerhetsnivå {selectedRiskLevel}</p>
+              <BsQuestionCircleFill className="toolTipQuestionmark" />
+              <p>Storleksnivå {selectedRiskLevel}</p>
               <input
                 type="range"
                 min="1"
-                max={recommendedRiskLevel}
+                max={maxRiskLevel}
                 value={selectedRiskLevel}
                 onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
               />
@@ -234,29 +325,32 @@ const Bucket = () => {
     <>
       <div className="bucketWraper">
         <div className="topConainer">
-          <div className="emptyBox">
-            <h1></h1>
-          </div>
-          <div className="emptyBox">
-            <h1>Hink {bucketNumber}</h1>
-          </div>
-          <div className="emptyBox">
-            <h1></h1>
-          </div>
-        </div>
-        <div className="bucketContainer">
-          {softDeleted ? (
-            <div className="resetBucketconatiner">
-              <p className="resetBucketconatinerText">
-                Detta är sedan tidigare en använd hink, vill du nollställa den?
-              </p>
-              <button className="resetValuesButton" onClick={renderResetButton}>
-                Nollställ
+          <div className="emptyBox"></div>
+
+          <div className="middleEmptyBox">
+            <h1>Hink {bucketNumber} </h1>{" "}
+            <div className="selectedBucketQuestionmarkConatiner">
+              <button
+                onClick={helpToogle}
+                className="selectedBucketQuestionmarkButton"
+              >
+                <BsQuestionCircleFill className="selectedBucketQuestionmark" />
               </button>
             </div>
+          </div>
+
+          <div className="emptyBox"></div>
+        </div>
+
+        <div>
+          {helpTooltip ? (
+            <div className="helpConatiner">{tooltipBucket()}</div>
           ) : (
             <p></p>
           )}
+        </div>
+        <div className="bucketContainer">
+          {resetBucket ? <div>{resetBucketRender()}</div> : <p></p>}
 
           <form className="bucketForm" onSubmit={saveBucket}>
             <div className="customBucketName">
@@ -272,7 +366,7 @@ const Bucket = () => {
 
             {bucketNumber === 1 || bucketNumber === 2 ? (
               <div className="bucketRecommendedSettings">
-                <p>Ändra från rekommenderade inställningar?</p>
+                <p>Nivåinställning</p>
                 <input
                   type="checkbox"
                   checked={useRecomendedSettings}
@@ -283,15 +377,31 @@ const Bucket = () => {
               <p></p>
             )}
 
-            {renderContent()}
+            {renderBucketSettings()}
 
             <div className="bucketAmountConatiner">
-              <p>
-                Baserat på din angivna månadsutgift rekommenderar vi att Hink
-                {bucketNumber} minst innehåller: {recommendedBucketSize}kr
-              </p>
+              {bucketNumber === 1 || bucketNumber === 2 ? (
+                <p>
+                  Baserat på din angivna månadsutgift rekommenderar vi att Hink
+                  {bucketNumber} minst innehåller: {recommendedBucketSize}kr
+                </p>
+              ) : (
+                <p></p>
+              )}
 
-              <p>Vald storlek</p>
+              {bucketNumber === 3 ? (
+                <p>
+                  När hink 1 och 2 är fyllda så börjar du fylla den här hinken
+                </p>
+              ) : null}
+              {bucketNumber === 4 ? (
+                <p>En rekomendation är att ha ca 10% av Hink 3 i denna hink</p>
+              ) : null}
+
+              <p>
+                Vald storlek{" "}
+                <BsQuestionCircleFill className="toolTipQuestionmark" />
+              </p>
               <input
                 type="number"
                 required
@@ -300,7 +410,10 @@ const Bucket = () => {
                 onChange={(e) => setTargeBucketSize(parseInt(e.target.value))}
               />
 
-              <p>Nuvarande innehåll</p>
+              <p>
+                Nuvarande innehåll{" "}
+                <BsQuestionCircleFill className="toolTipQuestionmark" />
+              </p>
               <input
                 type="number"
                 required

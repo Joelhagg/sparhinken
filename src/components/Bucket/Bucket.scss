@@ -19,18 +19,75 @@
 
 .topConainer {
     width: 100vw;
+    height: 200px;
     display: flex;
     justify-content: space-between; 
 }
 
+
 .emptyBox {
     width: 220px;
-    height: 100px;
+    height: 200px;
     display: flex;
     font-size: 30px;
-    margin-top: 20px;
+    // margin-top: 20px;
     justify-content: center;
     align-items: center;
+}
+
+.middleEmptyBox {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+.helpConatiner {
+    position: relative;
+    top: 45px;
+    width: 300px;
+    background-color: #d3eaff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.helptextarea {
+    font-family: $secondaryFont;
+}
+
+
+.selectedBucketQuestionmarkConatiner {
+    height: 100px;
+}
+
+.selectedBucketQuestionmarkButton {
+    background-color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+}
+
+.selectedBucketQuestionmarkConatiner {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.selectedBucketQuestionmark {
+    color: #0058AB55;
+    width: 40px;
+    height: 40px;
+}
+
+.toolTipQuestionmark {
+    color: #0058AB55;
+    margin: 0 6px;
+    width: 16px;
+    height: 16px;
 }
 
 .resetBucketconatiner {
@@ -43,6 +100,7 @@
     color: black;
     background-color: rgba(255, 187, 0, 0.20);
     border-radius: 10px;
+    padding: 10px;
 }
 
 .resetBucketconatinerText {
@@ -120,6 +178,10 @@
     text-decoration: none;
     color: black;
     text-align: center;
+    background-color: #0058AB33;
+    border-radius: 10px;
+    padding: 10px;
+
 }
 
 
@@ -237,7 +299,7 @@
 
 .bucketButtomContainer {
     width: 100vw;
-    height: 100px;
+    height: 200px;
     display: flex;
     justify-content: center;
 }
@@ -257,9 +319,41 @@
 // Media query breakpoint at 1024px - for standard computer screen
 @media screen and (max-width: $breakePointDesktop) {
 
+    .topConainer {
+        height: 200px;
+    }
+    
+    
+    .emptyBox {
+        height: 200px;
+    }
+
+    .middleEmptyBox {
+        width: 220px;
+        height: 170px;
+        margin-top: 0;
+    }
+
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {
+
+    .topConainer {
+        height: 200px;
+    }
+    
+    
+    .emptyBox {
+        height: 200px;
+    }
+    
+
+    .middleEmptyBox {
+        width: 220px;
+        height:50px;
+        font-size: 16px;
+        margin-top: 0;
+    }
 
     .bucketContainer {
         width: 400px;
@@ -273,9 +367,26 @@
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
 
+    .topConainer {
+        height: 400px;
+    }
+    
+    
+    .emptyBox {
+        height: 400px;
+    }
+    
+
     .emptyBox {
         width: 220px;
-        height:50px;
+        height: 130px;
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    .middleEmptyBox {
+        width: 220px;
+        height:120px;
         font-size: 16px;
         margin-top: 0;
     }
