@@ -41,22 +41,28 @@
     box-shadow: 0px 8px 10px rgba(0, 88, 171, 0.6); 
 }
 
-.checkboxText {
+.checkboxTextLink {
     font-family: $secondaryFont;
     font-size: 14px;
     font-weight: 600;
     padding: 0;
     margin: 20px 0 0 0;
-    text-decoration: none;
-    color: black;
+    color: #002C55;
+    font-weight: 600;
 }
+
+.checkboxTextLink:hover {
+    color: #0071D9;
+}
+
+
 
 .registerCheckbox {
     box-sizing: border-box;
     height: 20px;
     width: 20px;
     font-size: 16px;
-    
+    margin: 10px;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     border: none;
@@ -67,17 +73,16 @@
 .registerSubmitButton {
     font-family: $primaryFont;
     border: none;
-    width: 220px;
+    width: auto;
     height: 34px;
     margin: 10px;
     color: #fff;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 2px;
     border-radius: 4px;
     background: #0F5699;
-    filter: drop-shadow(0px 2px 4px #000000);
     cursor: pointer;
     border: 2px solid #0F5699;
     transition: 0.15s;
@@ -88,14 +93,17 @@
     letter-spacing: 2px;
     background-color: #fff;
     border: 2px solid #0F5699;
-
 }
 
 .loginLinks {
     font-family: $secondaryFont;
     font-size: 16px;
-    padding: 20px;
-    font-weight: 600;
+
     text-decoration: none;
-    color: black;
+    color: #002C55;
+    font-weight: 600;
+}
+
+.loginLinks:hover {
+    color: #0071D9;
 }

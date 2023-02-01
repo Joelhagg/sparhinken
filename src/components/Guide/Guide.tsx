@@ -25,13 +25,13 @@ const Guide = () => {
             <a href="#section5">Hink1</a>
           </li>
           <li>
-            <a href="#section6">Hink2</a>{" "}
+            <a href="#section6">Hink2</a>
           </li>
           <li>
-            <a href="#section7">Hink3</a>{" "}
+            <a href="#section7">Hink3</a>
           </li>
           <li>
-            <a href="#section8">Hink4</a>{" "}
+            <a href="#section8">Hink4</a>
           </li>
         </ol>
 
@@ -152,7 +152,7 @@ const Guide = () => {
           </p>
 
           <a href="#guideWrapper">
-            <h2>Tillbaka upp</h2>
+            <h2>Tillbaka upp &uarr;</h2>
           </a>
 
           <h3>Testa att skapa en hink nu!</h3>

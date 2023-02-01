@@ -23,7 +23,8 @@
 }
 
 .emptybox {
-    width: 220px;
+    // width: 220px;
+    margin: 0 20px 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +44,7 @@
     border: none;
     width: 160px;
     height: 44px;
-    margin: 10px;
+    // margin: 10px;
     color: #fff;
     font-style: normal;
     font-weight: 500;
@@ -129,6 +130,11 @@
     height: 50px;
 }
 
+.questionMark:hover {
+    
+    color: #0058AB55;
+}
+
 
 
 // Media query breakpoint at 1200px - for big computer screens and TV:s 
@@ -139,14 +145,14 @@
 @media screen and (max-width: $breakePointDesktop) {
 
     .usedBucket {
-        width: 120px;
-        height: 120px; 
+        width: 130px;
+        height: 130px; 
         font-size: 14px; 
     }
 
     .addNewBucketBox {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
     }
 
     .whitePlusSVG {
@@ -156,6 +162,11 @@
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {
+
+    .emptybox {
+        margin: 0 10px 0 10px;
+
+    }
 
     .bigTextConatiner {
         font-size: 10px;
@@ -169,15 +180,15 @@
     }
 
     .usedBucket {
-        width: 120px;
-        height: 120px; 
+        width: 130px;
+        height: 130px; 
         margin: 10px;
         font-size: 12px; 
     }
 
     .addNewBucketBox {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
         margin: 10px;
     }
 

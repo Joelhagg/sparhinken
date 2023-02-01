@@ -31,17 +31,21 @@
 
 }
 
+.homeGuideLink:hover {
+    color: #002C55;
+}
+
 .quote {
    display: none 
 }
 
 .fade-in {
-   transition: opacity 1.5s ease;
+   transition: opacity 1s ease;
 }
   
 .fade-out {
     opacity: 0;
-    transition: opacity 1.5s ease; 
+    transition: opacity 2s ease; 
 }
 
 // Media query breakpoint at 1200px - for big computer screens and TV:s 

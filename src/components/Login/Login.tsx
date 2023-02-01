@@ -45,7 +45,7 @@ const Login = () => {
               required
               type="email"
               id="emailInput"
-              placeholder="Mejl"
+              placeholder="Mail"
               onChange={(e) => setUserEmail(e.target.value)}
             />
 
@@ -53,7 +53,7 @@ const Login = () => {
               className="loginInputs"
               required
               minLength={6}
-              placeholder="lösenord"
+              placeholder="Lösenord"
               type="password"
               id="passwordInput"
               onChange={(e) => setUserPassword(e.target.value)}
