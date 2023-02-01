@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // Yes i found this on the internet and stole it!
 // How could i not, such nice work Julia! Thanks!
-// bionicjulia.com/blog/creating-react-component-fades-changing-words
+// https://bionicjulia.com/blog/creating-react-component-fades-changing-words
 
 const FADE_INTERVAL_MS: number = 2000;
 const WORD_CHANGE_INTERVAL_MS = FADE_INTERVAL_MS * 2;
@@ -50,9 +50,11 @@ const Home = () => {
           <h1 className={fadeProp.fade}>{WORDS_TO_ANIMATE[wordOrder]}</h1>
         </div>
         <div className="linkContainer">
-          <Link className="homeGuideLink" to="/guide">
-            <h2>Vad är Sparhinken?</h2>
-          </Link>
+          <h2>
+            <Link className="homeGuideLink" to="/guide">
+              Vad är Sparhinken?
+            </Link>
+          </h2>
         </div>
       </div>
     </>

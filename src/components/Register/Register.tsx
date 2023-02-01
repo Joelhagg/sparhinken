@@ -53,7 +53,7 @@ const Register = () => {
             <input
               className="registerInputs"
               required
-              placeholder="Mejl"
+              placeholder="Mail"
               type="email"
               id="email"
               onChange={(e) => setUserEmail(e.target.value)}
@@ -78,8 +78,12 @@ const Register = () => {
               id="passwordAgain"
               onChange={(e) => setUserPasswordConfirmation(e.target.value)}
             />
+            <p>
+              <Link className="checkboxTextLink" to="/terms">
+                Godkänner du våra villkor? 🏆
+              </Link>
+            </p>
 
-            <p className="checkboxText">Godkänner du våra villkor? 🏆</p>
             <input className="registerCheckbox" required type="checkbox" />
 
             <button
@@ -90,9 +94,11 @@ const Register = () => {
               Skapa ny användare
             </button>
 
-            <Link className="loginLinks" to="/login">
-              Redan registrerad?
-            </Link>
+            <p>
+              <Link className="loginLinks" to="/login">
+                Redan registrerad?
+              </Link>
+            </p>
           </form>
         </div>
       </div>
