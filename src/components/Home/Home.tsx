@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // How could i not, such nice work Julia! Thanks!
 // bionicjulia.com/blog/creating-react-component-fades-changing-words
 
-const FADE_INTERVAL_MS: number = 1500;
+const FADE_INTERVAL_MS: number = 2000;
 const WORD_CHANGE_INTERVAL_MS = FADE_INTERVAL_MS * 2;
 const WORDS_TO_ANIMATE = [
   "Sparhinken",

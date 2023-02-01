@@ -54,8 +54,9 @@ const Settings = () => {
             targeBucketSize: 0,
             actualBucketSize: 0,
             savedBucketAmount: 0,
-            selectedRiskLevel: 1,
+            selectedRiskLevel: 3,
             recommendedRiskLevel: 3,
+            maxRiskLevel: 5,
             percentageFilled: 0,
             useRecomendedSettings: false,
           },
@@ -70,8 +71,9 @@ const Settings = () => {
             targeBucketSize: 0,
             actualBucketSize: 0,
             savedBucketAmount: 0,
-            selectedRiskLevel: 1,
+            selectedRiskLevel: 5,
             recommendedRiskLevel: 5,
+            maxRiskLevel: 7,
             percentageFilled: 0,
             useRecomendedSettings: false,
           },
@@ -87,6 +89,7 @@ const Settings = () => {
             savedBucketAmount: 0,
             selectedRiskLevel: 0,
             recommendedRiskLevel: 0,
+            maxRiskLevel: 0,
             percentageFilled: 0,
             useRecomendedSettings: false,
           },
@@ -102,6 +105,7 @@ const Settings = () => {
             savedBucketAmount: 0,
             selectedRiskLevel: 0,
             recommendedRiskLevel: 0,
+            maxRiskLevel: 0,
             percentageFilled: 0,
             useRecomendedSettings: false,
           },
@@ -131,7 +135,7 @@ const Settings = () => {
           >
             HallåKonsumnet.se
           </a>
-          &nbsp;för att ta reda på vad
+          &nbsp;för att enkelt göra en kalkyl.
         </p>
 
         <form className="settingsForm" onSubmit={handleSubmit}>
