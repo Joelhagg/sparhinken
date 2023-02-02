@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"Terms.css"}
+{"version":3,"sources":["../src/components/App.scss","../src/components/Terms/Terms.scss"],"names":[],"mappings":"AAAQ,6FAAA,CAaR,WACI,YAAA,CACA,qBAAA,CACA,6BAAA,CACA,YAAA,CAGJ,IACI,WAAA,CACA,UAAA,CAGJ,KACI,WAAA,CACA,UAAA,CACA,YAAA,CACA,qBAAA,CACA,sBAAA,CACA,kBAAA,CACA,iBAAA,CAGJ,OACI,WAAA,CAkBJ,qCAEI,KACI,WAAA,CAAA,CCvDR,gBACI,WAAA,CACA,YAAA,CACA,qBAAA,CACA,sBAAA,CACA,kBAAA,CACA,iBAAA,CAiBJ,qCAEI,gBACI,WAAA,CAAA","file":"Terms.css"}
