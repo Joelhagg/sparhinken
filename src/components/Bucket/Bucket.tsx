@@ -219,7 +219,10 @@ const Bucket = () => {
       ) {
         return (
           <div className="resetBucketconatiner">
-            <button onClick={disableResetBucketRender}>
+            <button
+              className="disableResetBucketRenderButton"
+              onClick={disableResetBucketRender}
+            >
               <MdClose
                 style={{ color: "#000000", width: "20px", height: "20px" }}
               />
