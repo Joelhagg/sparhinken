@@ -14,6 +14,7 @@ const Settings = () => {
   const [totalSavedAmount, setTotalSavedAmount] = useState<number>(0);
   const [monthlyExspenses, setMonthlyExspenses] = useState<number>(0);
   const [savedStatus, setSavedStatus] = useState<string>("");
+  const [newUser, setNewUser] = useState<boolean>(true);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -41,6 +42,7 @@ const Settings = () => {
         setUserName(data.data().userName);
         setTotalSavedAmount(data.data().totalSavedAmount);
         setMonthlyExspenses(data.data().monthlyExspenses);
+        setNewUser(false);
       } else {
         await setDoc(doc(db, "users", currentUser.currentUser.uid), {
           bucket1: {
@@ -109,6 +111,9 @@ const Settings = () => {
             percentageFilled: 0,
             useRecomendedSettings: false,
           },
+          userName: "",
+          totalSavedAmount: 0,
+          monthlyExspenses: 0,
         });
         console.log("no document");
       }
@@ -175,10 +180,13 @@ const Settings = () => {
             Spara
           </button>
         </form>
-
-        <Link to="/dashboard">
-          <button className="settingsButtons">Tillbaka</button>
-        </Link>
+        {newUser ? (
+          <p></p>
+        ) : (
+          <Link to="/dashboard">
+            <button className="settingsButtons">Tillbaka</button>
+          </Link>
+        )}
       </div>
     </>
   );
