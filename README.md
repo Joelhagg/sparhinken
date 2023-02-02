@@ -44,8 +44,8 @@ In the bucket view for bucket 1, some tips is avalible such as what the name of 
 - Built with React library and TypeScript
 - Sass for styling compiling
 - FontAwsome and React-icons for icons
-- Firebase for authentication
 - Firestore as database
+- Firebase for authentication
 - Firebase for hosting
   <br>
 
