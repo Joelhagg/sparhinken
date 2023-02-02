@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "./Guide.scss";
+import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import { useContext } from "react";
 
 const Guide = () => {
+  const contextState = useContext(StateContext);
+
   return (
     <>
       <div className="guideWrapper" id="guideWrapper">
@@ -101,36 +105,60 @@ const Guide = () => {
             etc. Helt enkelt det du vet att du kommer att betala när du fått din
             lön. När du räknat ut och angivit din fasta månadskostnad och sparat
             inställningarna så kommer du till dashboarden, här kan du skapa din
-            första hink!
+            första av maximalt 4 hinkar!
           </p>
           <p id="section5">
-            <strong>Hink1</strong>
-            <i> Bufferthinken:</i> Är tänkt som en bufferthink, det betyder att
-            du ska ha enkel tillgång till pengar om det skulle hända något, tex
-            om du blir långtidssjukskriven kan en buffert hjälpa dig när du går
-            på sjukbidrag. En annan händelse kan vara om du bor i hus och något
-            händer med huset, tex om värmepumpen går sönder så kan bufferten
+            <strong>Hink 1</strong>
+            <i> Bufferthinken:</i>
+            <br />
+            <strong>Placeringsförslag:</strong> <i>Sparkonto med ränta.</i>
+            <br />
+            <strong>Storleksförslag:</strong>
+            <i> 3 månaders utgifter.</i>
+            <br />
+            <hr />
+            Är tänkt som en bufferthink, det betyder att du ska ha enkel
+            tillgång till pengar om det skulle hända något, tex om du blir
+            långtidssjukskriven kan en buffert hjälpa dig när du går på
+            sjukbidrag. En annan händelse kan vara om du bor i hus och något
+            händer med huset, tex om värmepumpen går sönder då kan bufferten
             rädda dig. Bufferthinken som vi kallar den är helt enkelt till för
             oförutsedda utgifter där det finns en minimal risk för att pengarna
-            ska minska i värde.
+            ska minska i värde. Är du ung, student, med i a-kassan eller kan
+            enkelt få ett nytt jobb så kanske hinken kan vara lite mindre, är du
+            däremot äldre, bor i hus med större svårigheter att skaffa ett nytt
+            jobb och inga besparingar kanske hinken borde vara lite större.
           </p>
 
           <p id="section6">
-            <strong>Hink2</strong>
+            <strong>Hink 2</strong>
             <i> Mellanriskhinken: </i>
+            <br />
+            <strong>Placeringsförslag:</strong>{" "}
+            <i> 60% Aktier och 40% Räntepapper</i>
+            <br />
+            <strong>Storleksförslag</strong>
+            <i> 5 gånger större än Hink 1</i>
+            <br />
+            <hr />
             Fungerar som stöd för Bufferthinken, man kan tänka att det är som en
-            andra buffert men med större chans till tillväxt då den bör
-            innehålla en fördelning av aktier och räntor, en rekommendation är
-            ca 60% aktier och 40% räntor vilket verkar ge en okej avkastning med
-            en relativ låg risk.Varför vill man hålla nere risken? Jo för att
-            det är tänk som en extra bufferthink fast större men med chans för
-            tillväxt, om bufferten skulle ta slut så fyller man på den med den
-            här hinken helt enkelt.
+            andra buffert men med större chans till tillväxt fast med relativ
+            låg risk.Varför vill man hålla nere risken? Jo för att den är tänkt
+            som en extra bufferthink fast större men med chans för tillväxt, om
+            bufferten skulle ta slut så fyller man på från den här hinken.
           </p>
 
           <p id="section7">
             <strong>Hink3</strong>
             <i> Högriskhinken: </i>
+            <br />
+            <strong>Placeringsförslag:</strong>
+            <i> 100% Aktier</i>
+            <br />
+            <strong>Storleksförslag:</strong>
+            <i> Forstätt att fylla efter Hink 1 & 2 är fyllda</i>
+            <br />
+            <hr />
             Här är hinken som är till för att dina pengar får växa över tid! Den
             bör innehålla 100% aktier. När Hink1 och 2 är fyllda så spiller alla
             pengar över i den här, Den har en lång sparhorisont och är inte till
@@ -142,13 +170,24 @@ const Guide = () => {
           <p id="section8">
             <strong>Hink4</strong>
             <i> Lekhinken: </i>
+            <br />
+            <strong>Placeringsförslag:</strong>
+            <i>
+              {" "}
+              Alternativa tillgångar, ädelmetaller, krypto, certifikat, vin,
+              konst etc..
+            </i>
+            <br />
+            <strong>Storleksförslag:</strong>
+            <i> 10% av Hink 3</i>
+            <br />
+            <hr />
             Det är precis som det låter, hinken som är till för just “lek”. Den
-            är tänkt att kunna ge utrymme för utlopp av ett möjligen intresse av
-            alternativa investeringar, tex aktiespekulationer, krypto,
-            certifikat eller liknande, sådant som är väldigt hög risk. En
-            rekommendation är att hinken inte överstiger 10% av värdet av
-            Högriskhinken för att ge en riktlinje. Är man inte intresserad av
-            denna hink så skippar man helt enkelt den!
+            är tänkt att kunna ge utrymme och utlopp för alternativa
+            investeringar med är väldigt hög risk. En rekommendation är att
+            hinken inte överstiger 10% av värdet av Högriskhinken för att ge en
+            riktlinje. Är man inte intresserad av denna hink så skippar man helt
+            enkelt den!
           </p>
 
           <a href="#guideWrapper">
@@ -157,9 +196,17 @@ const Guide = () => {
 
           <h3>Testa att skapa en hink nu!</h3>
 
-          <Link to="/register">
-            <button className="guideRegisterButton">Registreara dig</button>
-          </Link>
+          {!contextState.currentUser ? (
+            <Link to="/register">
+              <button className="guideRegisterButton">Registreara dig</button>
+            </Link>
+          ) : (
+            <Link to="/dashboard">
+              <button className="guideRegisterButton">
+                Tillbaka till Dashboarden
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </>
