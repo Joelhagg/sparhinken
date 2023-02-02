@@ -79,7 +79,7 @@ const Register = () => {
               onChange={(e) => setUserPasswordConfirmation(e.target.value)}
             />
             <p>
-              <Link className="checkboxTextLink" to="/terms">
+              <Link className="checkboxTextLink" to="/terms" target="_blank">
                 Godkänner du våra villkor? 🏆
               </Link>
             </p>
