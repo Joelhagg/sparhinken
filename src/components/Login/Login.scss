@@ -48,9 +48,15 @@ h1 {
 
 .loginLinks {
     font-family: $secondaryFont;
-    padding: 20px;
+    font-size: 16px;
+    margin: 10px;
     text-decoration: none;
-    color: black;
+    color: #002C55;
+    font-weight: 600;
+}
+
+.loginLinks:hover {
+    color: #0071D9;
 }
 
 .loginSubmitButton {
@@ -62,7 +68,7 @@ h1 {
     color: #fff;
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 2px;
     border-radius: 4px;
     background: #0F5699;

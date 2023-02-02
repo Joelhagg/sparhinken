@@ -46,7 +46,7 @@ const UpdateProfile = () => {
     <>
       <div className="updateProfileWraper">
         <div className="updateProfileConatiner">
-          <h1>Uppdatera Profil</h1>
+          <h1>Uppdatera din profil</h1>
           <h2>Du är inloggad som: {currentUser.currentUser.email}</h2>
           <form className="updateProfileForm" onSubmit={handleSubmit}>
             <p>Nytt lösenord</p>
@@ -57,6 +57,7 @@ const UpdateProfile = () => {
               minLength={6}
               type="password"
               id="password"
+              placeholder="Ange nytt lösenord"
               onChange={(e) => setUserPassword(e.target.value)}
             />
 
@@ -68,6 +69,7 @@ const UpdateProfile = () => {
               minLength={6}
               type="password"
               id="passwordConfirm"
+              placeholder="Ange nytt lösenord igen"
               onChange={(e) => setUserPasswordConfirmation(e.target.value)}
             />
 

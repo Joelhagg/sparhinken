@@ -36,15 +36,42 @@
 }
 
 .middleEmptyBox {
-    height: 200px;
+    height: 180px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-size: 30px;
+}
+
+.selectedBucketQuestionmarkConatiner {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectedBucketQuestionmarkButton {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.selectedBucketQuestionmark {
+    color: #0058AB55;
+    width: 40px;
+    height: 40px;
+}
+
+.selectedBucketQuestionmark:hover {
+    color: #0058AB;
+
 }
 
 .helpConatiner {
     position: relative;
-    top: 45px;
+    top: 10px;
     width: 300px;
     background-color: #d3eaff;
     border-radius: 10px;
@@ -56,38 +83,18 @@
 }
 
 
-.selectedBucketQuestionmarkConatiner {
-    height: 100px;
-}
-
-.selectedBucketQuestionmarkButton {
-    background-color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-
-}
-
-.selectedBucketQuestionmarkConatiner {
-    display: flex;
-    font-size: 30px;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.selectedBucketQuestionmark {
-    color: #0058AB55;
-    width: 40px;
-    height: 40px;
-}
-
 .toolTipQuestionmark {
     color: #0058AB55;
     margin: 0 6px;
     width: 16px;
     height: 16px;
+    cursor: pointer;
+
+}
+
+.toolTipQuestionmark:hover {
+    color: #0058AB;
+
 }
 
 .resetBucketconatiner {
@@ -101,6 +108,14 @@
     background-color: rgba(255, 187, 0, 0.20);
     border-radius: 10px;
     padding: 10px;
+}
+
+.disableResetBucketRenderButton {
+    padding-top: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
 }
 
 .resetBucketconatinerText {
@@ -217,7 +232,7 @@
 
     button:hover {
         color: #0F5699;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         background-color: #fff;
         border: 2px solid #0F5699;
     }
@@ -339,18 +354,18 @@
 @media screen and (max-width: $breakPointTablet) {
 
     .topConainer {
-        height: 200px;
+        height: 130px;
     }
     
     
     .emptyBox {
-        height: 200px;
+        height: 130px;
     }
     
 
     .middleEmptyBox {
         width: 220px;
-        height:50px;
+        height: 130px;
         font-size: 16px;
         margin-top: 0;
     }

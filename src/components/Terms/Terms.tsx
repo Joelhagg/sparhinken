@@ -3,7 +3,9 @@ import "./Terms.scss";
 const Terms = () => {
   return (
     <>
-      <h1>Vilkor</h1>
+      <div className="termsContainer">
+        <h1>Vilkor</h1>
+      </div>
     </>
   );
 };
