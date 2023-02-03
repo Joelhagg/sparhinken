@@ -144,8 +144,12 @@ const Settings = () => {
         </p>
 
         <form className="settingsForm" onSubmit={handleSubmit}>
+          <label className="label" htmlFor="nameInput">
+            Namn
+          </label>
           <input
             className="settingsInputs"
+            name="nameInput"
             required
             placeholder="Ange namn"
             type="text"
@@ -165,14 +169,18 @@ const Settings = () => {
         </label>
         <br />
         <br /> */}
-
+          <label className="label" htmlFor="montlyAmountInput">
+            Månadsutgift
+          </label>
           <input
             className="settingsInputs"
+            name="montlyAmountInput"
             required
-            placeholder="Ange din totala månadskostnad"
+            placeholder="Ange dina totala månadsutgifter"
             type="number"
             min="1"
             value={monthlyExspenses}
+            inputMode="numeric"
             onChange={(e) => setMonthlyExspenses(parseInt(e.target.value))}
           />
 
