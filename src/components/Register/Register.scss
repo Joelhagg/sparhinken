@@ -41,6 +41,13 @@
     box-shadow: 0px 8px 10px rgba(0, 88, 171, 0.6); 
 }
 
+.termsCheckboxContiner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px;
+}
+
 .checkboxTextLink {
     font-family: $secondaryFont;
     font-size: 14px;
@@ -55,14 +62,12 @@
     color: #0071D9;
 }
 
-
-
 .registerCheckbox {
     box-sizing: border-box;
     height: 20px;
     width: 20px;
     font-size: 16px;
-    margin: 10px;
+    margin-right: 10px;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     border: none;
