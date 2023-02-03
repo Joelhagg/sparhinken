@@ -93,7 +93,7 @@ const Dashboard = () => {
                       <h3>Hink {bucket1.bucketNumber}</h3>
                       <p>{bucket1.bucketName}</p>
                       <p>{bucket1.actualBucketSize} kr</p>
-                      {/* <p>{bucket1.percentageFilled}% fylld</p> */}
+                      <p>{bucket1.percentageFilled}% fylld</p>
                     </div>
                   </button>
                 </Link>

@@ -78,13 +78,12 @@ const Register = () => {
               id="passwordAgain"
               onChange={(e) => setUserPasswordConfirmation(e.target.value)}
             />
-            <p>
+            <div className="termsCheckboxContiner">
+              <input className="registerCheckbox" required type="checkbox" />
               <Link className="checkboxTextLink" to="/terms" target="_blank">
                 Godkänner du våra villkor? 🏆
               </Link>
-            </p>
-
-            <input className="registerCheckbox" required type="checkbox" />
+            </div>
 
             <button
               className="registerSubmitButton"
