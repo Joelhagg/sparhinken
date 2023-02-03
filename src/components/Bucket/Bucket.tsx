@@ -374,7 +374,8 @@ const Bucket = () => {
                   type="checkbox"
                   checked={useRecomendedSettings}
                   onChange={handleCheckboxChange}
-                />
+                />{" "}
+                <BsQuestionCircleFill className="toolTipQuestionmark" />
               </div>
             ) : (
               <p></p>
