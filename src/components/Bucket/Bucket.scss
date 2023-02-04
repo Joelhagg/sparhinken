@@ -296,6 +296,24 @@
         transition: 0.15s;
     }
 
+    .saveButton:hover {
+        background: #51ff4b;
+    }
+
+    .deleteButton:hover {
+        background: rgb(255, 140, 140);
+    }
+
+    .sureToDeleteButton {
+        background-color: rgb(255, 140, 140);
+        color: #000;
+    }
+
+    .sureToDeleteButton:hover {
+        background-color: red;
+        color: #fff;
+    }
+
     button:hover {
         color: #0F5699;
         letter-spacing: 2px;
@@ -311,6 +329,10 @@
         cursor:auto;
     }
 }
+
+
+
+
 
 .bucketButtomContainer {
     width: 100vw;

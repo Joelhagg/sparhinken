@@ -6,6 +6,7 @@ import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
+import { PatternFormat } from "react-number-format";
 
 const Bucket = () => {
   let { bucketId } = useParams();
@@ -38,6 +39,8 @@ const Bucket = () => {
   const [resetBucket, setResetBucket] = useState<boolean>(true);
   const [softDeleted, setSoftDeleted] = useState<boolean>();
   const [helpTooltip, setHelpTooltip] = useState<boolean>(false);
+  const [deleteBucketButton, setDeleteBucketButton] = useState<boolean>(false);
+  const [currency, setCurrency] = useState<string>("kr");
 
   // bucket number + 1, to disable create new bucket button when more then 4 buckets.
   let bucketCheck: string = "";
@@ -74,6 +77,10 @@ const Bucket = () => {
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
     }
+  };
+
+  const deleteButton = () => {
+    setDeleteBucketButton(true);
   };
 
   const deleteBucket = async (e: FormEvent) => {
@@ -324,6 +331,20 @@ const Bucket = () => {
     }
   };
 
+  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
+
+  const formattedActualBucketSize = actualBucketSize
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
+
+  const formattedtargeBucketSize = targeBucketSize
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
+
   return (
     <>
       <div className="bucketWraper">
@@ -374,7 +395,8 @@ const Bucket = () => {
                   type="checkbox"
                   checked={useRecomendedSettings}
                   onChange={handleCheckboxChange}
-                />
+                />{" "}
+                <BsQuestionCircleFill className="toolTipQuestionmark" />
               </div>
             ) : (
               <p></p>
@@ -405,37 +427,77 @@ const Bucket = () => {
                 Vald storlek{" "}
                 <BsQuestionCircleFill className="toolTipQuestionmark" />
               </p>
+
               <input
-                type="number"
+                type="text"
                 required
-                value={targeBucketSize}
-                placeholder={recommendedBucketSize.toString()}
-                onChange={(e) => setTargeBucketSize(parseInt(e.target.value))}
+                placeholder={recommendedBucketSize.toString() + "kr"}
+                value={formattedtargeBucketSize}
+                onChange={(e) => {
+                  if (e.target.value === "") {
+                    setTargeBucketSize(0);
+                  } else {
+                    const parsedValue = parseInt(
+                      e.target.value.replace(/\s/g, "")
+                    );
+                    if (!isNaN(parsedValue)) {
+                      setTargeBucketSize(parsedValue);
+                    }
+                  }
+                }}
               />
 
               <p>
                 Nuvarande innehåll{" "}
                 <BsQuestionCircleFill className="toolTipQuestionmark" />
               </p>
+
+              {/* Thanks ChatGPT <3 */}
+
               <input
-                type="number"
+                type="text"
                 required
-                min={0}
-                value={actualBucketSize}
-                onChange={(e) => setActualBucketSize(parseInt(e.target.value))}
+                placeholder="Kr"
+                value={actualBucketSize === 0 ? "" : formattedActualBucketSize}
+                onChange={(e) => {
+                  if (e.target.value === "") {
+                    setActualBucketSize(0);
+                  } else {
+                    const parsedValue = parseInt(
+                      e.target.value.replace(/\s/g, "")
+                    );
+                    if (!isNaN(parsedValue)) {
+                      setActualBucketSize(parsedValue);
+                    }
+                  }
+                }}
               />
 
               <div className="bucketSubmitButtons">
-                <button type="submit">Spara</button>
+                <button className="saveButton" type="submit">
+                  Spara
+                </button>
                 <Link to="/dashboard">
                   <button>Avbryt</button>
                 </Link>
-                {inUse ? (
-                  <button disabled={disableButton} onClick={deleteBucket}>
+                {deleteBucketButton ? (
+                  <div>
+                    {inUse ? (
+                      <button
+                        className="sureToDeleteButton"
+                        disabled={disableButton}
+                        onClick={deleteBucket}
+                      >
+                        Säker?
+                      </button>
+                    ) : (
+                      <p></p>
+                    )}
+                  </div>
+                ) : (
+                  <button className="deleteButton" onClick={deleteButton}>
                     Radera
                   </button>
-                ) : (
-                  <p></p>
                 )}
               </div>
             </div>

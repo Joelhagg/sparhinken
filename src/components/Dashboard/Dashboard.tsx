@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [bucket2, setBucket2] = useState<IBucket>();
   const [bucket3, setBucket3] = useState<IBucket>();
   const [bucket4, setBucket4] = useState<IBucket>();
-  const [totalSavedInBuckets, setTotalSavedInBuckets] = useState<number>();
+  const [totalSavedInBuckets, setTotalSavedInBuckets] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +45,10 @@ const Dashboard = () => {
         return total + current;
       }, 0);
     };
+
+    if (totalSavedInBuckets == Number.NaN) {
+      setTotalSavedInBuckets(0);
+    }
 
     setTotalSavedInBuckets(
       sum([
@@ -89,7 +93,7 @@ const Dashboard = () => {
                       <h3>Hink {bucket1.bucketNumber}</h3>
                       <p>{bucket1.bucketName}</p>
                       <p>{bucket1.actualBucketSize} kr</p>
-                      {/* <p>{bucket1.percentageFilled}% fylld</p> */}
+                      <p>{bucket1.percentageFilled}% fylld</p>
                     </div>
                   </button>
                 </Link>
