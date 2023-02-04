@@ -24,7 +24,7 @@ const UpdateProfile = () => {
     e.preventDefault();
 
     if (userPassword !== userPasswordConfirmation) {
-      return setError("Passwords do not match");
+      return setError("Lösenorden är inte lika");
     }
 
     try {
@@ -35,9 +35,10 @@ const UpdateProfile = () => {
         setUpdateSuccess(true);
         setUpdateDone(true);
       }
-    } catch {
-      setError("Failed to update password, try again");
+    } catch (e) {
+      setError("Gick inte att byta lösenord, testa att logga ut och in igen");
       setUpdateSuccess(false);
+      console.log(e);
     }
     setLoading(false);
   };
