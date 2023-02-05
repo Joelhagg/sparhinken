@@ -6,7 +6,7 @@ import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import { PatternFormat } from "react-number-format";
+import { Tooltip } from "react-tooltip";
 
 const Bucket = () => {
   let { bucketId } = useParams();
@@ -206,6 +206,36 @@ const Bucket = () => {
     setSoftDeleted(false);
   };
 
+  const disableResetBucketRender = () => {
+    setResetBucket(false);
+  };
+
+  const helpToogle = () => {
+    setHelpTooltip(!helpTooltip);
+  };
+
+  //
+  //
+  //
+
+  // Number formating, adding a space after 3 digits
+
+  const formattedActualBucketSize = actualBucketSize
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  const formattedtargeBucketSize = targeBucketSize
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  console.log(disableButton);
+
+  //
+  //
+  //
+
+  // Rendered HTML
+
   const resetBucketRender = () => {
     if (softDeleted == true) {
       if (
@@ -236,7 +266,17 @@ const Bucket = () => {
             </button>
             <p className="resetBucketconatinerText">
               Detta är sedan tidigare en använd hink, vill du nollställa den?{" "}
-              <BsQuestionCircleFill className="toolTipQuestionmark" />
+              <BsQuestionCircleFill
+                id="resetBucketconatinerTooltip"
+                className="toolTipQuestionmark"
+              />
+              <Tooltip
+                className="tooltipText"
+                style={{ width: "300px" }}
+                anchorId="resetBucketconatinerTooltip"
+                content={`Tidigare hinkar sparas ifall du skulle vilja återkomma till den någon dag, det är bara att nollställa om du vill börja om`}
+                place="top"
+              />
             </p>
             <button className="resetValuesButton" onClick={renderResetButton}>
               Nollställ
@@ -246,14 +286,6 @@ const Bucket = () => {
       }
     }
     return;
-  };
-
-  const disableResetBucketRender = () => {
-    setResetBucket(false);
-  };
-
-  const helpToogle = () => {
-    setHelpTooltip(!helpTooltip);
   };
 
   const tooltipBucket = () => {
@@ -308,9 +340,19 @@ const Bucket = () => {
           ) : (
             <p></p>
           )}
-          {bucketNumber === 1 || bucketNumber === 2 ? (
+          {bucketNumber === 1 ? (
             <div className="recommendedSettingsRangeContainer">
-              <BsQuestionCircleFill className="toolTipQuestionmark" />
+              <BsQuestionCircleFill
+                id="recommendedSettingsRangeTooltip"
+                className="toolTipQuestionmark"
+              />
+              <Tooltip
+                className="tooltipText"
+                style={{ width: "300px" }}
+                anchorId="recommendedSettingsRangeTooltip"
+                content="Här väljer du hur stor hinken ska vara! 1 - 5 gånger dina månadskostnader. Kom ihåg, en för liten bufferthink kanske inte räcker till när du behöver den som mest!"
+                place="top"
+              />
               <p>Storleksnivå {selectedRiskLevel}</p>
               <input
                 type="range"
@@ -323,27 +365,38 @@ const Bucket = () => {
                 Använda valda summan
               </button>
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
+
+          {bucketNumber === 2 ? (
+            <div className="recommendedSettingsRangeContainer">
+              <BsQuestionCircleFill
+                id="recommendedSettingsRangeTooltip"
+                className="toolTipQuestionmark"
+              />
+              <Tooltip
+                className="tooltipText"
+                style={{ width: "300px" }}
+                anchorId="recommendedSettingsRangeTooltip"
+                content="Här väljer du själv hur stor hinken ska vara, 1 - 7 gången Bufferthinkens storlek, ju större hink desto mindre risk"
+                place="top"
+              />
+              <p>Storleksnivå {selectedRiskLevel}</p>
+              <input
+                type="range"
+                min="1"
+                max={maxRiskLevel}
+                value={selectedRiskLevel}
+                onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
+              />
+              <button onClick={handleCustomBucketSizeCheckbox}>
+                Använda valda summan
+              </button>
+            </div>
+          ) : null}
         </div>
       );
     }
   };
-
-  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
-
-  const formattedActualBucketSize = actualBucketSize
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
-
-  const formattedtargeBucketSize = targeBucketSize
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////  /////////////////////////////////////////////////////
 
   return (
     <>
@@ -396,7 +449,17 @@ const Bucket = () => {
                   checked={useRecomendedSettings}
                   onChange={handleCheckboxChange}
                 />{" "}
-                <BsQuestionCircleFill className="toolTipQuestionmark" />
+                <BsQuestionCircleFill
+                  id="useRecomendedSettingsTooltip"
+                  className="toolTipQuestionmark"
+                />
+                <Tooltip
+                  className="tooltipText"
+                  style={{ width: "300px" }}
+                  anchorId="useRecomendedSettingsTooltip"
+                  content="Här öppnas en ny ruta där du kan ändra inställningar för tex hinkstorleken"
+                  place="top"
+                />
               </div>
             ) : (
               <p></p>
@@ -406,28 +469,59 @@ const Bucket = () => {
 
             <div className="bucketAmountConatiner">
               {bucketNumber === 1 || bucketNumber === 2 ? (
-                <p>
-                  Baserat på din angivna månadsutgift rekommenderar vi att Hink
-                  {bucketNumber} minst innehåller: {recommendedBucketSize}kr
-                </p>
-              ) : (
-                <p></p>
-              )}
+                <div className="recommendedBucketSizeTooltipContainer">
+                  <p>Vald storlek </p>
+
+                  <BsQuestionCircleFill
+                    id="recommendedBucketSizeTooltip"
+                    className="toolTipQuestionmark"
+                  />
+                  <Tooltip
+                    className="tooltipText"
+                    style={{ width: "300px" }}
+                    anchorId="recommendedBucketSizeTooltip"
+                    content={`Här sätter du målstorleken för hinken, när den är fylld fortsätter du på nästa. Baserat på din angivna månadsutgift rekommenderar vi att Hink ${bucketNumber} minst innehåller: ${recommendedBucketSize}kr`}
+                    place="top"
+                  />
+                </div>
+              ) : null}
 
               {bucketNumber === 3 ? (
-                <p>
-                  När hink 1 och 2 är fyllda så börjar du fylla den här hinken
-                </p>
+                <div className="recommendedBucketSizeTooltipContainer">
+                  <p>Vald storlek </p>
+
+                  <BsQuestionCircleFill
+                    id="recommendedBucketSizeTooltip"
+                    className="toolTipQuestionmark"
+                  />
+                  <Tooltip
+                    className="tooltipText"
+                    style={{ width: "300px" }}
+                    anchorId="recommendedBucketSizeTooltip"
+                    content={`Rekommendationen är att fortsätta fylla denna hink när Hink 1 och 2 är fyllda.`}
+                    place="top"
+                  />
+                </div>
               ) : null}
               {bucketNumber === 4 ? (
-                <p>En rekomendation är att ha ca 10% av Hink 3 i denna hink</p>
+                <div className="recommendedBucketSizeTooltipContainer">
+                  <p>Vald storlek </p>
+
+                  <BsQuestionCircleFill
+                    id="recommendedBucketSizeTooltip"
+                    className="toolTipQuestionmark"
+                  />
+                  <Tooltip
+                    className="tooltipText"
+                    style={{ width: "300px" }}
+                    anchorId="recommendedBucketSizeTooltip"
+                    content={`Tänk att storleken på lekhinken inte bör vara större än 10% av Hink 3.`}
+                    place="top"
+                  />
+                </div>
               ) : null}
 
-              <p>
-                Vald storlek{" "}
-                <BsQuestionCircleFill className="toolTipQuestionmark" />
-              </p>
-
+              {/* Thanks ChatGPT <3 */}
               <input
                 type="text"
                 required
@@ -447,18 +541,27 @@ const Bucket = () => {
                 }}
               />
 
-              <p>
-                Nuvarande innehåll{" "}
-                <BsQuestionCircleFill className="toolTipQuestionmark" />
-              </p>
+              <div className="recommendedBucketSizeTooltipContainer">
+                <p>Nuvarande innehåll </p>
 
-              {/* Thanks ChatGPT <3 */}
+                <BsQuestionCircleFill
+                  id="actualBucketSizeTooltip"
+                  className="toolTipQuestionmark"
+                />
+                <Tooltip
+                  className="tooltipText"
+                  style={{ width: "300px" }}
+                  anchorId="actualBucketSizeTooltip"
+                  content={`Fyll i vad du har sparat som ska finnas i den här hinken, är du osäker vad som ska vara i Hink ${bucketNumber}? Läs mer under varje hink i Guiden.`}
+                  place="top"
+                />
+              </div>
 
               <input
                 type="text"
                 required
-                placeholder="Kr"
-                value={actualBucketSize === 0 ? "" : formattedActualBucketSize}
+                min={0}
+                value={formattedActualBucketSize}
                 onChange={(e) => {
                   if (e.target.value === "") {
                     setActualBucketSize(0);
@@ -480,25 +583,44 @@ const Bucket = () => {
                 <Link to="/dashboard">
                   <button>Avbryt</button>
                 </Link>
-                {deleteBucketButton ? (
+
+                {inUse ? (
                   <div>
-                    {inUse ? (
-                      <button
-                        className="sureToDeleteButton"
-                        disabled={disableButton}
-                        onClick={deleteBucket}
-                      >
-                        Säker?
-                      </button>
+                    {!deleteBucketButton ? (
+                      <span id="apa">
+                        <button
+                          disabled={disableButton}
+                          className="deleteButton"
+                          onClick={deleteButton}
+                        >
+                          Radera
+                        </button>
+                        {disableButton ? (
+                          <Tooltip
+                            className="tooltipText"
+                            style={{ width: "200px" }}
+                            anchorId="apa"
+                            content={`Du måste tyvärr radera hinkarna i turordning för att systemet ska fungera.`}
+                            place="top"
+                          />
+                        ) : null}
+                      </span>
                     ) : (
-                      <p></p>
+                      <div>
+                        {inUse ? (
+                          <button
+                            className="sureToDeleteButton"
+                            onClick={deleteBucket}
+                          >
+                            Säker?
+                          </button>
+                        ) : (
+                          <p></p>
+                        )}
+                      </div>
                     )}
                   </div>
-                ) : (
-                  <button className="deleteButton" onClick={deleteButton}>
-                    Radera
-                  </button>
-                )}
+                ) : null}
               </div>
             </div>
           </form>
