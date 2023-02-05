@@ -45,7 +45,11 @@ const Home = () => {
 
   return (
     <>
-      <div className="homeContainer">
+      <div
+        role="img"
+        aria-label="adorable puppy playing on the grass"
+        className="homeContainer"
+      >
         <div className="quoteConatiner">
           <h1 className={fadeProp.fade}>{WORDS_TO_ANIMATE[wordOrder]}</h1>
         </div>
