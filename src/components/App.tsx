@@ -22,6 +22,8 @@ import StandFor from "./StandFor/StandFor";
 import Terms from "./Terms/Terms";
 import Jobs from "./Jobs/Jobs";
 
+import "react-tooltip/dist/react-tooltip.css";
+
 function App() {
   useEffect(() => {
     document.title = "Sparhinken";
