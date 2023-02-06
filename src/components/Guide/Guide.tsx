@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Guide.scss";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { useContext } from "react";
+import bucketImg from "../../assets/buckets.jpg";
 
 const Guide = () => {
   const contextState = useContext(StateContext);
@@ -96,6 +97,8 @@ const Guide = () => {
             3:e oändliga hinken. Istället för vatten så är det såklart pengar
             som rinner uppifrån och ned 😉
           </p>
+
+          <img className="bucketImage" alt="text" src={bucketImg} />
 
           <h3 id="section4">Hur fungerar appen?</h3>
           <p>
@@ -203,7 +206,7 @@ const Guide = () => {
           ) : (
             <Link to="/dashboard">
               <button className="guideRegisterButton">
-                Tillbaka till Dashboarden
+                Tillbaka till Översikt
               </button>
             </Link>
           )}
