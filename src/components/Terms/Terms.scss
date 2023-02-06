@@ -1,12 +1,21 @@
 @import "../App.scss";
 
 .termsContainer {
+    background-color: #ffffffaa;
+    padding: 50px;
+    border-radius: 20px;
     width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: $secondaryFont;
     text-align: center;
+
+    ul {
+       margin: 0; 
+       padding: 0;
+    }
 }
 
 

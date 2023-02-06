@@ -18,6 +18,23 @@
     align-items: center
 }
 
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 300px;
+}
+
+.inputContainerText {
+    width: 25px;
+    font-family: $secondaryFont;
+}
+
+.inputContainerLeftSpacer {
+    width: 25px;
+}
+
+
 .label {
     font-family: $secondaryFont;
 }
@@ -47,7 +64,7 @@
     border: none;
     border: 2px solid #0F5699;
     padding-left: 10px;
-    // text-align: center;
+    text-align: center;
 }
 
 .settingsInputs:focus {

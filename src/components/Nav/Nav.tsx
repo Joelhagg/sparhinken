@@ -52,7 +52,7 @@ function Nav() {
 
       <div className="linksWraper">
         <Link className="navLink" to="/dashboard">
-          Dashboard
+          Översikt
         </Link>
         {/* 
         <Link className="navLink" to="/about">
@@ -156,7 +156,7 @@ function Nav() {
                 className="topHamburgerMenuLinks"
                 to="/dashboard"
               >
-                <p>Dashboard</p>
+                <p>Översikt</p>
               </Link>
               <Link
                 onClick={() => closeMenu()}

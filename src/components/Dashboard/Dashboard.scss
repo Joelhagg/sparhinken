@@ -138,12 +138,26 @@
     width: 75px;
 }
 
-.amountConatiner {
+.bottomConatiner {
     // outline: solid 2px pink;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
+}
+
+.amountConatiner {
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+}
+
+.totalMontlySavingsText {
+    font-family: $secondaryFont;
+}
+
+.totalSavedInBucketsText {
+    margin-top: 0;
 }
 
 .questionMark {
@@ -218,7 +232,7 @@
         width: 50px;
     }
 
-    .amountConatiner {
+    .bottomConatiner {
         font-size: 10px;
     }
 
@@ -255,7 +269,7 @@
         width: 45px;
     }
 
-    .amountConatiner {
+    .bottomConatiner {
         font-size: 8px;
     }
 }

@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 const FADE_INTERVAL_MS: number = 2000;
 const WORD_CHANGE_INTERVAL_MS = FADE_INTERVAL_MS * 2;
 const WORDS_TO_ANIMATE = [
-  "Sparhinken",
-  "Sugen på att börja spara?",
   "Det är aldrig för sent att komma igång!",
-  "Med en strategi ökar du chansen till att spara regelbundet",
+  "Sugen på att börja spara?",
+  "Med en strategi ökar du chansen till att lyckas med ditt sparande",
   "Du behöver inte spara mycket om du inte kan!",
   "Det är bättre att spara lite än inget alls!",
+  "Sparande är den enda säkerheten vi har för en oviss framtid.",
 ];
 
 type FadeProp = { fade: "fade-in" | "fade-out" };
