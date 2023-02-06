@@ -10,4 +10,7 @@ export interface IBucket {
   selectedRiskLevel?: number;
   recommendedRiskLevel?: number;
   percentageFilled?: number;
+  montlySavings: number;
+  investForm: string;
+  freetext: string;
 }

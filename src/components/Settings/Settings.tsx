@@ -61,6 +61,9 @@ const Settings = () => {
             maxRiskLevel: 5,
             percentageFilled: 0,
             useRecomendedSettings: false,
+            montlySavings: 0,
+            investForm: "",
+            freetext: "",
           },
           bucket2: {
             bucketName: "",
@@ -78,6 +81,9 @@ const Settings = () => {
             maxRiskLevel: 7,
             percentageFilled: 0,
             useRecomendedSettings: false,
+            montlySavings: 0,
+            investForm: "",
+            freetext: "",
           },
           bucket3: {
             bucketName: "",
@@ -94,6 +100,9 @@ const Settings = () => {
             maxRiskLevel: 0,
             percentageFilled: 0,
             useRecomendedSettings: false,
+            montlySavings: 0,
+            investForm: "",
+            freetext: "",
           },
           bucket4: {
             bucketName: "",
@@ -110,6 +119,9 @@ const Settings = () => {
             maxRiskLevel: 0,
             percentageFilled: 0,
             useRecomendedSettings: false,
+            montlySavings: 0,
+            investForm: "",
+            freetext: "",
           },
           userName: "",
           totalSavedAmount: 0,
@@ -121,6 +133,14 @@ const Settings = () => {
 
     fetchData();
   }, []);
+
+  const formattedMonthlyExspenses = monthlyExspenses
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+  //
+  //
+  //
 
   return (
     <>
@@ -147,15 +167,20 @@ const Settings = () => {
           <label className="label" htmlFor="nameInput">
             Namn
           </label>
-          <input
-            className="settingsInputs"
-            name="nameInput"
-            required
-            placeholder="Ange namn"
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
+          <div className="inputContainer">
+            <div className="inputContainerLeftSpacer"></div>
+
+            <input
+              className="settingsInputs"
+              name="nameInput"
+              required
+              placeholder="Ange namn"
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <p className="inputContainerText"></p>
+          </div>
 
           {/* <label>
           Ange ditt totala sparade kapital
@@ -172,17 +197,35 @@ const Settings = () => {
           <label className="label" htmlFor="montlyAmountInput">
             Månadsutgift
           </label>
-          <input
-            className="settingsInputs"
-            name="montlyAmountInput"
-            required
-            placeholder="Ange dina totala månadsutgifter"
-            type="number"
-            min="1"
-            value={monthlyExspenses}
-            inputMode="numeric"
-            onChange={(e) => setMonthlyExspenses(parseInt(e.target.value))}
-          />
+          <div className="inputContainer">
+            <div className="inputContainerLeftSpacer"></div>
+
+            <input
+              className="settingsInputs"
+              name="montlyAmountInput"
+              required
+              placeholder="Ange dina totala månadsutgifter"
+              type="text"
+              min="1"
+              value={formattedMonthlyExspenses}
+              inputMode="numeric"
+              onChange={(e) => {
+                if (e.target.value === "") {
+                  setMonthlyExspenses(0);
+                } else {
+                  const parsedValue = parseInt(
+                    e.target.value.replace(/\s/g, "")
+                  );
+                  if (!isNaN(parsedValue)) {
+                    setMonthlyExspenses(parsedValue);
+                  }
+                }
+              }}
+            />
+            <p className="inputContainerText">kr</p>
+          </div>
+
+          {/* onChange={(e) => setMonthlyExspenses(parseInt(e.target.value))} */}
 
           <button className="settingsButtons" type="submit">
             Spara
