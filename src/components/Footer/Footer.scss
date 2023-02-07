@@ -4,11 +4,11 @@
 .footerConatiner {
     display: flex;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 16px;    
+    font-family: $secondaryFont;
 }
 
 .link {
-    font-family: $secondaryFont;
     color: #fff;
     padding: 10px;
     text-decoration: none;
@@ -21,14 +21,12 @@
     padding-left: 10px;
 }
 
-
 .socialMediaLinksContainer {
     display: flex;
     flex-direction: row;
     padding-right: 10px;
     flex-wrap: wrap;
 }
-
 
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) { 

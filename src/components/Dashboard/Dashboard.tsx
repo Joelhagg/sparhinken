@@ -149,7 +149,6 @@ const Dashboard = () => {
                         className="dashboardToolTipQuestionmark"
                       />
                       <Tooltip
-                        className="tooltipText"
                         style={{ width: "250px" }}
                         anchorId="actualBucketSizeTooltip"
                         content={
@@ -283,9 +282,7 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="amountConatiner">
-              <h3 className="totalMontlySavingsText">
-                Totalt månadssparande: {formattedTotalMontlySavings} kr
-              </h3>
+              <h3>Totalt månadssparande: {formattedTotalMontlySavings} kr</h3>
               <h1 className="totalSavedInBucketsText">
                 Totalt i hinkarna: {formattedTotalSavedInBuckets} kr
               </h1>

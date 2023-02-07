@@ -37,12 +37,12 @@ const PasswordReset = () => {
         <div className="passwordResetContainer">
           <h1>Återställ lösenord</h1>
           <p className="passwordResetText">
-            Ange mejladressen som du har registrerat ett konto med
+            Ange mejladressen som du har registrerat ett konto med.
           </p>
           {error}
           <form className="passwordResetForm" onSubmit={handlePasswordReset}>
             <input
-              placeholder="Ange din mejl"
+              placeholder="Mailadress"
               className="passwordResetInput"
               type="email"
               onChange={(e) => setUserEmail(e.target.value)}

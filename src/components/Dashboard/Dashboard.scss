@@ -1,18 +1,13 @@
 @import "../App.scss";
 
-
-
-
 .dashboardPositionWraper {
-
-    // border: solid 2px orange;
     width: 100vw;
     height: 100%;
     display: flex;
+    font-family: $secondaryFont;
 }
 
 .dashboardWraper {
-    // border: solid 2px rgb(77, 54, 209);
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -20,37 +15,25 @@
 }
 
 .bigTextConatiner {
-    // outline: solid 2px blue;
     display: flex;
     justify-content: space-between;
 }
 
 .emptybox {
-    // width: 220px;
-    margin: 0 20px 0 20px;
+    margin-right: 20px;
+    width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.dashboardConatiner {
-    // outline: solid 2px green;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
 
 .changeSettingsButton {
-    font-family: $primaryFont;
     border: none;
     width: 160px;
     height: 44px;
-    // margin: 10px;
+    margin-right: 10px;
     color: #fff;
-    font-style: normal;
-    font-weight: 500;
     font-size: 14px;
     letter-spacing: 2px;
     text-align: center;
@@ -59,13 +42,21 @@
     cursor: pointer;
     border: 2px solid #0F5699;
     transition: 0.15s;
-}
+} 
 
 .changeSettingsButton:hover {
     color: #0F5699;
     letter-spacing: 2px;
     background-color: #fff;
     border: 2px solid #0F5699;
+}
+
+.dashboardConatiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .usedBucketLink {
@@ -76,7 +67,6 @@
     width: 150px;
     height: 150px;
     margin: 20px;
-    font-family: $secondaryFont;
     font-size: 16px;
     display: flex;
     justify-content: center;
@@ -109,10 +99,8 @@
 }
 
 .dashboardToolTipQuestionmark:hover {
-
     color: #0058AB;
 }
-
 
 .addNewBucketBox {
     width: 150px;
@@ -139,25 +127,10 @@
 }
 
 .bottomConatiner {
-    // outline: solid 2px pink;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
-}
-
-.amountConatiner {
-    display: flex;
-    flex-direction: column;
-    align-items:end;
-}
-
-.totalMontlySavingsText {
-    font-family: $secondaryFont;
-}
-
-.totalSavedInBucketsText {
-    margin-top: 0;
 }
 
 .questionMark {
@@ -167,16 +140,19 @@
 }
 
 .questionMark:hover {
-    
     color: #0058AB55;
 }
 
+.amountConatiner {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}    
 
+.totalSavedInBucketsText {
+    margin-top: 0;
+}    
 
-// Media query breakpoint at 1200px - for big computer screens and TV:s 
-@media screen and (max-width: $breakPointLargeScreen) {
-    
-}
 // Media query breakpoint at 1024px - for standard computer screen
 @media screen and (max-width: $breakePointDesktop) {
 
@@ -184,6 +160,10 @@
         width: 130px;
         height: 130px; 
         font-size: 14px; 
+    }
+
+    .changeSettingsButton {
+        margin: 0;
     }
 
     .addNewBucketBox {
@@ -200,8 +180,11 @@
 @media screen and (max-width: $breakPointTablet) {
 
     .emptybox {
-        margin: 0 10px 0 10px;
+        width: 150px;
+    }
 
+    .changeSettingsButton {
+        margin: 10px;
     }
 
     .bigTextConatiner {
@@ -236,10 +219,17 @@
         font-size: 10px;
     }
 
+    .bottomConatiner {
+       margin-bottom: 50px;
+    }    
+
 }
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
 
+    .emptybox {
+        width: 100px;
+    }
 
     .bigTextConatiner {
         font-size: 8px;
@@ -250,6 +240,7 @@
         height: 26px;
         font-size: 9px;
         letter-spacing: 1px;
+        margin-right: 20px;
     }
 
     .usedBucket {
@@ -270,6 +261,6 @@
     }
 
     .bottomConatiner {
-        font-size: 8px;
-    }
+        margin-bottom: 100px;
+     }    
 }

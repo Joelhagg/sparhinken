@@ -138,86 +138,88 @@ const Settings = () => {
 
   return (
     <>
-      <div className="settingsContainer">
-        <h1>Inställningar</h1>
-        {savedStatus}
-        <p className="settingsText">
-          Hej! Vi behöver lite information om dig för att ge dig den bästa
-          rekommendationen.
-          <br /> Du anger ditt namn och dina totala månadsutgifter nedan,
-          behöver du hjälp med att räkna ut det?
-          <br /> Använd då&nbsp;
-          <a
-            className="settingsLink"
-            target="_blank"
-            href="https://www.konsumentverket.se/om-konsumentverket/var-verksamhet/privatekonomi/budgetkalkylen/"
-          >
-            HallåKonsumnet.se
-          </a>
-          &nbsp;för att enkelt göra en kalkyl.
-        </p>
+      <div className="settingsWraper">
+        <div className="settingsContainer">
+          <h1>Inställningar</h1>
+          {savedStatus}
+          <p className="settingsText">
+            Hej! Vi behöver lite information om dig för att ge dig den bästa
+            rekommendationen.
+            <br /> Du anger ditt namn och dina totala månadsutgifter nedan,
+            behöver du hjälp med att räkna ut det?
+            <br /> Använd då&nbsp;
+            <a
+              className="settingsLink"
+              target="_blank"
+              href="https://www.konsumentverket.se/om-konsumentverket/var-verksamhet/privatekonomi/budgetkalkylen/"
+            >
+              HallåKonsumnet.se
+            </a>
+            &nbsp;för att enkelt göra en kalkyl.
+          </p>
 
-        <form className="settingsForm" onSubmit={handleSaveSettings}>
-          <label className="label" htmlFor="nameInput">
-            Namn
-          </label>
-          <div className="inputContainer">
-            <div className="inputContainerLeftSpacer"></div>
+          <form className="settingsForm" onSubmit={handleSaveSettings}>
+            <label className="label" htmlFor="nameInput">
+              Namn
+            </label>
+            <div className="inputContainer">
+              <div className="inputContainerLeftSpacer"></div>
 
-            <input
-              className="settingsInputs"
-              name="nameInput"
-              required
-              placeholder="Ange namn"
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            <p className="inputContainerText"></p>
-          </div>
+              <input
+                className="settingsInputs"
+                name="nameInput"
+                required
+                placeholder="Ange namn"
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+              <p className="inputContainerText"></p>
+            </div>
 
-          <label className="label" htmlFor="montlyAmountInput">
-            Månadsutgift
-          </label>
-          <div className="inputContainer">
-            <div className="inputContainerLeftSpacer"></div>
+            <label className="label" htmlFor="montlyAmountInput">
+              Månadsutgift
+            </label>
+            <div className="inputContainer">
+              <div className="inputContainerLeftSpacer"></div>
 
-            <input
-              className="settingsInputs"
-              name="montlyAmountInput"
-              required
-              placeholder="Ange dina totala månadsutgifter"
-              type="text"
-              min="1"
-              value={formattedMonthlyExspenses}
-              inputMode="numeric"
-              onChange={(e) => {
-                if (e.target.value === "") {
-                  setMonthlyExspenses(0);
-                } else {
-                  const parsedValue = parseInt(
-                    e.target.value.replace(/\s/g, "")
-                  );
-                  if (!isNaN(parsedValue)) {
-                    setMonthlyExspenses(parsedValue);
+              <input
+                className="settingsInputs"
+                name="montlyAmountInput"
+                required
+                placeholder="Ange dina totala månadsutgifter"
+                type="text"
+                min="1"
+                value={formattedMonthlyExspenses}
+                inputMode="numeric"
+                onChange={(e) => {
+                  if (e.target.value === "") {
+                    setMonthlyExspenses(0);
+                  } else {
+                    const parsedValue = parseInt(
+                      e.target.value.replace(/\s/g, "")
+                    );
+                    if (!isNaN(parsedValue)) {
+                      setMonthlyExspenses(parsedValue);
+                    }
                   }
-                }
-              }}
-            />
-            <p className="inputContainerText">kr</p>
-          </div>
+                }}
+              />
+              <p className="inputContainerText">kr</p>
+            </div>
 
-          <button className="settingsButtons" type="submit">
-            Spara
-          </button>
-        </form>
-        {newUser ? (
-          <p></p>
-        ) : (
-          <Link to="/dashboard">
-            <button className="settingsButtons">Tillbaka</button>
-          </Link>
-        )}
+            <button className="settingsButtons" type="submit">
+              Spara
+            </button>
+          </form>
+          {newUser ? (
+            <p></p>
+          ) : (
+            <Link to="/dashboard">
+              <button className="settingsButtons">Tillbaka</button>
+            </Link>
+          )}
+        </div>
       </div>
     </>
   );
