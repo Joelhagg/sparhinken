@@ -1,14 +1,33 @@
 @import "../App.scss";
 
 
-
-.settingsContainer {
+.settingsWraper {
     width: 100vw;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: $secondaryFont;
+    color: black;
+    text-align: center;
+}
+
+.settingsContainer {
+    width: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffaa;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+.settingsText {
+    padding: 20px;
+    text-decoration: none;
 }
 
 .settingsForm {
@@ -20,31 +39,21 @@
 
 .inputContainer {
     display: flex;
-    flex-direction: row;
     justify-content: center;
+    align-items: center;
     width: 300px;
 }
 
 .inputContainerText {
-    width: 25px;
-    font-family: $secondaryFont;
+    width: 20px;
 }
 
 .inputContainerLeftSpacer {
-    width: 25px;
+    width: 20px;
 }
-
 
 .label {
-    font-family: $secondaryFont;
-}
-
-.settingsText {
-    font-family: $secondaryFont;
-    padding: 20px;
-    text-decoration: none;
-    color: black;
-}
+margin-top: 20px;}
 
 .settingsLink {
     color: #002C55;
@@ -58,7 +67,7 @@
     font-size: 16px;
     height: 30px;
     width: 260px;
-    margin: 10px;
+    margin: 10px 0;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     border: none;
@@ -75,9 +84,9 @@
 .settingsButtons {
     font-family: $primaryFont;
     border: none;
-    width: auto;
+    width: 100px;
     height: 34px;
-    margin: 10px;
+    margin: 14px;
     color: #fff;
     font-style: normal;
     font-weight: 500;
@@ -86,7 +95,6 @@
     text-align: center;
     border-radius: 4px;
     background: #0F5699;
-    // filter: drop-shadow(0px 2px 4px #000000);
     cursor: pointer;
     border: 2px solid #0F5699;
     transition: 0.15s;
@@ -97,15 +105,37 @@
     letter-spacing: 2px;
     background-color: #fff;
     border: 2px solid #0F5699;
-    filter: drop-shadow(0px 2px 4px #00000080);
 }
 
 .settingsButtons:disabled {
-    
-color: #0F5699;
-letter-spacing: 2px;
-background: #0f569940;
-border: 2px solid #0F569940;
-cursor:auto;
+    color: #0F5699;
+    letter-spacing: 2px;
+    background: #0f569940;
+    border: 2px solid #0F569940;
+    cursor:auto;
 
+}
+
+// Media query breakpoint at 1024px - for standard computer screen
+@media screen and (max-width: $breakePointDesktop) {
+
+    .settingsContainer {
+        width: 600px;
+    }
+}
+// Media query breakpoint at 768px - for tablets
+@media screen and (max-width: $breakPointTablet) {
+
+    .settingsContainer {
+        width: 500px;
+        padding: 20px;
+    }
+}
+// Media query breakpoint at 480px - for phones
+@media screen and (max-width: $breakePointMobile) {
+
+    .settingsContainer {
+        width: 350px;
+        padding: 0;
+    }
 }

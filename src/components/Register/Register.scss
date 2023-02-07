@@ -1,13 +1,12 @@
 @import "../App.scss";
 
-
-
 .registerWrapet {
     width: 100vw;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: $secondaryFont;
 }
 
 .registerConatiner {
@@ -17,7 +16,6 @@
 }
 
 .registerForm {
-    margin-top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +47,6 @@
 }
 
 .checkboxTextLink {
-    font-family: $secondaryFont;
     font-size: 14px;
     font-weight: 600;
     padding: 0;
@@ -76,7 +73,6 @@
 }
 
 .registerSubmitButton {
-    font-family: $primaryFont;
     border: none;
     width: auto;
     height: 34px;
@@ -101,7 +97,6 @@
 }
 
 .registerSubmitButton:disabled {
-
     color: #0F5699;
     letter-spacing: 2px;
     background: #0f569940;
@@ -111,9 +106,7 @@
 
 
 .loginLinks {
-    font-family: $secondaryFont;
     font-size: 16px;
-
     text-decoration: none;
     color: #002C55;
     font-weight: 600;

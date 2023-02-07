@@ -51,14 +51,11 @@
 }
 
 .guideRegisterButton {
-    font-family: $primaryFont;
     border: none;
     width: 180px;
     height: 50px;
     margin: 10px 0 100px 0;
     color: #fff;
-    font-style: normal;
-    font-weight: 500;
     font-size: 16px;
     letter-spacing: 2px;
     border-radius: 4px;
@@ -80,7 +77,6 @@
     flex-direction: column;
     align-items: center;
 }
-
 
 // Media query breakpoint at 1024px - for standard computer screen
 @media screen and (max-width: $breakePointDesktop) {

@@ -28,7 +28,7 @@ function Nav() {
     setLoading(false);
   };
 
-  // Yes, stolen...
+  // Yes, "borrowed"...
   // https://ibaslogic.com/how-to-add-hamburger-menu-in-react/
 
   // toogles to show the hamburger menu
@@ -41,7 +41,7 @@ function Nav() {
   };
 
   return (
-    <nav className="nav">
+    <nav className="navContainer">
       <div className="logoContainer">
         <h1>
           <Link onClick={() => closeMenu()} className="logoLink" to="/">

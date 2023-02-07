@@ -6,7 +6,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: lighten;
-
+    
     font-family: $secondaryFont;
     width: 100vw;
     height: 100%;
@@ -55,7 +55,6 @@
     transition: opacity 2s ease; 
 }
 
-
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
 
@@ -64,9 +63,7 @@
     }
 
     .quoteConatiner {
-
         width: 300px;
-
     }
 
 }
