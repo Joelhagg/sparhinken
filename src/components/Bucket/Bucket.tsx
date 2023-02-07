@@ -319,10 +319,11 @@ const Bucket = () => {
         return (
           <div className="resetBucketconatiner">
             <button
+              aria-label="reset bucket container"
               className="disableResetBucketRenderButton"
               onClick={disableResetBucketRender}
             >
-              <MdClose className="MdClose" />
+              <MdClose aria-hidden="true" className="MdClose" />
             </button>
             <div className="resetBucketConatinerTextConatiner">
               <div className="resetBucketConatinerTextSpacer"></div>
@@ -331,10 +332,12 @@ const Bucket = () => {
               </p>
               <div className="resetBucketConatinerQuestionmark">
                 <BsQuestionCircleFill
+                  aria-label="tooltip questionmark icon"
                   id="resetBucketconatinerTooltip"
                   className="toolTipQuestionmark"
                 />
                 <Tooltip
+                  aria-label="tootltip"
                   style={{ width: "200px" }}
                   anchorId="resetBucketconatinerTooltip"
                   content={`Tidigare hinkar sparas ifall du skulle vilja återkomma till den någon dag, det är bara att nollställa om du vill börja om`}
@@ -342,7 +345,11 @@ const Bucket = () => {
                 />
               </div>
             </div>
-            <button className="resetValuesButton" onClick={renderResetButton}>
+            <button
+              aria-label="reset bucket info"
+              className="resetValuesButton"
+              onClick={renderResetButton}
+            >
               Nollställ
             </button>
           </div>
@@ -400,7 +407,7 @@ const Bucket = () => {
           {bucketNumber === 1 || bucketNumber === 2 ? (
             <div>
               <p>
-                Här kan du öka eller sänka hinkens storlektsnivå, vi
+                Här kan du öka eller sänka hinkens storleksnivå, vi
                 rekommenderar att Hink {bucketNumber} bör minst innehålla{": "}
                 <strong>
                   {formattedRecommendedBucketSizeBasedOnRiskLevel}kr
@@ -413,10 +420,12 @@ const Bucket = () => {
           {bucketNumber === 1 ? (
             <div className="recommendedSettingsRangeContainer">
               <BsQuestionCircleFill
+                aria-label="tooltip questionmark icon"
                 id="recommendedSettingsRangeTooltip"
                 className="toolTipQuestionmark"
               />
               <Tooltip
+                aria-label="tootltip"
                 style={{ width: "200px" }}
                 content="Här väljer du hur stor hinken ska vara! 1 - 5 gånger dina månadskostnader. Kom ihåg, en för liten bufferthink kanske inte räcker till när du behöver den som mest!"
                 place="top"
@@ -424,6 +433,7 @@ const Bucket = () => {
               />
               <p>Storleksnivå {selectedRiskLevel}</p>
               <input
+                aria-label="set bucket size from recommendations"
                 type="range"
                 min="1"
                 max={maxRiskLevel}
@@ -439,17 +449,20 @@ const Bucket = () => {
           {bucketNumber === 2 ? (
             <div className="recommendedSettingsRangeContainer">
               <BsQuestionCircleFill
+                aria-label="tooltip questionmark icon"
                 id="recommendedSettingsRangeTooltip"
                 className="toolTipQuestionmark"
               />
               <Tooltip
+                aria-label="tootltip"
                 style={{ width: "200px" }}
                 anchorId="recommendedSettingsRangeTooltip"
-                content="Här väljer du själv hur stor hinken ska vara, 1 - 7 gången Bufferthinkens storlek, ju större hink desto mindre risk. Vi rekommenderar nivå 5."
+                content="Här väljer du själv hur stor hinken ska vara, 1 - 7 gånger Bufferthinkens storlek, ju större hink desto mindre risk. Vi rekommenderar nivå 5."
                 place="top"
               />
               <p>Storleksnivå {selectedRiskLevel}</p>
               <input
+                aria-label="set bucket size from recommendations"
                 type="range"
                 min="1"
                 max={maxRiskLevel}
@@ -457,7 +470,7 @@ const Bucket = () => {
                 onChange={(e) => setSelectedRiskLevel(parseInt(e.target.value))}
               />
               <button onClick={handleCustomBucketSizeCheckbox}>
-                Använda valda summan
+                Använd valda summan
               </button>
             </div>
           ) : null}
@@ -465,13 +478,15 @@ const Bucket = () => {
           <div className="bucketRecommendedSettings">
             <p>Månadsspar</p>
             <BsQuestionCircleFill
+              aria-label="tooltip questionmark icon"
               id="montlySavingsQuestionmark"
               className="toolTipQuestionmark"
             />
             <Tooltip
+              aria-label="tootltip"
               style={{ width: "200px" }}
               anchorId="montlySavingsQuestionmark"
-              content={`Här kan du notera vad du ska spara per månaden i den här hinken. Det är bara som en minnesanteckning för när du varje månad gör dina insättningar.`}
+              content={`Här kan du notera vad du ska spara per månad i den här hinken. Det är bara som en minnesanteckning för när du varje månad gör dina insättningar.`}
               place="top"
             />
           </div>
@@ -479,6 +494,7 @@ const Bucket = () => {
           <div className="inputContainer">
             <div className="inputContainerLeftSpacer"></div>
             <input
+              aria-label="montly savings"
               type="text"
               placeholder="månadssparande"
               id="montlySavings"
@@ -503,10 +519,12 @@ const Bucket = () => {
           <div className="bucketRecommendedSettings">
             <p>Investeringsform</p>
             <BsQuestionCircleFill
+              aria-label="tooltip questionmark icon"
               id="investFormQuestionmark"
               className="toolTipQuestionmark"
             />
             <Tooltip
+              aria-label="tootltip"
               style={{ width: "200px" }}
               anchorId="investFormQuestionmark"
               content={`Notera vad du sparar i för form, tex sparkonto med 1,5% ränta eller fördelning mellan aktier och räntepapper, tex 60 % Aktier och 40 % Räntepapper. Eller namn på fond, aktie eller bank.`}
@@ -516,6 +534,7 @@ const Bucket = () => {
           <div className="inputContainer">
             <div className="inputContainerLeftSpacer"></div>
             <input
+              aria-label="enter savings form"
               type="text"
               placeholder="ex, 100% Aktier"
               id="investForm"
@@ -531,19 +550,22 @@ const Bucket = () => {
           <div className="bucketRecommendedSettings">
             <p>Övriga noteringar</p>
             <BsQuestionCircleFill
+              aria-label="tooltip questionmark icon"
               id="freetextQuestionmark"
               className="toolTipQuestionmark"
             />
             <Tooltip
+              aria-label="tootltip"
               style={{ width: "200px" }}
               anchorId="freetextQuestionmark"
-              content={`Här har du en ruta för anteckningar, du kan göra den större.`}
+              content={`Här har du en ruta för anteckningar. psst, du kan även göra den större.`}
               place="top"
             />
           </div>
           <div className="inputContainer">
             <div className="inputContainerLeftSpacer"></div>
             <textarea
+              aria-label="freetext for notes"
               id="investForm"
               value={freetext}
               onChange={(e) => {
@@ -567,7 +589,7 @@ const Bucket = () => {
     <>
       {spinner ? (
         <div>
-          <InfinitySpin width="200" color="#0071D9" />
+          <InfinitySpin aria-hidden="true" width="200" color="#0071D9" />
         </div>
       ) : (
         <div className="bucketWraper">
@@ -578,10 +600,14 @@ const Bucket = () => {
               <h1>Hink {bucketNumber} </h1> {savedStatus}
               <div>
                 <button
+                  aria-label="open tooltip for this bucket"
                   onClick={helpToogle}
                   className="selectedBucketQuestionmarkButton"
                 >
-                  <BsQuestionCircleFill className="selectedBucketQuestionmark" />
+                  <BsQuestionCircleFill
+                    aria-label="tooltip questionmark icon"
+                    className="selectedBucketQuestionmark"
+                  />
                 </button>
               </div>
             </div>
@@ -622,16 +648,19 @@ const Bucket = () => {
               <div className="bucketRecommendedSettings">
                 <p>Fler valmöjligheter</p>
                 <BsQuestionCircleFill
+                  aria-label="tooltip questionmark icon"
                   id="useRecomendedSettingsTooltip"
                   className="toolTipQuestionmark"
                 />
                 <Tooltip
+                  aria-label="tootltip"
                   style={{ width: "200px" }}
                   anchorId="useRecomendedSettingsTooltip"
                   content="Här öppnas en ny ruta där du kan göra fler val."
                   place="top"
                 />
                 <input
+                  aria-label="open more settings"
                   type="checkbox"
                   checked={useRecomendedSettings}
                   onChange={handleCheckboxChange}
@@ -646,10 +675,12 @@ const Bucket = () => {
                     <p>Vald storlek </p>
 
                     <BsQuestionCircleFill
+                      aria-label="tooltip questionmark icon"
                       id="recommendedBucketSizeTooltip"
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
+                      aria-label="tootltip"
                       style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Här sätter du målstorleken för hinken, när den är fylld fortsätter du på nästa. Baserat på din angivna månadsutgift rekommenderar vi att Hink ${bucketNumber} minst innehåller: ${formattedRecommendedBucketSize}kr`}
@@ -663,10 +694,12 @@ const Bucket = () => {
                     <p>Vald storlek </p>
 
                     <BsQuestionCircleFill
+                      aria-label="tooltip questionmark icon"
                       id="recommendedBucketSizeTooltip"
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
+                      aria-label="tootltip"
                       style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Rekommendationen är att fortsätta fylla denna hink när Hink 1 och 2 är fyllda.`}
@@ -679,10 +712,12 @@ const Bucket = () => {
                     <p>Vald storlek </p>
 
                     <BsQuestionCircleFill
+                      aria-label="tooltip questionmark icon"
                       id="recommendedBucketSizeTooltip"
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
+                      aria-label="tootltip"
                       style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Tänk att storleken på lekhinken inte bör vara större än 10% av Hink 3.`}
@@ -695,6 +730,7 @@ const Bucket = () => {
                 <div className="inputContainer">
                   <div className="inputContainerLeftSpacer"></div>
                   <input
+                    aria-label="set bucket size"
                     type="text"
                     required
                     placeholder={recommendedBucketSize.toString() + "kr"}
@@ -720,10 +756,12 @@ const Bucket = () => {
                   <p>Nuvarande innehåll </p>
 
                   <BsQuestionCircleFill
+                    aria-label="tooltip questionmark icon"
                     id="actualBucketSizeTooltip"
                     className="toolTipQuestionmark"
                   />
                   <Tooltip
+                    aria-label="tootltip"
                     style={{ width: "200px" }}
                     anchorId="actualBucketSizeTooltip"
                     content={`Fyll i vad du har sparat som ska finnas i den här hinken, är du osäker vad som ska vara i Hink ${bucketNumber}? Läs mer under varje hink i Guiden.`}
@@ -734,6 +772,7 @@ const Bucket = () => {
                 <div className="inputContainer">
                   <div className="inputContainerLeftSpacer"></div>
                   <input
+                    aria-label="set bucket current amount"
                     type="text"
                     required
                     min={0}
@@ -756,7 +795,11 @@ const Bucket = () => {
                 </div>
 
                 <div className="bucketSubmitButtons">
-                  <button className="saveButton" type="submit">
+                  <button
+                    aria-label="save and go back to dashboard"
+                    className="saveButton"
+                    type="submit"
+                  >
                     Spara
                   </button>
                   <Link to="/dashboard">
@@ -766,7 +809,7 @@ const Bucket = () => {
                   {inUse ? (
                     <div>
                       {!deleteBucketButton ? (
-                        <span id="apa">
+                        <span aria-label="delete button" id="deleteButtonSpan">
                           <button
                             disabled={disableButton}
                             className="deleteButton"
@@ -776,8 +819,9 @@ const Bucket = () => {
                           </button>
                           {disableButton ? (
                             <Tooltip
+                              aria-label="tooltip conatiner for disabled button"
                               style={{ width: "200px" }}
-                              anchorId="apa"
+                              anchorId="deleteButtonSpan"
                               content={`Du måste tyvärr radera hinkarna i turordning för att systemet ska fungera.`}
                               place="top"
                             />
@@ -787,6 +831,7 @@ const Bucket = () => {
                         <div>
                           {inUse ? (
                             <button
+                              aria-label="delete button"
                               className="sureToDeleteButton"
                               onClick={deleteBucket}
                             >

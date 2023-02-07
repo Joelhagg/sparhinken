@@ -15,7 +15,7 @@ const About = () => {
             Detta är ett examensarbete för kursen Front-end developer FED21d på
             skolan Medieinstitutet.
           </p>
-          <p>Insperation och ide tagen ifrån RikaTillsammans.</p>
+          <p>Inspiration och idé tagen ifrån RikaTillsammans.</p>
           <a
             target="_blank"
             rel="noreferrer"
