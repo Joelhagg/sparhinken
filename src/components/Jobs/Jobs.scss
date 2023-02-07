@@ -1,6 +1,5 @@
 @import "../App.scss";
 
-
 .jobsConatiner {
     width: 500px;
     background-color: #ffffffaa;
@@ -11,10 +10,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-family: $secondaryFont;
 }
 
 .jobText {
-    font-family: $secondaryFont;
     font-size: 18px;    
 }
 

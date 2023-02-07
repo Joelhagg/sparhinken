@@ -48,7 +48,7 @@ const UpdateProfile = () => {
       <div className="updateProfileWraper">
         <div className="updateProfileConatiner">
           <h1>Uppdatera din profil</h1>
-          <h2>Du är inloggad som: {currentUser.currentUser.email}</h2>
+          <h3>Du är inloggad som: "{currentUser.currentUser.email}"</h3>
           <form className="updateProfileForm" onSubmit={handleProfileUpdate}>
             <p>Nytt lösenord</p>
 

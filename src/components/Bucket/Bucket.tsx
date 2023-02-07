@@ -322,23 +322,20 @@ const Bucket = () => {
               className="disableResetBucketRenderButton"
               onClick={disableResetBucketRender}
             >
-              <MdClose
-                style={{ color: "#000000", width: "20px", height: "20px" }}
-              />
+              <MdClose className="MdClose" />
             </button>
             <div className="resetBucketConatinerTextConatiner">
               <div className="resetBucketConatinerTextSpacer"></div>
               <p>
                 Detta är sedan tidigare en använd hink, vill du nollställa den?{" "}
               </p>
-              <div className="resetBucketConatinerQuestinmark">
+              <div className="resetBucketConatinerQuestionmark">
                 <BsQuestionCircleFill
                   id="resetBucketconatinerTooltip"
                   className="toolTipQuestionmark"
                 />
                 <Tooltip
-                  className="tooltipText"
-                  style={{ width: "300px" }}
+                  style={{ width: "200px" }}
                   anchorId="resetBucketconatinerTooltip"
                   content={`Tidigare hinkar sparas ifall du skulle vilja återkomma till den någon dag, det är bara att nollställa om du vill börja om`}
                   place="top"
@@ -360,7 +357,7 @@ const Bucket = () => {
   const tooltipBucket = () => {
     if (bucketNumber === 1 && helpTooltip === true) {
       return (
-        <p className="helptextarea">
+        <p>
           Bufferthinken <br /> Pengarna bör sättas på ett sparkonto med ränta,
           lätta att kunna ta ut vid behov.
         </p>
@@ -368,7 +365,7 @@ const Bucket = () => {
     }
     if (bucketNumber === 2 && helpTooltip === true) {
       return (
-        <p className="helptextarea">
+        <p>
           Mellanriskhinken <br />
           Dessa pengar bör få chansen att växa lite, förslagsvis med
           fördelningen 60% Aktier och 40% Räntepapper.
@@ -377,7 +374,7 @@ const Bucket = () => {
     }
     if (bucketNumber === 3 && helpTooltip === true) {
       return (
-        <p className="helptextarea">
+        <p>
           Högriskhinken <br />
           Här ska pengarna växa! Förslagsvis 100% Aktier
         </p>
@@ -385,7 +382,7 @@ const Bucket = () => {
     }
     if (bucketNumber === 4 && helpTooltip === true) {
       return (
-        <p className="helptextarea">
+        <p>
           Lekhinken! <br />
           Här kan du placera alternativa tillgångar, hinken rekommenderas inte
           överstiga 10% av Hink 3
@@ -420,11 +417,10 @@ const Bucket = () => {
                 className="toolTipQuestionmark"
               />
               <Tooltip
-                className="tooltipText"
-                style={{ width: "300px" }}
-                anchorId="recommendedSettingsRangeTooltip"
+                style={{ width: "200px" }}
                 content="Här väljer du hur stor hinken ska vara! 1 - 5 gånger dina månadskostnader. Kom ihåg, en för liten bufferthink kanske inte räcker till när du behöver den som mest!"
                 place="top"
+                anchorId="recommendedSettingsRangeTooltip"
               />
               <p>Storleksnivå {selectedRiskLevel}</p>
               <input
@@ -447,8 +443,7 @@ const Bucket = () => {
                 className="toolTipQuestionmark"
               />
               <Tooltip
-                className="tooltipText"
-                style={{ width: "300px" }}
+                style={{ width: "200px" }}
                 anchorId="recommendedSettingsRangeTooltip"
                 content="Här väljer du själv hur stor hinken ska vara, 1 - 7 gången Bufferthinkens storlek, ju större hink desto mindre risk. Vi rekommenderar nivå 5."
                 place="top"
@@ -474,8 +469,7 @@ const Bucket = () => {
               className="toolTipQuestionmark"
             />
             <Tooltip
-              className="tooltipText"
-              style={{ width: "300px" }}
+              style={{ width: "200px" }}
               anchorId="montlySavingsQuestionmark"
               content={`Här kan du notera vad du ska spara per månaden i den här hinken. Det är bara som en minnesanteckning för när du varje månad gör dina insättningar.`}
               place="top"
@@ -488,6 +482,7 @@ const Bucket = () => {
               type="text"
               placeholder="månadssparande"
               id="montlySavings"
+              inputMode="numeric"
               value={formattedMontlySavings}
               onChange={(e) => {
                 if (e.target.value === "") {
@@ -512,8 +507,7 @@ const Bucket = () => {
               className="toolTipQuestionmark"
             />
             <Tooltip
-              className="tooltipText"
-              style={{ width: "300px" }}
+              style={{ width: "200px" }}
               anchorId="investFormQuestionmark"
               content={`Notera vad du sparar i för form, tex sparkonto med 1,5% ränta eller fördelning mellan aktier och räntepapper, tex 60 % Aktier och 40 % Räntepapper. Eller namn på fond, aktie eller bank.`}
               place="top"
@@ -525,6 +519,7 @@ const Bucket = () => {
               type="text"
               placeholder="ex, 100% Aktier"
               id="investForm"
+              inputMode="text"
               value={investForm}
               onChange={(e) => {
                 setInvestForm(e.target.value);
@@ -540,8 +535,7 @@ const Bucket = () => {
               className="toolTipQuestionmark"
             />
             <Tooltip
-              className="tooltipText"
-              style={{ width: "300px" }}
+              style={{ width: "200px" }}
               anchorId="freetextQuestionmark"
               content={`Här har du en ruta för anteckningar, du kan göra den större.`}
               place="top"
@@ -567,7 +561,7 @@ const Bucket = () => {
   //
   //
 
-  // Bucket() return here!
+  // Bucket() return here! / HTML render starts here ///////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -582,7 +576,7 @@ const Bucket = () => {
 
             <div className="middleEmptyBox">
               <h1>Hink {bucketNumber} </h1> {savedStatus}
-              <div className="selectedBucketQuestionmarkConatiner">
+              <div>
                 <button
                   onClick={helpToogle}
                   className="selectedBucketQuestionmarkButton"
@@ -616,18 +610,15 @@ const Bucket = () => {
                 <p>Namnge din hink</p>
 
                 <div className="inputContainer">
-                  <div className="inputContainerLeftSpacer"></div>
                   <input
-                    className="customBucketNameInput"
                     type="text"
                     placeholder={suggestedBucketName}
                     value={bucketName}
                     onChange={(e) => setBucketName(e.target.value)}
                   />
-                  <p className="inputContainerText"></p>
                 </div>
               </div>
-              {/* {bucketNumber === 3 || bucketNumber === 2 ? ( */}
+
               <div className="bucketRecommendedSettings">
                 <p>Fler valmöjligheter</p>
                 <BsQuestionCircleFill
@@ -635,8 +626,7 @@ const Bucket = () => {
                   className="toolTipQuestionmark"
                 />
                 <Tooltip
-                  className="tooltipText"
-                  style={{ width: "300px" }}
+                  style={{ width: "200px" }}
                   anchorId="useRecomendedSettingsTooltip"
                   content="Här öppnas en ny ruta där du kan göra fler val."
                   place="top"
@@ -647,10 +637,9 @@ const Bucket = () => {
                   onChange={handleCheckboxChange}
                 />{" "}
               </div>
-              {/* ) : (
-              <p></p>
-            )} */}
+
               {renderBucketSettings()}
+
               <div className="bucketAmountConatiner">
                 {bucketNumber === 1 || bucketNumber === 2 ? (
                   <div className="recommendedBucketSizeTooltipContainer">
@@ -661,8 +650,7 @@ const Bucket = () => {
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
-                      className="tooltipText"
-                      style={{ width: "300px" }}
+                      style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Här sätter du målstorleken för hinken, när den är fylld fortsätter du på nästa. Baserat på din angivna månadsutgift rekommenderar vi att Hink ${bucketNumber} minst innehåller: ${formattedRecommendedBucketSize}kr`}
                       place="top"
@@ -679,8 +667,7 @@ const Bucket = () => {
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
-                      className="tooltipText"
-                      style={{ width: "300px" }}
+                      style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Rekommendationen är att fortsätta fylla denna hink när Hink 1 och 2 är fyllda.`}
                       place="top"
@@ -696,8 +683,7 @@ const Bucket = () => {
                       className="toolTipQuestionmark"
                     />
                     <Tooltip
-                      className="tooltipText"
-                      style={{ width: "300px" }}
+                      style={{ width: "200px" }}
                       anchorId="recommendedBucketSizeTooltip"
                       content={`Tänk att storleken på lekhinken inte bör vara större än 10% av Hink 3.`}
                       place="top"
@@ -738,8 +724,7 @@ const Bucket = () => {
                     className="toolTipQuestionmark"
                   />
                   <Tooltip
-                    className="tooltipText"
-                    style={{ width: "300px" }}
+                    style={{ width: "200px" }}
                     anchorId="actualBucketSizeTooltip"
                     content={`Fyll i vad du har sparat som ska finnas i den här hinken, är du osäker vad som ska vara i Hink ${bucketNumber}? Läs mer under varje hink i Guiden.`}
                     place="top"
@@ -791,7 +776,6 @@ const Bucket = () => {
                           </button>
                           {disableButton ? (
                             <Tooltip
-                              className="tooltipText"
                               style={{ width: "200px" }}
                               anchorId="apa"
                               content={`Du måste tyvärr radera hinkarna i turordning för att systemet ska fungera.`}
@@ -820,7 +804,7 @@ const Bucket = () => {
               </div>
             </form>
           </div>
-          <div className="bucketButtomContainer"></div>
+          <div className="bucketBottomContainer"></div>
         </div>
       )}
     </>
