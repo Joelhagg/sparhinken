@@ -91,10 +91,12 @@ function Nav() {
           <button className="hamburgerMenuButtonOpen" onClick={handleToggle}>
             {navbarOpen ? (
               <MdClose
+                are-aria-label="close menu, icon like x for closing menu"
                 style={{ color: "#fff", width: "40px", height: "40px" }}
               />
             ) : (
               <FiMenu
+                are-aria-label="open menu, looks like a hamburger"
                 style={{ color: "#fff", width: "40px", height: "40px" }}
               />
             )}
@@ -103,10 +105,12 @@ function Nav() {
             <button className="hamburgerMenuButton" onClick={handleToggle}>
               {navbarOpen ? (
                 <MdClose
+                  are-aria-label="close icon like x for closing menu"
                   style={{ color: "#fff", width: "40px", height: "40px" }}
                 />
               ) : (
                 <FiMenu
+                  are-aria-label="open menu, looks like a hamburger"
                   style={{ color: "#fff", width: "40px", height: "40px" }}
                 />
               )}

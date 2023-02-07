@@ -123,7 +123,7 @@ const Dashboard = () => {
 
           {spinner ? (
             <div className="dashboardConatiner">
-              <InfinitySpin width="200" color="#0071D9" />
+              <InfinitySpin aria-hidden="true" width="200" color="#0071D9" />
             </div>
           ) : (
             <div className="dashboardConatiner">
@@ -145,10 +145,12 @@ const Dashboard = () => {
                   <div>
                     <div className="dashboardBucket1Tooltip">
                       <BsQuestionCircleFill
+                        aria-label="tooltip questionmark icon"
                         id="actualBucketSizeTooltip"
                         className="dashboardToolTipQuestionmark"
                       />
                       <Tooltip
+                        aria-label="tootltip"
                         style={{ width: "250px" }}
                         anchorId="actualBucketSizeTooltip"
                         content={
@@ -159,8 +161,12 @@ const Dashboard = () => {
                     </div>
                     <div>
                       <Link to={`/bucket/${bucket1?.bucketNumber}`}>
-                        <div className="addNewBucketBox">
+                        <div
+                          aria-label="big plus icon for adding new bucket"
+                          className="addNewBucketBox"
+                        >
                           <svg
+                            aria-hidden="true"
                             className="whitePlusSVG"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"
@@ -191,8 +197,12 @@ const Dashboard = () => {
                     </Link>
                   ) : (
                     <Link to={`/bucket/${bucket2?.bucketNumber}`}>
-                      <div className="addNewBucketBox">
+                      <div
+                        aria-label="big plus icon for adding new bucket"
+                        className="addNewBucketBox"
+                      >
                         <svg
+                          aria-hidden="true"
                           className="whitePlusSVG"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
@@ -224,8 +234,12 @@ const Dashboard = () => {
                     </Link>
                   ) : (
                     <Link to={`/bucket/${bucket3?.bucketNumber}`}>
-                      <div className="addNewBucketBox">
+                      <div
+                        aria-label="big plus icon for adding new bucket"
+                        className="addNewBucketBox"
+                      >
                         <svg
+                          aria-hidden="true"
                           className="whitePlusSVG"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
@@ -257,8 +271,12 @@ const Dashboard = () => {
                     </Link>
                   ) : (
                     <Link to={`/bucket/${bucket4?.bucketNumber}`}>
-                      <div className="addNewBucketBox">
+                      <div
+                        aria-label="big plus icon for adding new bucket"
+                        className="addNewBucketBox"
+                      >
                         <svg
+                          aria-hidden="true"
                           className="whitePlusSVG"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512"
@@ -278,7 +296,10 @@ const Dashboard = () => {
           <div className="bottomConatiner">
             <div>
               <Link to="/guide">
-                <BsQuestionCircleFill className="questionMark" />
+                <BsQuestionCircleFill
+                  aria-label="tooltip questionmark icon"
+                  className="questionMark"
+                />
               </Link>
             </div>
             <div className="amountConatiner">
