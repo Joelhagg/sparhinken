@@ -11,7 +11,9 @@ import { InfinitySpin } from "react-loader-spinner";
 
 const Bucket = () => {
   let { bucketId } = useParams();
+
   const navigate = useNavigate();
+
   const contextState = useContext(StateContext);
   const [currentUser] = useState(contextState);
   const [monthlyExspenses, setMonthlyExspenses] = useState<number>(0);
@@ -73,6 +75,7 @@ const Bucket = () => {
           percentageFilled: percentageFilled,
           useRecomendedSettings: useRecomendedSettings,
           montlySavings: montlySavings,
+          savedMontlySavings: montlySavings,
           investForm: investForm,
           freetext: freetext,
         },
@@ -108,7 +111,8 @@ const Bucket = () => {
           selectedRiskLevel: selectedRiskLevel,
           percentageFilled: percentageFilled,
           useRecomendedSettings: useRecomendedSettings,
-          montlySavings: montlySavings,
+          montlySavings: 0,
+          savedMontlySavings: montlySavings,
           investForm: investForm,
           freetext: freetext,
         },
@@ -140,8 +144,8 @@ const Bucket = () => {
     }
 
     const fetchData = async () => {
-      setSpinner(true);
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
+      setSpinner(true);
 
       // sets info for calculations
 
@@ -159,7 +163,7 @@ const Bucket = () => {
       setSelectedRiskLevel(data.data()?.[chosenBucket].selectedRiskLevel);
       setInUse(data.data()?.[chosenBucket].inUse);
       setSoftDeleted(data.data()?.[chosenBucket].softDeleted);
-      setMontlySavings(data.data()?.[chosenBucket].montlySavings);
+      setMontlySavings(data.data()?.[chosenBucket].savedMontlySavings);
       setInvestForm(data.data()?.[chosenBucket].investForm);
       setFreetext(data.data()?.[chosenBucket].freetext);
       setUseRecomendedSettings(
