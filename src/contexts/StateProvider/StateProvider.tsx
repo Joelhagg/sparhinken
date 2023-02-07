@@ -3,7 +3,6 @@ import React, { useState, createContext, useEffect } from "react";
 import { auth } from "../../firebase";
 
 export const StateContext = createContext({
-  isLoggedin: false,
   currentUser: {
     email: "",
     displayName: "",
@@ -15,7 +14,6 @@ const StateProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<any>();
 
   const contextValue = {
-    isLoggedin: false,
     currentUser,
   };
 
