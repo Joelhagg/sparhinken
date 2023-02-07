@@ -11,7 +11,7 @@ import PasswordReset from "./PasswordReset/PasswordReset";
 import Register from "./Register/Register";
 import Settings from "./Settings/Settings";
 import "./App.scss";
-import { AuthProvider } from "../contexts/AuthContext";
+// import { AuthProvider } from "../contexts/AuthContext";
 import PrivateRoute from "../PrivateRoute";
 import ForgotPassword from "./UpdateProfile/UpdateProfile";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
@@ -33,44 +33,44 @@ function App() {
     <>
       <div className="appWraper">
         <Nav />
-        <AuthProvider>
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
+        {/* <AuthProvider> */}
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-              <Route path="/settings" element={<PrivateRoute />}>
-                <Route path="/settings" element={<Settings />} />
-              </Route>
+            <Route path="/settings" element={<PrivateRoute />}>
+              <Route path="/settings" element={<Settings />} />
+            </Route>
 
-              <Route path="/dashboard" element={<PrivateRoute />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-              </Route>
+            <Route path="/dashboard" element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
 
-              <Route path="/guide" element={<Guide />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
-              <Route path="/bucket" element={<PrivateRoute />}>
-                <Route path="/bucket/:bucketId" element={<Bucket />} />
-              </Route>
+            <Route path="/bucket" element={<PrivateRoute />}>
+              <Route path="/bucket/:bucketId" element={<Bucket />} />
+            </Route>
 
-              <Route path="/register" element={<Register />} />
-              <Route path="/passwordReset" element={<PasswordReset />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/passwordReset" element={<PasswordReset />} />
 
-              <Route path="/update-profile" element={<PrivateRoute />}>
-                <Route path="/update-profile" element={<UpdateProfile />} />
-              </Route>
+            <Route path="/update-profile" element={<PrivateRoute />}>
+              <Route path="/update-profile" element={<UpdateProfile />} />
+            </Route>
 
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/what-do-we-stand-for" element={<StandFor />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/jobs" element={<Jobs />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/what-do-we-stand-for" element={<StandFor />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/jobs" element={<Jobs />} />
 
-              <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-          </main>
-        </AuthProvider>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+        </main>
+        {/* </AuthProvider> */}
         <Footer />
       </div>
     </>

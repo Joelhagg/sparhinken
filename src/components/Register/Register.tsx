@@ -1,14 +1,12 @@
+import "./Register.scss";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import "./Register.scss";
-
 import { auth } from "../../firebase";
 
 const Register = () => {
   const contextState = useContext(StateContext);
-  const [currentUser, setCurrentUser] = useState(contextState);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordConfirmation, setUserPasswordConfirmation] = useState("");
@@ -16,8 +14,10 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
+
+    // check if password is the same for both input fields
 
     if (userPassword !== userPasswordConfirmation) {
       return setError("Lösenorden stämmer inte");
@@ -29,7 +29,6 @@ const Register = () => {
       await createUserWithEmailAndPassword(auth, userEmail, userPassword);
       navigate("/settings");
     } catch (e) {
-      console.error(e);
       setError(
         "Det gick inte att skapa ett konto, adressen kanske är registrerad?"
       );
@@ -37,6 +36,7 @@ const Register = () => {
     setLoading(false);
   };
 
+  // checks if user is logged in
   useEffect(() => {
     if (contextState.currentUser) {
       navigate("/dashboard");
@@ -49,7 +49,7 @@ const Register = () => {
         <div className="registerConatiner">
           <h1>Bli hinksparare!</h1>
           {error}
-          <form className="registerForm" onSubmit={handleSubmit}>
+          <form className="registerForm" onSubmit={handleRegister}>
             <input
               className="registerInputs"
               required

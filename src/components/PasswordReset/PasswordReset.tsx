@@ -1,30 +1,32 @@
 import { sendPasswordResetEmail } from "firebase/auth";
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { auth } from "../../firebase";
 import "./PasswordReset.scss";
 
 const PasswordReset = () => {
   const [userEmail, setUserEmail] = useState("");
-  const contextState = useContext(StateContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [resetSucces, setResetSuccess] = useState(false);
+  const [resetDone, setResetDone] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handlePasswordReset = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
+      setResetDone(false);
       setError("");
       setLoading(true);
       await sendPasswordResetEmail(auth, userEmail);
       setResetSuccess(true);
+      setResetDone(true);
     } catch {
       setError(
         "Kunde inte återställa lösen, kolla att du angivit rätt mejladress"
       );
       setResetSuccess(false);
+      setResetDone(false);
     }
     setLoading(false);
   };
@@ -38,7 +40,7 @@ const PasswordReset = () => {
             Ange mejladressen som du har registrerat ett konto med
           </p>
           {error}
-          <form className="passwordResetForm" onSubmit={handleSubmit}>
+          <form className="passwordResetForm" onSubmit={handlePasswordReset}>
             <input
               placeholder="Ange din mejl"
               className="passwordResetInput"
@@ -48,10 +50,10 @@ const PasswordReset = () => {
 
             <button
               className="passwordResetButton"
-              disabled={loading}
+              disabled={loading || resetDone}
               type="submit"
             >
-              Ändra lösenord
+              Återställ lösenord
             </button>
 
             <div>

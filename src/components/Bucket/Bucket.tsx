@@ -13,14 +13,13 @@ const Bucket = () => {
   let { bucketId } = useParams();
   const navigate = useNavigate();
   const contextState = useContext(StateContext);
-  const [currentUser, setCurrentUser] = useState(contextState);
-  const [totalSavedAmount, setTotalSavedAmount] = useState<number>(0);
+  const [currentUser] = useState(contextState);
   const [monthlyExspenses, setMonthlyExspenses] = useState<number>(0);
   const [bucketName, setBucketName] = useState<string>("");
   const [suggestedBucketName, setSuggestedBucketName] = useState<string>("");
   const [bucketNumber, setBucketNumber] = useState<number>();
   const [savedStatus, setSavedStatus] = useState<string>("");
-  const [chosenBucket, setchosenBucket] = useState<string>(`bucket${bucketId}`);
+  const [chosenBucket] = useState<string>(`bucket${bucketId}`);
   const [disableButton, setDisableButton] = useState<boolean>(false);
   const [recommendedBucketSize, setRecommendedBucketSize] = useState<number>(0);
   const [
@@ -54,7 +53,6 @@ const Bucket = () => {
     monthlyExspenses * recommendedRiskLevel;
 
   const saveBucket = async (e: FormEvent) => {
-    console.log(maxRiskLevel);
     e.preventDefault();
     setSavedStatus("");
     try {
@@ -79,12 +77,13 @@ const Bucket = () => {
           freetext: freetext,
         },
       });
-      setSavedStatus("Sparat!");
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
     }
   };
+
+  // renders "are you sure to delete" button from set boolean value
 
   const deleteButton = () => {
     setDeleteBucketButton(true);
@@ -114,15 +113,17 @@ const Bucket = () => {
           freetext: freetext,
         },
       });
-      setSavedStatus("Sparat!");
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
-      console.log(e);
     }
   };
 
+  // runs when monthlyExspenses value is updated
+
   useEffect(() => {
+    // checks if other then bucket 1-4 is accessed, if so re-routes to dashboard
+
     if (bucketId) {
       let urlnumber = parseInt(bucketId);
       if (urlnumber > 4) {
@@ -130,6 +131,9 @@ const Bucket = () => {
         return;
       }
     }
+
+    // saves the string value of shown bucket number +1 for delete check
+    // only the previous created bucket can be deleted
 
     if (bucketId) {
       bucketCheck = `bucket${parseInt(bucketId) + 1}`;
@@ -139,32 +143,38 @@ const Bucket = () => {
       setSpinner(true);
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
 
-      setFirstBucketAmount(data.data()?.bucket1.recommendedBucketSize);
-      setTotalSavedAmount(data.data()?.totalSavedAmount);
+      // sets info for calculations
+
       setMonthlyExspenses(data.data()?.monthlyExspenses);
+      setFirstBucketAmount(data.data()?.bucket1.recommendedBucketSize);
+      setRecommendedRiskLevel(data.data()?.[chosenBucket].recommendedRiskLevel);
+
+      // sets current bucket info
+
+      setBucketName(data.data()?.[chosenBucket].bucketName);
+      setSuggestedBucketName(data.data()?.[chosenBucket].suggestedBucketName);
       setTargeBucketSize(data.data()?.[chosenBucket].targeBucketSize);
       setActualBucketSize(data.data()?.[chosenBucket].savedBucketAmount);
-      setRecommendedRiskLevel(data.data()?.[chosenBucket].recommendedRiskLevel);
       setMaxRiskLevel(data.data()?.[chosenBucket].maxRiskLevel);
       setSelectedRiskLevel(data.data()?.[chosenBucket].selectedRiskLevel);
       setInUse(data.data()?.[chosenBucket].inUse);
       setSoftDeleted(data.data()?.[chosenBucket].softDeleted);
+      setMontlySavings(data.data()?.[chosenBucket].montlySavings);
+      setInvestForm(data.data()?.[chosenBucket].investForm);
+      setFreetext(data.data()?.[chosenBucket].freetext);
       setUseRecomendedSettings(
         data.data()?.[chosenBucket].useRecomendedSettings
       );
 
-      setBucketName(data.data()?.[chosenBucket].bucketName);
-      setSuggestedBucketName(data.data()?.[chosenBucket].suggestedBucketName);
-
-      setMontlySavings(data.data()?.[chosenBucket].montlySavings);
-      setInvestForm(data.data()?.[chosenBucket].investForm);
-      setFreetext(data.data()?.[chosenBucket].freetext);
+      // if bucket 4 is in use, delete button is always enabled
 
       if (bucketCheck === "bucket5") {
         setDisableButton(false);
       } else if (data.data()?.[bucketCheck].inUse) {
         setDisableButton(true);
       }
+
+      // sets the current bucket number 1 - 4
 
       if (!bucketId) {
         return;
@@ -179,19 +189,26 @@ const Bucket = () => {
   }, [monthlyExspenses]);
 
   useEffect(() => {
+    // sets the recommended bucket size based on users monthly expenses and selected risk level
     if (bucketId === "1") {
       setRecommendedBucketSizeBasedOnRiskLevel(
         monthlyExspenses * selectedRiskLevel
       );
+
+      // sets the recommended bucket size for bucket 2 based on bucket1 size and bucket2 risklevel
     } else if (firstBucketAmount) {
       setRecommendedBucketSizeBasedOnRiskLevel(
         firstBucketAmount * selectedRiskLevel
       );
+
+      // sets recommended bucket size for bucket2 based on bucket1 size and the recommended risklevel
       setRecommendedBucketSize(firstBucketAmount * recommendedRiskLevel);
     }
   }, [selectedRiskLevel]);
 
   useEffect(() => {
+    // Sets the percentage for how filled a bucket is
+
     if (targeBucketSize === 0 || actualBucketSize === 0) {
       setPercentageFilled(0);
     } else {
@@ -201,15 +218,21 @@ const Bucket = () => {
     }
   }, [actualBucketSize, targeBucketSize]);
 
+  // toggles the checkbox for more settings and saves it
+
   const handleCheckboxChange = () => {
     setUseRecomendedSettings(!useRecomendedSettings);
   };
+
+  // button to use bucket size based on recommomendations
 
   const handleCustomBucketSizeCheckbox = (e: FormEvent) => {
     e.preventDefault();
     if (recommendedBucketSizeBasedOnRiskLevel)
       setTargeBucketSize(recommendedBucketSizeBasedOnRiskLevel);
   };
+
+  // cleares all values for the bucket
 
   const renderResetButton = (e: FormEvent) => {
     e.preventDefault();
@@ -225,9 +248,13 @@ const Bucket = () => {
     setFreetext("");
   };
 
+  // removes the reset bucket container
+
   const disableResetBucketRender = () => {
     setResetBucket(false);
   };
+
+  // toggles rendered tooltip
 
   const helpToogle = () => {
     setHelpTooltip(!helpTooltip);
@@ -237,7 +264,7 @@ const Bucket = () => {
   //
   //
 
-  // Number formating, adding a space after 3 digits
+  // Digits formating, adding a space after 3 digits
 
   const formattedMontlySavings = montlySavings
     .toString()
@@ -264,9 +291,10 @@ const Bucket = () => {
   //
   //
 
-  // Rendered HTML
+  // Rendered HTML starts here //////////////////////////////////////////////
 
   const resetBucketRender = () => {
+    // checks if bucket is in use and if reset bucket container should render, if empty it does not render if soft deleted
     if (softDeleted === true) {
       if (
         bucketName === "" &&
@@ -323,6 +351,8 @@ const Bucket = () => {
     return;
   };
 
+  // renders tooltips if enabled
+
   const tooltipBucket = () => {
     if (bucketNumber === 1 && helpTooltip === true) {
       return (
@@ -359,6 +389,8 @@ const Bucket = () => {
       );
     }
   };
+
+  // if checkbox value useRecomendedSettings is true this renders
 
   const renderBucketSettings = () => {
     if (useRecomendedSettings) {
@@ -527,6 +559,12 @@ const Bucket = () => {
     }
   };
 
+  //
+  //
+  //
+
+  // Bucket() return here!
+
   return (
     <>
       {spinner ? (
@@ -539,7 +577,7 @@ const Bucket = () => {
             <div className="emptyBox"></div>
 
             <div className="middleEmptyBox">
-              <h1>Hink {bucketNumber} </h1>{" "}
+              <h1>Hink {bucketNumber} </h1> {savedStatus}
               <div className="selectedBucketQuestionmarkConatiner">
                 <button
                   onClick={helpToogle}
@@ -774,6 +812,7 @@ const Bucket = () => {
                     </div>
                   ) : null}
                 </div>
+                <h1>{savedStatus}</h1>
               </div>
             </form>
           </div>

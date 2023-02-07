@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // https://bionicjulia.com/blog/creating-react-component-fades-changing-words
 
 const FADE_INTERVAL_MS: number = 2000;
-const WORD_CHANGE_INTERVAL_MS = FADE_INTERVAL_MS * 2;
+const WORD_CHANGE_INTERVAL_MS: number = FADE_INTERVAL_MS * 2;
 const WORDS_TO_ANIMATE = [
   "Det är aldrig för sent att komma igång!",
   "Sugen på att börja spara?",
@@ -21,8 +21,9 @@ type FadeProp = { fade: "fade-in" | "fade-out" };
 
 const Home = () => {
   const [fadeProp, setFadeProp] = useState<FadeProp>({ fade: "fade-in" });
-  const [wordOrder, setWordOrder] = useState(0);
+  const [wordOrder, setWordOrder] = useState<number>(0);
 
+  // timer for animations
   useEffect(() => {
     const fadeTimeout = setInterval(() => {
       fadeProp.fade === "fade-in"
@@ -33,6 +34,7 @@ const Home = () => {
     return () => clearInterval(fadeTimeout);
   }, [fadeProp]);
 
+  // timer for quote change
   useEffect(() => {
     const wordTimeout = setInterval(() => {
       setWordOrder(

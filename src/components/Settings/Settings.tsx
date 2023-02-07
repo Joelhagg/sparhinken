@@ -16,7 +16,7 @@ const Settings = () => {
   const [savedStatus, setSavedStatus] = useState<string>("");
   const [newUser, setNewUser] = useState<boolean>(true);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSaveSettings = async (e: FormEvent) => {
     e.preventDefault();
     setSavedStatus("");
     try {
@@ -25,20 +25,18 @@ const Settings = () => {
         totalSavedAmount: totalSavedAmount,
         monthlyExspenses: monthlyExspenses,
       });
-      console.log("saved");
       setSavedStatus("Sparat!");
       navigate("/dashboard");
     } catch (e) {
       setSavedStatus("Det gick inte att spara");
-      console.error(e);
     }
   };
 
+  // getting saved data and sets the database structure
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
       if (data.exists()) {
-        console.log("Document data: ", data.data());
         setUserName(data.data().userName);
         setTotalSavedAmount(data.data().totalSavedAmount);
         setMonthlyExspenses(data.data().monthlyExspenses);
@@ -134,13 +132,10 @@ const Settings = () => {
     fetchData();
   }, []);
 
+  // formatted digits
   const formattedMonthlyExspenses = monthlyExspenses
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-  //
-  //
-  //
 
   return (
     <>
@@ -163,7 +158,7 @@ const Settings = () => {
           &nbsp;för att enkelt göra en kalkyl.
         </p>
 
-        <form className="settingsForm" onSubmit={handleSubmit}>
+        <form className="settingsForm" onSubmit={handleSaveSettings}>
           <label className="label" htmlFor="nameInput">
             Namn
           </label>
@@ -182,18 +177,6 @@ const Settings = () => {
             <p className="inputContainerText"></p>
           </div>
 
-          {/* <label>
-          Ange ditt totala sparade kapital
-          <br />
-          <input
-            required
-            type="number"
-            value={totalSavedAmount}
-            onChange={(e) => setTotalSavedAmount(parseInt(e.target.value))}
-          />
-        </label>
-        <br />
-        <br /> */}
           <label className="label" htmlFor="montlyAmountInput">
             Månadsutgift
           </label>
@@ -224,8 +207,6 @@ const Settings = () => {
             />
             <p className="inputContainerText">kr</p>
           </div>
-
-          {/* onChange={(e) => setMonthlyExspenses(parseInt(e.target.value))} */}
 
           <button className="settingsButtons" type="submit">
             Spara
