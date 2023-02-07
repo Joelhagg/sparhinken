@@ -11,7 +11,6 @@ const Settings = () => {
   const contextState = useContext(StateContext);
   const [currentUser, setCurrentUser] = useState(contextState);
   const [userName, setUserName] = useState<string>("");
-  const [totalSavedAmount, setTotalSavedAmount] = useState<number>(0);
   const [monthlyExspenses, setMonthlyExspenses] = useState<number>(0);
   const [savedStatus, setSavedStatus] = useState<string>("");
   const [newUser, setNewUser] = useState<boolean>(true);
@@ -22,7 +21,6 @@ const Settings = () => {
     try {
       await updateDoc(doc(db, "users", currentUser.currentUser.uid), {
         userName: userName,
-        totalSavedAmount: totalSavedAmount,
         monthlyExspenses: monthlyExspenses,
       });
       setSavedStatus("Sparat!");
@@ -38,7 +36,6 @@ const Settings = () => {
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
       if (data.exists()) {
         setUserName(data.data().userName);
-        setTotalSavedAmount(data.data().totalSavedAmount);
         setMonthlyExspenses(data.data().monthlyExspenses);
         setNewUser(false);
       } else {
@@ -60,6 +57,7 @@ const Settings = () => {
             percentageFilled: 0,
             useRecomendedSettings: false,
             montlySavings: 0,
+            savedMontlySavings: 0,
             investForm: "",
             freetext: "",
           },
@@ -80,6 +78,7 @@ const Settings = () => {
             percentageFilled: 0,
             useRecomendedSettings: false,
             montlySavings: 0,
+            savedMontlySavings: 0,
             investForm: "",
             freetext: "",
           },
@@ -99,6 +98,7 @@ const Settings = () => {
             percentageFilled: 0,
             useRecomendedSettings: false,
             montlySavings: 0,
+            savedMontlySavings: 0,
             investForm: "",
             freetext: "",
           },
@@ -118,14 +118,13 @@ const Settings = () => {
             percentageFilled: 0,
             useRecomendedSettings: false,
             montlySavings: 0,
+            savedMontlySavings: 0,
             investForm: "",
             freetext: "",
           },
           userName: "",
-          totalSavedAmount: 0,
           monthlyExspenses: 0,
         });
-        console.log("no document");
       }
     };
 
