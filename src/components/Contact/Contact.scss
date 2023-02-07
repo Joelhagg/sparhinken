@@ -2,13 +2,11 @@
 
 .contactContiner {
     width: 300px;
+    background-color: #ffffffaa;
+    padding: 50px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-}
-
-.contactMail {
     font-family: $secondaryFont; 
 }

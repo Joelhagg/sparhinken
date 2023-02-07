@@ -1,15 +1,15 @@
 import { updatePassword } from "firebase/auth";
 import { FormEvent, useContext, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+
 import "./UpdateProfile.scss";
 
 const UpdateProfile = () => {
   const contextState = useContext(StateContext);
   const [currentUser, setCurrentUser] = useState(contextState);
 
-  const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -20,9 +20,10 @@ const UpdateProfile = () => {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [updateDone, setUpdateDone] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleProfileUpdate = async (e: FormEvent) => {
     e.preventDefault();
 
+    // check so that password match from both inputs
     if (userPassword !== userPasswordConfirmation) {
       return setError("Lösenorden är inte lika");
     }
@@ -31,14 +32,13 @@ const UpdateProfile = () => {
       setError("");
       if (user) {
         setLoading(true);
-        await updatePassword(user, userPassword);
+        await updatePassword(auth.currentUser, userPassword);
         setUpdateSuccess(true);
         setUpdateDone(true);
       }
     } catch (e) {
       setError("Gick inte att byta lösenord, testa att logga ut och in igen");
       setUpdateSuccess(false);
-      console.log(e);
     }
     setLoading(false);
   };
@@ -49,7 +49,7 @@ const UpdateProfile = () => {
         <div className="updateProfileConatiner">
           <h1>Uppdatera din profil</h1>
           <h2>Du är inloggad som: {currentUser.currentUser.email}</h2>
-          <form className="updateProfileForm" onSubmit={handleSubmit}>
+          <form className="updateProfileForm" onSubmit={handleProfileUpdate}>
             <p>Nytt lösenord</p>
 
             <input
