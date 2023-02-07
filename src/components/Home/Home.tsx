@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const FADE_INTERVAL_MS: number = 2000;
 const WORD_CHANGE_INTERVAL_MS: number = FADE_INTERVAL_MS * 2;
 const WORDS_TO_ANIMATE = [
-  "Det är aldrig för sent att komma igång!",
+  "Det är aldrig för sent för att komma igång!",
   "Sugen på att börja spara?",
   "Med en strategi ökar du chansen till att lyckas med ditt sparande",
   "Du behöver inte spara mycket om du inte kan!",
@@ -49,7 +49,7 @@ const Home = () => {
     <>
       <div
         role="img"
-        aria-label="adorable puppy playing on the grass"
+        aria-label="background image of plant growing out of coins"
         className="homeContainer"
       >
         <div className="quoteConatiner">

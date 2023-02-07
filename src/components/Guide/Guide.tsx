@@ -60,7 +60,7 @@ const Guide = () => {
               bokföring för att dela upp sitt sparande i olika riskklasser. Med
               risk menar vi i det här fallet risken att ens pengar kan
               försvinna. Med låg risk menar vi sparkonto med insättningsgaranti,
-              ett vanligt konto på banken med ränta, gärna så hög som möjlig!
+              ett vanligt konto på banken med ränta, gärna så hög som möjligt!
               Med hög risk menar vi 100% aktiespar vilket kan sjunka i värde
               under en period. Däremellan är rekommendationen att använda sig av
               en fördelning mellan Räntepapper och Aktier för att sänka risken.
@@ -70,12 +70,12 @@ const Guide = () => {
           <section id="section2">
             <h3>Varför borde jag använda mig av det här?</h3>
             <p>
-              Enligt SCB:s undersökning klarar inte 1 av 5 medelsvensken en
+              Enligt SCB:s undersökning klarar inte 1 av 5 svenskar en
               oförutsedd utgift på över 12 000 kr och i lägre åldrar så är det 1
               av 4. 12 000kr kanske verkar som väldigt mycket pengar för en del,
               och beroende på levnadsförhållanden så är det det! Med hjälp av
-              tjänsten Sparhinken så kan du skapa en mycket simpelt men
-              effektivt sparstrategi.
+              tjänsten Sparhinken så kan du skapa en mycket simpel men effektivt
+              sparstrategi.
             </p>
             <p>
               <a
@@ -93,17 +93,17 @@ const Guide = () => {
             <p>
               Tänk dig riktiga hinkar, när en hink är full och fortsätts att
               fyllas på så rinner vatten över kanten, som tur är så finns det en
-              hink under som fångar upp spillet och börjar fyllas på. När i sin
-              tur den andra hinken är full så spiller det över till den 3:e
-              hinken, den här hinken är speciell, den kan nämligen aldrig bli
-              fylld, i den här så får det rum hur mycket vatten som helst. Med
-              dom här 3 hinkarna har man en riktigt robust och enkelt strategi.
+              hink under som fångar upp spillet och börjar fyllas på. När den
+              adnra i sin tur är full så spiller det över till den 3:e hinken,
+              och den här hinken är speciell, den kan nämligen aldrig bli fylld.
+              I den här hinken så får det rum hur mycket vatten som helst. Med
+              dom här 3 hinkarna har man en riktigt robust och enkel strategi.
               Skulle man vilja använda strategin till fullo så kan man ta den
-              4:e hinken som alltid är 10% av 3:e hinkens storlek. Denna kan man
-              ha om man vill “leka lite” det vill säga, fylla den med lite med
-              riskfyllt innehåll, svämmar den här över så hälls det bara
-              tillbaka till den 3:e oändliga hinken. Istället för vatten så är
-              det såklart pengar som rinner uppifrån och ned 😉
+              4:e hinken som alltid är 10% av 3:e hinkens storlek. Denna hinken
+              kan man ha om man vill “leka lite”. Det vill säga, fylla den med
+              lite med riskfyllt innehåll och svämmar den här över så hälls det
+              bara tillbaka till den 3:e oändliga hinken. Istället för vatten så
+              är det såklart pengar som rinner uppifrån och ned.
             </p>
 
             <img
@@ -121,7 +121,7 @@ const Guide = () => {
               månadsutgifter, tex, boendekostnad, sparande, mat, bil, tjänster
               etc. Helt enkelt det du vet att du kommer att betala när du fått
               din lön. När du räknat ut och angivit din fasta månadskostnad och
-              sparat inställningarna så kommer du till dashboarden, här kan du
+              sparat inställningarna så kommer du till översikten och här kan du
               skapa din första av maximalt 4 hinkar!
             </p>
           </section>
@@ -138,17 +138,17 @@ const Guide = () => {
             </p>
             <p>
               Är tänkt som en bufferthink, det betyder att du ska ha enkel
-              tillgång till pengar om det skulle hända något, tex om du blir
-              långtidssjukskriven kan en buffert hjälpa dig när du går på
+              tillgång till pengar om det skulle hända något. Tex om du blir
+              långtidssjukskriven så kan en buffert hjälpa dig när du går på
               sjukbidrag. En annan händelse kan vara om du bor i hus och något
-              händer med huset, tex om värmepumpen går sönder då kan bufferten
+              händer med huset, tex om värmepumpen går sönder så kan bufferten
               rädda dig. Bufferthinken som vi kallar den är helt enkelt till för
               oförutsedda utgifter där det finns en minimal risk för att
               pengarna ska minska i värde. Är du ung, student, med i a-kassan
-              eller kan enkelt få ett nytt jobb så kanske hinken kan vara lite
-              mindre, är du däremot äldre, bor i hus med större svårigheter att
-              skaffa ett nytt jobb och inga besparingar kanske hinken borde vara
-              lite större.
+              och kan få ett nytt jobb så kanske hinken kan vara lite mindre. Är
+              du däremot äldre, bor i hus med större svårigheter att skaffa ett
+              nytt jobb och inga besparingar kanske hinken borde vara lite
+              större.
             </p>
           </section>
 
@@ -166,7 +166,7 @@ const Guide = () => {
             <p>
               Fungerar som stöd för Bufferthinken, man kan tänka att det är som
               en andra buffert men med större chans till tillväxt med relativ
-              låg risk. Mm bufferten skulle ta slut så fyller man på från den
+              låg risk. Om bufferten skulle ta slut så fyller man på från den
               här hinken.
             </p>
           </section>
@@ -180,16 +180,16 @@ const Guide = () => {
               <i> 100% Aktier</i>
               <br />
               <strong>Storleksförslag:</strong>
-              <i> Forstätt att fylla efter Hink 1 & 2 är fyllda</i>
+              <i> Forstätt att fylla på efter Hink 1 & 2 är fyllda</i>
             </p>
             <p>
-              Här är hinken som är till för att dina pengar får växa över tid!
-              Den bör innehålla 100% aktier. När Hink1 och 2 är fyllda så
-              spiller alla pengar över i den här, Den har en lång sparhorisont
+              Det här är hinken som är till för att dina pengar får växa över
+              tid! Den bör innehålla 100% aktier. När Hink1 och 2 är fyllda så
+              spiller alla pengar över i den här. Den har en lång sparhorisont
               och är inte till för skapa säkerhet utan ska utgöra
-              avkastningsmotorn i ditt sparande. Skulle mot förmodan dom 2
-              första hinkarna tömmas helt så tar men av den här, men då med
-              risken att värdet kan ha gått ned.
+              avkastningsmotorn i ditt sparande. Skulle de två första hinkarna
+              mot förmodan tömmas helt så tar men av den här, men då med risken
+              att värdet kan ha gått ned.
             </p>
           </section>
 
@@ -209,9 +209,9 @@ const Guide = () => {
               <i> 10% av Hink 3</i>
             </p>
             <p>
-              Det är precis som det låter, hinken som är till för just “lek”.
-              Den är tänkt att kunna ge utrymme och utlopp för alternativa
-              investeringar med är väldigt hög risk. En rekommendation är att
+              Den här hinken är precis som det låter, den är till för “lek”. Den
+              är tänkt att kunna ge utrymme och utlopp för alternativa
+              investeringar med en väldigt hög risk. En rekommendation är att
               hinken inte överstiger 10% av värdet av Högriskhinken för att ge
               en riktlinje. Är man inte intresserad av denna hink så skippar man
               helt enkelt den!
