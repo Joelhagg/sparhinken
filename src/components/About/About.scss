@@ -1,34 +1,31 @@
 @import "../App.scss";
 
-
 .aboutWraper {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .aboutConatiner {
-    height: 100%;
+    background-color: #ffffffaa;
+    padding: 50px;
+    border-radius: 20px;
     width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-family: $secondaryFont;
     color: black;
     text-align: center; 
-}
 
-// Media query breakpoint at 1200px - for big computer screens and TV:s 
-@media screen and (max-width: $breakPointLargeScreen) {
+    a {
+        color: #002C55;
+        font-weight: 600;
+    }
     
+    a:hover {
+        color: #0071D9;
+    }
 }
-// Media query breakpoint at 1024px - for standard computer screen
-@media screen and (max-width: $breakePointDesktop) {
 
-}
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {
     .aboutConatiner {

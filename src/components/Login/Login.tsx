@@ -7,14 +7,14 @@ import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import "./Login.scss";
 
 const Login = () => {
+  const contextState = useContext(StateContext);
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const contextState = useContext(StateContext);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const hendelLogin = async (e: FormEvent) => {
     e.preventDefault();
     try {
       setError("");
@@ -39,7 +39,7 @@ const Login = () => {
         <div className="loginConatiner">
           <h1>Hej på dig hinksparare!</h1>
           {error}
-          <form className="loginForm" onSubmit={handleSubmit}>
+          <form className="loginForm" onSubmit={hendelLogin}>
             <input
               className="loginInputs"
               required

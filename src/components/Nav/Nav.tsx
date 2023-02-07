@@ -17,7 +17,6 @@ function Nav() {
 
   const handleLogout = async () => {
     setError("");
-
     try {
       setLoading(true);
       await signOut(auth);
@@ -32,6 +31,7 @@ function Nav() {
   // Yes, stolen...
   // https://ibaslogic.com/how-to-add-hamburger-menu-in-react/
 
+  // toogles to show the hamburger menu
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -54,10 +54,6 @@ function Nav() {
         <Link className="navLink" to="/dashboard">
           Översikt
         </Link>
-        {/* 
-        <Link className="navLink" to="/about">
-          Om oss
-        </Link> */}
 
         <Link className="navLink" to="/guide">
           Guide

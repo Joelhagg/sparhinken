@@ -27,7 +27,7 @@ const Footer = () => {
           </Link>
         </div>
 
-        <div className="socialMediaContainer">
+        <div className="socialMediaLinksContainer">
           <Link className="link" to="/facebook">
             <p>Facebook</p>
           </Link>

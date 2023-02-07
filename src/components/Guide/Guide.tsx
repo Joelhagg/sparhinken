@@ -5,6 +5,7 @@ import { useContext } from "react";
 import bucketImg from "../../assets/buckets.jpg";
 
 const Guide = () => {
+  // user object for checking if user is logged in
   const contextState = useContext(StateContext);
 
   return (
@@ -41,175 +42,201 @@ const Guide = () => {
         </ol>
 
         <p>ca 5 min läsning</p>
-        <div className="guideContainer" id="section1">
-          <h3>Vad är Sparhinken?</h3>
+        <div className="guideContainer">
+          <section id="section1">
+            <h3>Vad är Sparhinken?</h3>
 
-          <p>
-            Sparhinken är ett verktyg för att skapa en översikt av hur ditt
-            sparande är placerat. Du kanske har pengar vid flera olika tjänster
-            och är lite osäker på hur dom är placerade? Då kan du testa att mata
-            in dina belopp i hinkar för att få en överblick av ditt sparande.
-          </p>
+            <p>
+              Sparhinken är ett verktyg för att skapa en översikt av hur ditt
+              sparande är placerat. Du kanske har pengar vid flera olika
+              tjänster och är lite osäker på hur dom är placerade? Då kan du
+              testa att mata in dina belopp i hinkar för att få en överblick av
+              ditt sparande.
+            </p>
 
-          <p>
-            Sparhinken bygger på en enkel sparstrategi där man bygger upp sitt
-            sparande i “Hinkar”. Det betyder att man skapar en form av mental
-            bokföring för att dela upp sitt sparande i olika riskklasser. Med
-            risk menar vi i det här fallet risken att ens pengar kan försvinna.
-            Med låg risk menar vi sparkonto med insättningsgaranti, ett vanligt
-            konto på banken med ränta, gärna så hög som möjlig! Med hög risk
-            menar vi 100% aktiespar vilket kan sjunka i värde under en period.
-            Däremellan är rekommendationen att använda sig av en fördelning
-            mellan Räntepapper och Aktier för att sänka risken.
-          </p>
+            <p>
+              Sparhinken bygger på en enkel sparstrategi där man bygger upp sitt
+              sparande i “Hinkar”. Det betyder att man skapar en form av mental
+              bokföring för att dela upp sitt sparande i olika riskklasser. Med
+              risk menar vi i det här fallet risken att ens pengar kan
+              försvinna. Med låg risk menar vi sparkonto med insättningsgaranti,
+              ett vanligt konto på banken med ränta, gärna så hög som möjlig!
+              Med hög risk menar vi 100% aktiespar vilket kan sjunka i värde
+              under en period. Däremellan är rekommendationen att använda sig av
+              en fördelning mellan Räntepapper och Aktier för att sänka risken.
+            </p>
+          </section>
 
-          <h3 id="section2">Varför borde jag använda mig av det här?</h3>
-          <p>
-            Enligt SCB:s undersökning klarar inte 1 av 5 medelsvensken en
-            oförutsedd utgift på över 12 000 kr och i lägre åldrar så är det 1
-            av 4. 12 000kr kanske verkar som väldigt mycket pengar för en del,
-            och beroende på levnadsförhållanden så är det det! Med hjälp av
-            tjänsten Sparhinken så kan du skapa en mycket simpelt men effektivt
-            sparstrategi.
-          </p>
-          <p>
-            <a
-              target="_blank"
-              href="https://www.scb.se/pressmeddelande/en-av-fem-klarar-inte-ovantad-utgift-pa-12-000/"
-            >
-              SCB:s undersökning
+          <section id="section2">
+            <h3>Varför borde jag använda mig av det här?</h3>
+            <p>
+              Enligt SCB:s undersökning klarar inte 1 av 5 medelsvensken en
+              oförutsedd utgift på över 12 000 kr och i lägre åldrar så är det 1
+              av 4. 12 000kr kanske verkar som väldigt mycket pengar för en del,
+              och beroende på levnadsförhållanden så är det det! Med hjälp av
+              tjänsten Sparhinken så kan du skapa en mycket simpelt men
+              effektivt sparstrategi.
+            </p>
+            <p>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.scb.se/pressmeddelande/en-av-fem-klarar-inte-ovantad-utgift-pa-12-000/"
+              >
+                SCB:s undersökning
+              </a>
+            </p>
+          </section>
+
+          <section id="section3">
+            <h3>Hur fungerar strategin?</h3>
+            <p>
+              Tänk dig riktiga hinkar, när en hink är full och fortsätts att
+              fyllas på så rinner vatten över kanten, som tur är så finns det en
+              hink under som fångar upp spillet och börjar fyllas på. När i sin
+              tur den andra hinken är full så spiller det över till den 3:e
+              hinken, den här hinken är speciell, den kan nämligen aldrig bli
+              fylld, i den här så får det rum hur mycket vatten som helst. Med
+              dom här 3 hinkarna har man en riktigt robust och enkelt strategi.
+              Skulle man vilja använda strategin till fullo så kan man ta den
+              4:e hinken som alltid är 10% av 3:e hinkens storlek. Denna kan man
+              ha om man vill “leka lite” det vill säga, fylla den med lite med
+              riskfyllt innehåll, svämmar den här över så hälls det bara
+              tillbaka till den 3:e oändliga hinken. Istället för vatten så är
+              det såklart pengar som rinner uppifrån och ned 😉
+            </p>
+
+            <img
+              className="bucketImage"
+              alt="Visar ett uppritat system för hinksystemet där pilar visar att det rinner till nästa som är under."
+              src={bucketImg}
+            />
+          </section>
+
+          <section id="section4">
+            <h3>Hur fungerar appen?</h3>
+            <p>
+              När du har skapat ett konto och loggat in så kommer du till
+              inställningarna, här anger du ditt namn och vad du har för fasta
+              månadsutgifter, tex, boendekostnad, sparande, mat, bil, tjänster
+              etc. Helt enkelt det du vet att du kommer att betala när du fått
+              din lön. När du räknat ut och angivit din fasta månadskostnad och
+              sparat inställningarna så kommer du till dashboarden, här kan du
+              skapa din första av maximalt 4 hinkar!
+            </p>
+          </section>
+
+          <section className="section" id="section5">
+            <p>
+              <strong>Hink 1</strong>
+              <i> Bufferthinken:</i>
+              <br />
+              <strong>Placeringsförslag:</strong> <i>Sparkonto med ränta.</i>
+              <br />
+              <strong>Storleksförslag:</strong>
+              <i> 3 månaders utgifter.</i>
+            </p>
+            <p>
+              Är tänkt som en bufferthink, det betyder att du ska ha enkel
+              tillgång till pengar om det skulle hända något, tex om du blir
+              långtidssjukskriven kan en buffert hjälpa dig när du går på
+              sjukbidrag. En annan händelse kan vara om du bor i hus och något
+              händer med huset, tex om värmepumpen går sönder då kan bufferten
+              rädda dig. Bufferthinken som vi kallar den är helt enkelt till för
+              oförutsedda utgifter där det finns en minimal risk för att
+              pengarna ska minska i värde. Är du ung, student, med i a-kassan
+              eller kan enkelt få ett nytt jobb så kanske hinken kan vara lite
+              mindre, är du däremot äldre, bor i hus med större svårigheter att
+              skaffa ett nytt jobb och inga besparingar kanske hinken borde vara
+              lite större.
+            </p>
+          </section>
+
+          <section className="section" id="section6">
+            <p>
+              <strong>Hink 2</strong>
+              <i> Mellanriskhinken: </i>
+              <br />
+              <strong>Placeringsförslag:</strong>{" "}
+              <i> 60% Aktier och 40% Räntepapper</i>
+              <br />
+              <strong>Storleksförslag</strong>
+              <i> 5 gånger större än Hink 1</i>
+            </p>
+            <p>
+              Fungerar som stöd för Bufferthinken, man kan tänka att det är som
+              en andra buffert men med större chans till tillväxt med relativ
+              låg risk. Mm bufferten skulle ta slut så fyller man på från den
+              här hinken.
+            </p>
+          </section>
+
+          <section className="section" id="section7">
+            <p>
+              <strong>Hink3</strong>
+              <i> Högriskhinken: </i>
+              <br />
+              <strong>Placeringsförslag:</strong>
+              <i> 100% Aktier</i>
+              <br />
+              <strong>Storleksförslag:</strong>
+              <i> Forstätt att fylla efter Hink 1 & 2 är fyllda</i>
+            </p>
+            <p>
+              Här är hinken som är till för att dina pengar får växa över tid!
+              Den bör innehålla 100% aktier. När Hink1 och 2 är fyllda så
+              spiller alla pengar över i den här, Den har en lång sparhorisont
+              och är inte till för skapa säkerhet utan ska utgöra
+              avkastningsmotorn i ditt sparande. Skulle mot förmodan dom 2
+              första hinkarna tömmas helt så tar men av den här, men då med
+              risken att värdet kan ha gått ned.
+            </p>
+          </section>
+
+          <section className="section" id="section8">
+            <p>
+              <strong>Hink4</strong>
+              <i> Lekhinken: </i>
+              <br />
+              <strong>Placeringsförslag:</strong>
+              <i>
+                {" "}
+                Alternativa tillgångar, ädelmetaller, krypto, certifikat, vin,
+                konst etc..
+              </i>
+              <br />
+              <strong>Storleksförslag:</strong>
+              <i> 10% av Hink 3</i>
+            </p>
+            <p>
+              Det är precis som det låter, hinken som är till för just “lek”.
+              Den är tänkt att kunna ge utrymme och utlopp för alternativa
+              investeringar med är väldigt hög risk. En rekommendation är att
+              hinken inte överstiger 10% av värdet av Högriskhinken för att ge
+              en riktlinje. Är man inte intresserad av denna hink så skippar man
+              helt enkelt den!
+            </p>
+          </section>
+
+          <div className="bottomContainer">
+            <a href="#guideWrapper">
+              <h2>Tillbaka upp &uarr;</h2>
             </a>
-          </p>
 
-          <h3 id="section3">Hur fungerar strategin?</h3>
-          <p>
-            Tänk dig riktiga hinkar, när en hink är full och fortsätts att
-            fyllas på så rinner vatten över kanten, som tur är så finns det en
-            hink under som fångar upp spillet och börjar fyllas på. När i sin
-            tur den andra hinken är full så spiller det över till den 3:e
-            hinken, den här hinken är speciell, den kan nämligen aldrig bli
-            fylld, i den här så får det rum hur mycket vatten som helst. Med dom
-            här 3 hinkarna har man en riktigt robust och enkelt strategi. Skulle
-            man vilja använda strategin till fullo så kan man ta den 4:e hinken
-            som alltid är 10% av 3:e hinkens storlek. Denna kan man ha om man
-            vill “leka lite” det vill säga, fylla den med lite med riskfyllt
-            innehåll, svämmar den här över så hälls det bara tillbaka till den
-            3:e oändliga hinken. Istället för vatten så är det såklart pengar
-            som rinner uppifrån och ned 😉
-          </p>
+            <h3>Testa att skapa en hink!</h3>
 
-          <img className="bucketImage" alt="text" src={bucketImg} />
-
-          <h3 id="section4">Hur fungerar appen?</h3>
-          <p>
-            När du har skapat ett konto och loggat in så kommer du till
-            inställningarna, här anger du ditt namn och vad du har för fasta
-            månadsutgifter, tex, boendekostnad, sparande, mat, bil, tjänster
-            etc. Helt enkelt det du vet att du kommer att betala när du fått din
-            lön. När du räknat ut och angivit din fasta månadskostnad och sparat
-            inställningarna så kommer du till dashboarden, här kan du skapa din
-            första av maximalt 4 hinkar!
-          </p>
-          <p id="section5">
-            <strong>Hink 1</strong>
-            <i> Bufferthinken:</i>
-            <br />
-            <strong>Placeringsförslag:</strong> <i>Sparkonto med ränta.</i>
-            <br />
-            <strong>Storleksförslag:</strong>
-            <i> 3 månaders utgifter.</i>
-            <br />
-            <hr />
-            Är tänkt som en bufferthink, det betyder att du ska ha enkel
-            tillgång till pengar om det skulle hända något, tex om du blir
-            långtidssjukskriven kan en buffert hjälpa dig när du går på
-            sjukbidrag. En annan händelse kan vara om du bor i hus och något
-            händer med huset, tex om värmepumpen går sönder då kan bufferten
-            rädda dig. Bufferthinken som vi kallar den är helt enkelt till för
-            oförutsedda utgifter där det finns en minimal risk för att pengarna
-            ska minska i värde. Är du ung, student, med i a-kassan eller kan
-            enkelt få ett nytt jobb så kanske hinken kan vara lite mindre, är du
-            däremot äldre, bor i hus med större svårigheter att skaffa ett nytt
-            jobb och inga besparingar kanske hinken borde vara lite större.
-          </p>
-
-          <p id="section6">
-            <strong>Hink 2</strong>
-            <i> Mellanriskhinken: </i>
-            <br />
-            <strong>Placeringsförslag:</strong>{" "}
-            <i> 60% Aktier och 40% Räntepapper</i>
-            <br />
-            <strong>Storleksförslag</strong>
-            <i> 5 gånger större än Hink 1</i>
-            <br />
-            <hr />
-            Fungerar som stöd för Bufferthinken, man kan tänka att det är som en
-            andra buffert men med större chans till tillväxt fast med relativ
-            låg risk.Varför vill man hålla nere risken? Jo för att den är tänkt
-            som en extra bufferthink fast större men med chans för tillväxt, om
-            bufferten skulle ta slut så fyller man på från den här hinken.
-          </p>
-
-          <p id="section7">
-            <strong>Hink3</strong>
-            <i> Högriskhinken: </i>
-            <br />
-            <strong>Placeringsförslag:</strong>
-            <i> 100% Aktier</i>
-            <br />
-            <strong>Storleksförslag:</strong>
-            <i> Forstätt att fylla efter Hink 1 & 2 är fyllda</i>
-            <br />
-            <hr />
-            Här är hinken som är till för att dina pengar får växa över tid! Den
-            bör innehålla 100% aktier. När Hink1 och 2 är fyllda så spiller alla
-            pengar över i den här, Den har en lång sparhorisont och är inte till
-            för skapa säkerhet utan ska utgöra avkastningsmotorn i ditt
-            sparande. Skulle mot förmodan dom 2 första hinkarna tömmas helt så
-            tar men av den här, men då med risken att värdet kan ha gått ned.
-          </p>
-
-          <p id="section8">
-            <strong>Hink4</strong>
-            <i> Lekhinken: </i>
-            <br />
-            <strong>Placeringsförslag:</strong>
-            <i>
-              {" "}
-              Alternativa tillgångar, ädelmetaller, krypto, certifikat, vin,
-              konst etc..
-            </i>
-            <br />
-            <strong>Storleksförslag:</strong>
-            <i> 10% av Hink 3</i>
-            <br />
-            <hr />
-            Det är precis som det låter, hinken som är till för just “lek”. Den
-            är tänkt att kunna ge utrymme och utlopp för alternativa
-            investeringar med är väldigt hög risk. En rekommendation är att
-            hinken inte överstiger 10% av värdet av Högriskhinken för att ge en
-            riktlinje. Är man inte intresserad av denna hink så skippar man helt
-            enkelt den!
-          </p>
-
-          <a href="#guideWrapper">
-            <h2>Tillbaka upp &uarr;</h2>
-          </a>
-
-          <h3>Testa att skapa en hink nu!</h3>
-
-          {!contextState.currentUser ? (
-            <Link to="/register">
-              <button className="guideRegisterButton">Registreara dig</button>
-            </Link>
-          ) : (
-            <Link to="/dashboard">
-              <button className="guideRegisterButton">
-                Tillbaka till Översikt
-              </button>
-            </Link>
-          )}
+            {!contextState.currentUser ? (
+              <Link to="/register">
+                <button className="guideRegisterButton">Registreara dig</button>
+              </Link>
+            ) : (
+              <Link to="/dashboard">
+                <button className="guideRegisterButton">
+                  Tillbaka till Översikt
+                </button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </>

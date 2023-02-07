@@ -8,6 +8,15 @@
     flex-direction: column;
     align-items: center;
     font-family: $secondaryFont;
+
+    ol {
+        height: auto;
+        background-color: #ffffffaa;
+        padding: 50px;
+        border-radius: 20px;
+        text-align: left;
+    }
+
     a {
         color: #002C55;
         font-weight: 600;
@@ -16,25 +25,15 @@
     a:hover {
         color: #0071D9;
     }
-
-    ol {
-        height: auto;
-        background-color: #ffffffaa;
-        padding: 50px;
-        border-radius: 20px;
-    }
 }
 
 .guideContainer {
-    // outline: solid green 2px;
     background-color: #ffffffaa;
     padding: 50px;
     border-radius: 20px;
     width: 800px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center; 
     font-size: 18px;
 }
 
@@ -43,21 +42,28 @@
     margin: 10px 0 50px 0;
 }
 
+.section {
+    background-color: #d3eaff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0 20px 0;
+    text-align: left;
+}
+
 .guideRegisterButton {
     font-family: $primaryFont;
     border: none;
-    width: 160px;
-    height: 40px;
+    width: 180px;
+    height: 50px;
     margin: 10px 0 100px 0;
     color: #fff;
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 16px;
     letter-spacing: 2px;
     border-radius: 4px;
     background-color: #0F5699;
     border: 2px solid #0F5699;
-
     cursor: pointer;
     transition: 0.1s; 
 }
@@ -69,18 +75,19 @@
     border: 2px solid #0F5699;
 }
 
-
-
-// Media query breakpoint at 1200px - for big computer screens and TV:s 
-@media screen and (max-width: $breakPointLargeScreen) {
-    
+.bottomContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+
 // Media query breakpoint at 1024px - for standard computer screen
 @media screen and (max-width: $breakePointDesktop) {
+
     .bucketImage {
         width: 700px;
     }
-
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {

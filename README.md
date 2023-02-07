@@ -65,6 +65,8 @@ Please read more about terms on https://sparhinken.web.app/terms
 
 - React-router-dom
 - React-icons
+- React-loader-spinner
+- React-tooltip
 - Firebase
 - Font-awesome
 - Sass

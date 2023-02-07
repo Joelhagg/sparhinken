@@ -5,19 +5,14 @@ import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { IBucket } from "../../models/IBucket";
-// import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { InfinitySpin } from "react-loader-spinner";
 
 const Dashboard = () => {
   const contextState = useContext(StateContext);
-  const [currentUser, setCurrentUser] = useState(contextState);
+  const [currentUser] = useState(contextState);
   const [userName, setUserName] = useState<string>("");
-  const [totalSavedAmount, setTotalSavedAmount] = useState<number>(0);
-  const [monthlyExspenses, setMonthlyExspenses] = useState<number>(0);
   const [bucket1, setBucket1] = useState<IBucket>();
   const [bucket2, setBucket2] = useState<IBucket>();
   const [bucket3, setBucket3] = useState<IBucket>();
@@ -32,8 +27,6 @@ const Dashboard = () => {
       const data = await getDoc(doc(db, "users", currentUser.currentUser.uid));
       if (data.exists()) {
         setUserName(data.data().userName);
-        setTotalSavedAmount(data.data().totalSavedAmount);
-        setMonthlyExspenses(data.data().monthlyExspenses);
         setBucket1(data.data().bucket1);
         setBucket2(data.data().bucket2);
         setBucket3(data.data().bucket3);
@@ -45,6 +38,8 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
+  // calculations for adding bucket amounts for total montly savings and total bucket amounts
+
   useEffect(() => {
     let sum = (arr: any) => {
       return arr.reduce((total: number, current: number) => {
@@ -52,7 +47,7 @@ const Dashboard = () => {
       }, 0);
     };
 
-    if (totalSavedInBuckets == Number.NaN) {
+    if (totalSavedInBuckets === Number.NaN) {
       setTotalSavedInBuckets(0);
     }
 
@@ -65,7 +60,7 @@ const Dashboard = () => {
       ])
     );
 
-    if (totalMontlySavings == Number.NaN) {
+    if (totalMontlySavings === Number.NaN) {
       setTotalMontlySavings(0);
     }
 
@@ -79,6 +74,12 @@ const Dashboard = () => {
     );
   }, [userName]);
 
+  // Digits formating, adding a space after 3 digits
+
+  const formattedTotalMontlySavings = totalMontlySavings
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   const formattedTotalSavedInBuckets = totalSavedInBuckets
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -86,12 +87,15 @@ const Dashboard = () => {
   const formattedBucket1ActualBucketsize = bucket1?.actualBucketSize
     ?.toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   const formattedBucket2ActualBucketsize = bucket2?.actualBucketSize
     ?.toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   const formattedBucket3ActualBucketsize = bucket3?.actualBucketSize
     ?.toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
   const formattedBucket4ActualBucketsize = bucket4?.actualBucketSize
     ?.toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -134,7 +138,6 @@ const Dashboard = () => {
                         <h3>Hink {bucket1.bucketNumber}</h3>
                         <p>{bucket1.bucketName}</p>
                         <p>{formattedBucket1ActualBucketsize} kr</p>
-                        {/* <p>{bucket1.percentageFilled}% fylld</p> */}
                       </div>
                     </button>
                   </Link>
@@ -184,7 +187,6 @@ const Dashboard = () => {
                           <h3>Hink {bucket2.bucketNumber}</h3>
                           <p>{bucket2.bucketName}</p>
                           <p>{formattedBucket2ActualBucketsize} kr</p>
-                          {/* <p>{bucket2.percentageFilled}% </p> */}
                         </div>
                       </button>
                     </Link>
@@ -218,7 +220,6 @@ const Dashboard = () => {
                           <h3>Hink {bucket3.bucketNumber}</h3>
                           <p>{bucket3.bucketName}</p>
                           <p>{formattedBucket3ActualBucketsize} kr</p>
-                          {/* <p>{bucket2.percentageFilled}% </p> */}
                         </div>
                       </button>
                     </Link>
@@ -252,7 +253,6 @@ const Dashboard = () => {
                           <h3>Hink {bucket4.bucketNumber}</h3>
                           <p>{bucket4.bucketName}</p>
                           <p>{formattedBucket4ActualBucketsize} kr</p>
-                          {/* <p>{bucket2.percentageFilled}% </p> */}
                         </div>
                       </button>
                     </Link>
@@ -283,9 +283,9 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="amountConatiner">
-              <p className="totalMontlySavingsText">
-                Totalt månadssparande: {totalMontlySavings} kr
-              </p>
+              <h3 className="totalMontlySavingsText">
+                Totalt månadssparande: {formattedTotalMontlySavings} kr
+              </h3>
               <h1 className="totalSavedInBucketsText">
                 Totalt i hinkarna: {formattedTotalSavedInBuckets} kr
               </h1>
