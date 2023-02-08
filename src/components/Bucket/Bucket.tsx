@@ -1,6 +1,5 @@
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "./Bucket.scss";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
@@ -8,6 +7,7 @@ import { BsQuestionCircleFill } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import { InfinitySpin } from "react-loader-spinner";
+import "./Bucket.scss";
 
 const Bucket = () => {
   let { bucketId } = useParams();

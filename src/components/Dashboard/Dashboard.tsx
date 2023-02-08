@@ -1,4 +1,3 @@
-import "./Dashboard.scss";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
@@ -8,6 +7,7 @@ import { IBucket } from "../../models/IBucket";
 import { BsQuestionCircleFill } from "react-icons/bs";
 import { Tooltip } from "react-tooltip";
 import { InfinitySpin } from "react-loader-spinner";
+import "./Dashboard.scss";
 
 const Dashboard = () => {
   const contextState = useContext(StateContext);

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import "./Guide.scss";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { useContext } from "react";
 import bucketImg from "../../assets/buckets.jpg";
+import "./Guide.scss";
 
 const Guide = () => {
   // user object for checking if user is logged in
