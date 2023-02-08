@@ -219,7 +219,7 @@ const Guide = () => {
           </section>
 
           <div className="bottomContainer">
-            <a href="#guideWrapper">
+            <a className="backUpLink" href="#guideWrapper">
               <h2>Tillbaka upp &uarr;</h2>
             </a>
 
