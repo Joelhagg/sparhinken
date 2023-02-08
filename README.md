@@ -9,8 +9,6 @@ A school thesis project at the end of my front-end developer class at Medieinsti
 
 `Made by Joel Hägg`
 <br>
-
-<hr>
 <br>
 
 ## What is it?
@@ -24,8 +22,6 @@ The app is ment to be seeen as a visual tool for learning and a fun "think outsi
 The basics of this plan is to picture buckets that are being filled with water, when the first bucket is filled it spilles over to the next one and so on.
 The sizes of buckets are controled by the fixed montly expences.
 <br>
-
-<hr>
 <br>
 
 ## How to use it
@@ -35,8 +31,6 @@ After creating an account the user enter the settings section, here a name and m
 When submitted the next view is the Dashboard, here the user can create its first bucket.
 In the bucket view for bucket 1, some tips is avalible such as what the name of the bucket could be, the intent of this bucket and amounts. When saved the user can get an overview over up to 4 avalible buckets from the daschboard.
 <br>
-
-<hr>
 <br>
 
 ## Used Technologies
@@ -47,18 +41,16 @@ In the bucket view for bucket 1, some tips is avalible such as what the name of 
 - Firestore as database
 - Firebase for authentication
 - Firebase for hosting
-  <br>
 
-<hr>
+ <br>
 <br>
 
 ## Disclamer
 
 This is not financial advice in any form, the "recommendations" in the app is a guideline and may not suit everyone.
 Please read more about terms on https://sparhinken.web.app/terms
-<br>
 
-<hr>
+<br>
 <br>
 
 ## npm packages
@@ -70,9 +62,8 @@ Please read more about terms on https://sparhinken.web.app/terms
 - Firebase
 - Font-awesome
 - Sass
-  <br>
-
-<hr>
+  
+<br>
 <br>
 
 ## Start project
