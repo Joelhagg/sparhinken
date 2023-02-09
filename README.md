@@ -7,7 +7,7 @@
     <strong>
 </h3>
 
-### [Sparhinken.web.app](https://sparhinken.web.app/)
+<a target="_blank" href="https://sparhinken.web.app">Sparhinken.web.app</a>
 
 <br>
 
@@ -84,8 +84,8 @@ In the bucket view for bucket 1, some tips is avalible such as what the name of 
 the intent of this bucket and amounts. When saved the user can get an overview over up to 4 avalible buckets from the daschboard.
 
 </p>
-<br>
 
+<br>
 <br>
 
 <h1> Used Technologies </h1>
@@ -101,7 +101,7 @@ the intent of this bucket and amounts. When saved the user can get an overview o
 
 </p>
 
- <br>
+<br>
 <br>
 
 <h1> Disclamer </h1>
@@ -127,7 +127,7 @@ Please read more about terms on https://sparhinken.web.app/terms
 
 <h1> Start project </h1>
 
-Clone or download repo, to start this project, run in terminal:
+Clone or download repo, to start this project, run in terminal when in root folder:
 
 ### `npm install` - to install dependencies
 
