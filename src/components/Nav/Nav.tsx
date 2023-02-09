@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./Nav.scss";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { useContext, useState } from "react";
 import { auth } from "../../firebase";
@@ -7,6 +6,7 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
+import "./Nav.scss";
 
 function Nav() {
   const contextState = useContext(StateContext);

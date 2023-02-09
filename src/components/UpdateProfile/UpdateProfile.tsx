@@ -3,7 +3,6 @@ import { FormEvent, useContext, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-
 import "./UpdateProfile.scss";
 
 const UpdateProfile = () => {

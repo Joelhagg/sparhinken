@@ -95,6 +95,10 @@
     .bucketImage {
         width: 400px;
     }
+
+    .backUpLink {
+        display: none;
+    }
 }
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {

@@ -1,9 +1,9 @@
-import "./Register.scss";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
 import { auth } from "../../firebase";
+import "./Register.scss";
 
 const Register = () => {
   const contextState = useContext(StateContext);
