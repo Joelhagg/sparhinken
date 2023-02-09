@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./Home.scss";
 import { Link } from "react-router-dom";
+import "./Home.scss";
 
 // Yes i found this on the internet and stole it!
 // How could i not, such nice work Julia! Thanks!

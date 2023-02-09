@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import "./Settings.scss";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { StateContext } from "../../contexts/StateProvider/StateProvider";
+import "./Settings.scss";
 
 const Settings = () => {
   const navigate = useNavigate();
