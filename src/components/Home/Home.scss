@@ -20,6 +20,13 @@
     align-items: center;
 }
 
+.quoteWraper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .quoteConatiner {
     height: 300px;
     width: 500px;
@@ -52,18 +59,31 @@
   
 .fade-out {
     opacity: 0;
-    transition: opacity 2s ease; 
+    transition: opacity 1s ease; 
 }
 
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
+
+    .homeGuideLink {
+        font-size: 26px;
+    }
 
     .homeContainer {
         background-position-x: 6%;
     }
 
     .quoteConatiner {
+        height: 200px;
         width: 300px;
     }
+
+    .fade-in {
+        font-size: 30px;
+     }
+       
+     .fade-out {
+         font-size: 30px;
+     }
 
 }

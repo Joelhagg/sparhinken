@@ -147,6 +147,7 @@
     display: flex;
     flex-direction: column;
     align-items: end;
+    margin: 0;
 }    
 
 .totalSavedInBucketsText {
@@ -220,7 +221,8 @@
     }
 
     .bottomConatiner {
-       margin-bottom: 50px;
+       margin-bottom: 40px;
+       align-items: flex-start;
     }    
 
 }
@@ -261,6 +263,7 @@
     }
 
     .bottomConatiner {
-        margin-bottom: 100px;
+        margin-bottom: 40px;
+        align-items: flex-start;
      }    
 }

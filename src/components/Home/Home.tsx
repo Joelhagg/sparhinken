@@ -52,7 +52,7 @@ const Home = () => {
         aria-label="background image of plant growing out of coins"
         className="homeContainer"
       >
-        <div>
+        <div className="quoteWraper">
           <div className="quoteConatiner">
             <h1 className={fadeProp.fade}>{WORDS_TO_ANIMATE[wordOrder]}</h1>
           </div>
