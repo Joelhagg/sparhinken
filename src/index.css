@@ -5,3 +5,18 @@ html, body {
     overflow-x: hidden;
     /* overflow-y: hidden; */
 }
+
+
+/* 
+this is only for iOS devices, it enables scroll, importante to access nav if it goes away!
+So if you try it in dev mode smaller then 768 px it will break ;(
+
+Btw this file is still .css inted of .scss because it gave me problems early on, 
+im scared to change anything this late in the process
+*/
+
+@media only screen and (min-width: 768px) {
+    html, body {
+        overflow-y: hidden;
+    }
+}

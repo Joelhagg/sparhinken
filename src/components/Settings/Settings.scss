@@ -22,7 +22,9 @@
     align-items: center;
     background-color: #ffffffaa;
     padding: 50px;
+    margin-bottom: 40px;
     border-radius: 20px;
+
 }
 
 .settingsText {
@@ -53,12 +55,11 @@
 }
 
 .label {
-margin-top: 20px;}
+    margin-top: 20px;}
 
 .settingsLink {
     color: #002C55;
     font-weight: 600;
-
     text-decoration: none;
 }
 
@@ -136,6 +137,18 @@ margin-top: 20px;}
 
     .settingsContainer {
         width: 350px;
-        padding: 0;
+        padding-bottom: 20px;
+
+        h1 {
+            font-size: 20px;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .settingsText {
+        padding: 10px;
+        margin-bottom: 0;
+        text-decoration: none;
     }
 }

@@ -53,6 +53,7 @@ footer {
 // Media query breakpoint at 1200px - for big computer screens and TV:s  
 @media screen and (max-width: $breakPointLargeScreen) {
     
+    
 }
 // Media query breakpoint at 1024px - for standard computer screen
 @media screen and (max-width: $breakePointDesktop) {
@@ -60,11 +61,12 @@ footer {
 }
 // Media query breakpoint at 768px - for tablets
 @media screen and (max-width: $breakPointTablet) {
-    
+
+
 }
 // Media query breakpoint at 480px - for phones
 @media screen and (max-width: $breakePointMobile) {
-    
+
     main {
         height: 90vh;
 
