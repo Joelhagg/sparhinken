@@ -7,7 +7,7 @@
     <strong>
 </h3>
 
-<a target="_blank" href="https://sparhinken.web.app"><h2>Sparhinken.web.app</h2></a>
+<a target="_blank" href="https://sparhinken.web.app">Sparhinken.web.app</a>
 
 <br>
 <br>
