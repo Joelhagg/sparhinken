@@ -7,11 +7,7 @@
     <strong>
 </h3>
 
-<a target="_blank" href="https://sparhinken.web.app">Sparhinken.web.app</a>
-
-<br>
-
-`by Joel Hägg`
+<a target="_blank" href="https://sparhinken.web.app"><h2>Sparhinken.web.app</h2></a>
 
 <br>
 <br>
@@ -66,6 +62,11 @@ In this way, I think that you can eliminate the worry about money, just stick to
 This is a guide and not life style. Don't forget to live life and spend money when you can, as in everything, balance is key.
 
 "Money is not money until it is spent."
+
+Idea and inspiration is directly taken from “RikaTillsammans”
+https://rikatillsammans.se/fyra-hinkar/
+
+Overall economic inspiration: https://rikatillsammans.se/kom-igang/borja-spara-och-investera/
 
 </p>
 
